@@ -9,6 +9,8 @@ require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 if defined?(Bundler)
+  platform = RUBY_PLATFORM.match(/(linux|darwin)/)[0].to_sym
+  Bundler.require(platform)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))
   # If you want your assets lazily compiled in production, use this line
