@@ -69,5 +69,13 @@ module IshikitakaiCom
 
     # for heroku
     config.assets.initialize_on_precompile = false
+    
+    # generator setting
+    config.generators do |g|
+      g.view_specs false
+      g.helper_specs false
+      g.helper false
+      g.javascripts false
+    end
   end
 end
