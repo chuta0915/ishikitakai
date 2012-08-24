@@ -1,0 +1,15 @@
+src_dir:
+
+src_files:
+  - spec/javascripts/support/sinon-1.3.1.js
+  - spec/javascripts/support/jasmine-jquery.js
+  - spec/javascripts/support/jasmine-sinon.js
+  - public/assets-test/application.js
+
+spec_files:
+  - "**/*[Ss]pec.{js,coffee,js.coffee}"
+
+helpers:
+  - "helpers/**/*.{js,coffee}"
+
+spec_dir: spec/javascripts
