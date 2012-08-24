@@ -77,5 +77,8 @@ module IshikitakaiCom
       g.helper false
       g.javascripts false
     end
+    
+    # i18n-js
+    config.middleware.use I18n::JS::Middleware
   end
 end
