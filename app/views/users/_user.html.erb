@@ -9,3 +9,13 @@
     </li>
   <% end %>
 </ul>
+<ul class="unstyled groups">
+  <% user.memberships.each do|membership| %>
+    <li>
+      <%= link_to group_path(membership.group), rel: 'tooltip', :'data-title' => membership.group.summary, :'data-placement' => 'bottom' do %>
+        <span class="label <%= membership.level.name %>"><%= membership.level.label %></span>
+        <span class="label label-info"><%= membership.group.name %></span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
