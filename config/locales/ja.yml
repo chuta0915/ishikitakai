@@ -9,25 +9,29 @@ ja:
   activerecord:
     models:
       group: "グループ"
+      event: "イベント"
     attributes:
       group:
         name: "グループ名"
         summary: "概要"
         content: "詳細情報"
         scope: "公開範囲"
+      event:
+        name: "イベント名"
+        summary: "概要"
+        content: "詳細情報"
+        place_name: "場所"
+        place_url: "URL"
+        place_address: "住所"
+        place_map_url: "地図 URL"
+        capacity_min: "最少催行人数"
+        capacity_max: "定員"
+        begin_at: "開催日時"
+        receive_begin_at: "募集期間"
+        scope: "参加募集範囲"
+        event_payment_kind_id: "無料/有料"
+        fee: "参加費"
+        group_id: "どこのグループ？"
   action:
     close: "閉じる"
     save: "保存する"
-  level:
-    records:
-      master: "主催者"
-      support: "スタッフ"
-      member: "メンバー"
-      guest: "ゲスト" 
-  scope:
-    records:
-      public: "全体公開"
-      friends: "友達まで"
-      friends_friends: "友達の友達まで" 
-      closed: "招待制" 
-      private: "秘密" 

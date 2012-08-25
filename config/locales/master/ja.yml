@@ -1,0 +1,19 @@
+ja:
+  level:
+    records:
+      master: "主催者"
+      support: "スタッフ"
+      member: "メンバー"
+      guest: "ゲスト" 
+  scope:
+    records:
+      public: "全体公開"
+      friends: "友達まで"
+      friends_friends: "友達の友達まで" 
+      closed: "招待制" 
+      private: "秘密" 
+  event_payment_kind:
+    records:
+      free: "無料"
+      advance: "有料(前払い)"
+      deferred: "無料(後払い)"

@@ -1,0 +1,19 @@
+en:
+  level:
+    records:
+      master: "Master"
+      support: "Staff"
+      member: "Member"
+      guest: "Guest"
+  scope:
+    records:
+      public: "Public"
+      friends: "Friends"
+      friends_friends: "Friend's Friends" 
+      closed: "Closed" 
+      private: "Private" 
+  event_payment_kind:
+    records:
+      free: "Free"
+      advance: "Advance payment"
+      deferred: "Deferred payment"

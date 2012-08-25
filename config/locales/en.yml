@@ -9,25 +9,29 @@ en:
   activerecord:
     models:
       group: "Group"
+      event: "Event"
     attributes:
       group:
         name: "community name"
         summary: "summary"
         content: "deital comment"
         scope: "scope"
+      event:
+        name: "event name"
+        summary: "summary"
+        content: "detail comment"
+        place_name: "place"
+        place_url: "url"
+        place_address: "address"
+        place_map_url: "map url"
+        capacity_min: "minimum people count"
+        capacity_max: "maximum peopel count"
+        begin_at: "event date"
+        receive_begin_at: "receive date"
+        scope: "scope"
+        event_payment_kind_id: "payment kind"
+        fee: "fee"
+        group_id: "Select Community"
   action:
     close: "Close"
     save: "Save"
-  level:
-    records:
-      master: "Master"
-      support: "Staff"
-      member: "Member"
-      guest: "Guest"
-  scope:
-    records:
-      public: "Public"
-      friends: "Friends"
-      friends_friends: "Friend's Friends" 
-      closed: "Closed" 
-      private: "Private" 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120825115730) do
+ActiveRecord::Schema.define(:version => 20120825151718) do
 
   create_table "admins", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,50 @@ ActiveRecord::Schema.define(:version => 20120825115730) do
   end
 
   add_index "admins", ["email"], :name => "idx_email_on_admins", :unique => true
+
+  create_table "attendences", :force => true do |t|
+    t.integer  "event_id",   :null => false
+    t.integer  "user_id",    :null => false
+    t.integer  "level_id",   :null => false
+    t.string   "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "attendences", ["event_id"], :name => "idx_group_id_on_attendences"
+  add_index "attendences", ["user_id", "event_id"], :name => "idx_user_id_event_id_on_attendences", :unique => true
+
+  create_table "event_payment_kinds", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.integer  "user_id",               :null => false
+    t.integer  "group_id"
+    t.integer  "scope_id",              :null => false
+    t.string   "name",                  :null => false
+    t.text     "content"
+    t.text     "summary",               :null => false
+    t.string   "place_url"
+    t.string   "place_name",            :null => false
+    t.string   "place_address"
+    t.string   "place_map_url"
+    t.integer  "capacity_min",          :null => false
+    t.integer  "capacity_max",          :null => false
+    t.datetime "begin_at"
+    t.datetime "end_at"
+    t.datetime "receive_begin_at"
+    t.datetime "receive_end_at"
+    t.integer  "event_payment_kind_id", :null => false
+    t.integer  "fee"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  add_index "events", ["group_id"], :name => "idx_group_id_on_events"
+  add_index "events", ["user_id"], :name => "idx_user_id_on_events"
 
   create_table "groups", :force => true do |t|
     t.string   "name",       :null => false
