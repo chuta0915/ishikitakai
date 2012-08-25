@@ -59,6 +59,6 @@ class GroupsController < ApplicationController
 
   def destroy
     @group.destroy
-    redirect_to Rails.application.routes.url_helpers.groups_path
+    redirect_to groups_path, notice: t('groups.show.destroyed', name: @group.name)
   end
 end

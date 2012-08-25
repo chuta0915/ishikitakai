@@ -15,3 +15,4 @@ ja:
       edit: "グループの設定を変更する"
       created: "「%{name}」グループを作成しました"
       updated: "「%{name}」グループの設定を変更しました"
+      destroyed: "「%{name}」グループを削除ました"
