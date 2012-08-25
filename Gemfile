@@ -41,7 +41,6 @@ group :development, :test do
   gem 'taps'
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'rb-readline'
   gem 'jasmine-rails'
   gem 'jasmine-headless-webkit', :github => 'johnbintz/jasmine-headless-webkit'
   gem 'guard-rails-assets'
