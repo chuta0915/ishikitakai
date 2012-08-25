@@ -26,6 +26,7 @@ class Group < ActiveRecord::Base
       group.user_id = user.try(:id)
       return group unless group.valid?
       group.save
+      group
     end
   end
 
