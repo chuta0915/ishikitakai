@@ -1,0 +1,17 @@
+en:
+  groups:
+    index:
+      title: "Groups"
+      new: "Add new Group"
+      show_html: "Detail &raquo;"
+    edit:
+      delete: "Delete"
+      confirm_delete: "Are you really want to delete?"
+    show:
+      leave: "Leave this group"
+      confirm_leave: "Are you really want to delete?"
+      join: "Join this group"
+      member: "Member"
+      edit: "Edit group's setting"
+      created: "Created %{name} group"
+      updated: "Updated %{name} group's setting"

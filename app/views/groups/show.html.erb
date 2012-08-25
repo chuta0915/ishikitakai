@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h1>
+    <%= @group.name %>
+    <small><%= @group.summary %></small>
+  </h1>
+</div>
+
+<section>
+<div>
+  <%= @group.content.html_safe %>
+</div>
+</section>
+
+<% if @group.user_can_edit?(current_user) %>
+  <section class="form-actions">
+    <%= link_to t('.edit'), edit_group_path(@group), class: 'btn' %>
+  </section>
+<% end %>
+
+<% content_for_sidebar do %>
+  <% if user_signed_in? %>
+    <div class="form-action">
+      <% if @group.user_is_member?(current_user.id) %>
+        <% unless @group.user_is_owner?(current_user.id) %>
+          <%= link_to t('.leave'), my_membership_path(@group), class: 'btn btn-danger', confirm: t('.confirm_leave'), method: 'delete' %>
+        <% end %>
+      <% else %>
+        <%= link_to t('.join'), my_membership_path(@group), class: 'btn btn-primary', method: 'put' %>
+      <% end %>
+    </div>
+  <% end %>
+  <section>
+  <h3><i class="icon-user"></i><%= t('.member') %><i class="icon-user"></i></h3>
+  <table class="table table-condensed">
+    <% @group.memberships.each do|membership| %>
+      <tr>
+        <td><span class="label <%= membership.level.name %>"><%= membership.level.label %></span></td>
+        <td><%= link_to membership.user.name, user_path(membership.user_id) %></td>
+      </tr>
+    <% end %>
+  </table>
+  </section>
+<% end %>
+
+<hr />
+<%= render 'shared/paging' %>

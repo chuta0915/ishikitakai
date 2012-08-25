@@ -1,0 +1,17 @@
+ja:
+  groups:
+    index:
+      title: "登録されているグループ"
+      new: "グループを登録する"
+      show_html: "詳しく見る &raquo;"
+    edit:
+      delete: "グループを閉鎖します"
+      confirm_delete: "本当に閉鎖しますか？"
+    show:
+      leave: "グループを抜ける"
+      confirm_leave: "本当に抜けますか？"
+      join: "グループに入る"
+      member: "メンバー"
+      edit: "グループの設定を変更する"
+      created: "「%{name}」グループを作成しました"
+      updated: "「%{name}」グループの設定を変更しました"

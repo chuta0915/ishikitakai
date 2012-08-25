@@ -20,6 +20,15 @@ class Group < ActiveRecord::Base
 
   before_create :create_memberships
 
+  class << self
+    def create_by_user attr, user
+      group = self.new attr
+      group.user_id = user.try(:id)
+      return group unless group.valid?
+      group.save
+    end
+  end
+
   def user_is_owner? user_id
     self.user_can_edit? user_id
   end

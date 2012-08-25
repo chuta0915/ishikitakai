@@ -1,0 +1,11 @@
+<% content_for :title,  "#{t('.title')} " %>
+<% content_for :body_class,  "groups " %>
+<%= render 'search_form' %>
+<%= link_to t('.new'), new_group_path, :class => "btn btn-warning btn-large new_group" %>
+
+<ul id="list" class="thumbnails">
+  <% @groups.each do|group| %>
+    <li class="span4"><%= render 'group', model: group %></li>
+  <% end %>
+</ul>
+<%= render 'shared/paging' %>
