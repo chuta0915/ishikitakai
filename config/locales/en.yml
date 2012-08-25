@@ -8,7 +8,26 @@ en:
       button: "Search Now"
   activerecord:
     models:
+      group: "Group"
     attributes:
+      group:
+        name: "community name"
+        summary: "summary"
+        content: "deital comment"
+        scope: "scope"
   action:
     close: "Close"
     save: "Save"
+  level:
+    records:
+      master: "Master"
+      support: "Staff"
+      member: "Member"
+      guest: "Guest"
+  scope:
+    records:
+      public: "Public"
+      friends: "Friends"
+      friends_friends: "Friend's Friends" 
+      closed: "Closed" 
+      private: "Private" 

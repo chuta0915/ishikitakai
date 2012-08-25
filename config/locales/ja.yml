@@ -8,7 +8,26 @@ ja:
       button: "検索する"
   activerecord:
     models:
+      group: "グループ"
     attributes:
+      group:
+        name: "グループ名"
+        summary: "概要"
+        content: "詳細情報"
+        scope: "公開範囲"
   action:
     close: "閉じる"
     save: "保存する"
+  level:
+    records:
+      master: "主催者"
+      support: "スタッフ"
+      member: "メンバー"
+      guest: "ゲスト" 
+  scope:
+    records:
+      public: "全体公開"
+      friends: "友達まで"
+      friends_friends: "友達の友達まで" 
+      closed: "招待制" 
+      private: "秘密" 

@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   attr_accessible :remember_me, :name, :image, :default_provider_id, :email
   has_many :providers_users, :dependent => :destroy
   has_many :providers, :through => :providers_users
+  has_many :memberships, :dependent => :destroy
+  has_many :groups, :through => :memberships
 
   extend Providers::Facebook
   extend Providers::Twitter

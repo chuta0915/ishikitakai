@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120824231253) do
+ActiveRecord::Schema.define(:version => 20120825044746) do
 
   create_table "admins", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,37 @@ ActiveRecord::Schema.define(:version => 20120824231253) do
   end
 
   add_index "admins", ["email"], :name => "idx_email_on_admins", :unique => true
+
+  create_table "groups", :force => true do |t|
+    t.string   "name",       :null => false
+    t.text     "summary",    :null => false
+    t.text     "content"
+    t.integer  "scope_id",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "groups", ["name"], :name => "idx_name_on_groups"
+
+  create_table "levels", :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "priority",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "levels", ["priority"], :name => "idx_priority_on_levels"
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "group_id",   :null => false
+    t.integer  "user_id",    :null => false
+    t.integer  "level_id",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "memberships", ["group_id"], :name => "idx_group_id_on_memberships"
+  add_index "memberships", ["user_id", "group_id", "level_id"], :name => "idx_user_id_group_id_level_id_on_memberships", :unique => true
 
   create_table "providers", :force => true do |t|
     t.string   "name",       :null => false
@@ -63,6 +94,15 @@ ActiveRecord::Schema.define(:version => 20120824231253) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "scopes", :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "priority",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "scopes", ["priority"], :name => "idx_priority_on_scopes"
 
   create_table "users", :force => true do |t|
     t.string   "email"
