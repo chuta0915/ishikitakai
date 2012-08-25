@@ -14,6 +14,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
+gem 'string_markdown'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
