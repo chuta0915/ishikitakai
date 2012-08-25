@@ -33,6 +33,7 @@
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag 'images/favicon.ico', :rel => 'shortcut icon' %>
+    <%= javascript_include_tag "application" %>
   </head>
   <body>
 
@@ -44,12 +45,42 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">IshikitakaiCom</a>
+          <a class="brand" href="/">IshikitakaiCom</a>
           <div class="container nav-collapse">
             <ul class="nav">
               <li><%= link_to "Link1", "/path1"  %></li>
               <li><%= link_to "Link2", "/path2"  %></li>
               <li><%= link_to "Link3", "/path3"  %></li>
+            </ul>
+            <ul class="nav pull-right">
+            <% if user_signed_in? %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+                  <%= image_tag current_user.image, size:'24x24', class:'face'%>
+                  <%= current_user.name %><b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <%= link_to my_root_path do %>
+                      <%= t('nav.mypage') %>
+                    <% end %>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <%= link_to logout_path do %>
+                      <%= t('nav.logout') %>
+                    <% end %>
+                  </li>
+                </ul>
+              </li>
+            <% else %>
+              <li>
+              <%=link_to new_user_session_path do%>
+                <i class="icon-ok"></i>
+                <%= t('nav.login') %>
+              <% end %>
+              </li>
+            <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -81,11 +112,5 @@
       </footer>
 
     </div> <!-- /container -->
-
-    <!-- Javascripts
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag "application" %>
-
   </body>
 </html>

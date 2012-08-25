@@ -1,0 +1,17 @@
+en:
+  shared:
+    _login_button:
+      description: 
+        new: "Login with facebook or twitter account."
+        add: "you can connected other provider's account."
+      footer:
+        description: "More happy life after join us."
+      facebook:
+        new: "Login with Facebook account"
+        add: "Connect with Facebook account"
+      twitter: 
+        new: "Login with Twitter account"
+        add: "Connect with Twitter account"
+      github: 
+        new: "Login with Github account"
+        add: "Connect with Github account"

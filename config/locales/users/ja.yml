@@ -1,0 +1,7 @@
+ja:
+  users:
+    show:
+      my:
+        url: "あなたのページは以下のURLから参照可能です。"
+  withdraw:
+    completed: "退会しました"

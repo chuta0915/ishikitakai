@@ -28,6 +28,29 @@ ActiveRecord::Schema.define(:version => 20120824231253) do
 
   add_index "admins", ["email"], :name => "idx_email_on_admins", :unique => true
 
+  create_table "providers", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "providers_users", :force => true do |t|
+    t.integer  "provider_id",   :null => false
+    t.integer  "user_id",       :null => false
+    t.string   "user_key",      :null => false
+    t.string   "access_token",  :null => false
+    t.string   "refresh_token"
+    t.string   "secret"
+    t.string   "name",          :null => false
+    t.string   "email"
+    t.string   "image",         :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "providers_users", ["provider_id", "user_key"], :name => "idx_provider_id_user_key_on_providers_users", :unique => true
+  add_index "providers_users", ["user_id"], :name => "idx_user_id_on_providers_users"
+
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
     t.string   "username"
@@ -40,5 +63,22 @@ ActiveRecord::Schema.define(:version => 20120824231253) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",       :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.string   "name",                :default => "", :null => false
+    t.string   "image",               :default => "", :null => false
+    t.integer  "default_provider_id", :default => 1,  :null => false
+  end
+
+  add_index "users", ["email"], :name => "idx_email_on_users", :unique => true
 
 end

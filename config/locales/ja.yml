@@ -1,0 +1,14 @@
+ja:
+  common:
+    error:
+      one: "%{count} 個のエラーがあります。%{model}は保存出来ませんでした。"
+      other: "%{count} 個のエラーがあります。%{model}は保存出来ませんでした。"
+    search:
+      label: "フリーワード"
+      button: "検索する"
+  activerecord:
+    models:
+    attributes:
+  action:
+    close: "閉じる"
+    save: "保存する"

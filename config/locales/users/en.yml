@@ -1,0 +1,7 @@
+en:
+  users:
+    show:
+      my:
+        url: "Following URL is your page URL"
+  withdraw:
+    completed: "Withdraw completed"

@@ -1,0 +1,17 @@
+ja:
+  shared:
+    _login_button:
+      description: 
+        new: "FacebookまたはTwitterアカウントでログイン"
+        add: "更に別のアカウントと紐付けることも可能です。"
+      footer:
+        description: "ログインすると更に楽しむことができます。"
+      facebook:
+        new: "Facebookアカウントでログイン"
+        add: "Facebookアカウントを追加"
+      twitter: 
+        new: "Twitterアカウントでログイン"
+        add: "Twitterアカウントを追加"
+      github: 
+        new: "Githubアカウントでログイン"
+        add: "Githubアカウントを追加"

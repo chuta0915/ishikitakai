@@ -1,0 +1,7 @@
+<% if current_user.present? && current_user.me?(@user) %>
+<div class="alert alert-info">
+  <h4><%= t('.my.url') %></h4>
+  <%= link_to user_url(@user), user_url(@user) %>
+</div>
+<% end %>
+<%=render 'users/user', :user => @user %>

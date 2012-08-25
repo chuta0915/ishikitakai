@@ -1,0 +1,16 @@
+ja:
+  nav:
+    about: "このサイトについて"
+    terms: "利用規約"
+    policy: "プライバシーポリシー"
+    login: "ログイン"
+    mypage: "マイページ"
+    settings: "設定"
+    logout: "ログアウト"
+    followings: "フォローしている"
+    followers: "フォローされている"
+    new_post: "投稿する"
+    posts: "投稿を見る"
+    feeds: "フィードを見る"
+    groups: "グループを探す"
+    next_page: "もっと読む"

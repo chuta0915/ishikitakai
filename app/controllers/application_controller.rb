@@ -1,3 +1,31 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :set_locale
+  rescue_from Exception, :with => :catch_exceptions unless Rails.env.test?
+
+  protected
+  def set_locale
+    I18n.locale = extract_locale_from_accept_language_header
+    I18n.locale = :en if admin_signed_in?
+  end
+
+  def catch_exceptions(e)
+    logger.error e.to_yaml
+        e.backtrace.each { |line| logger.error line }
+    if (params[:controller] == "user" && params[:action] == "show")
+      render :layout => false, :file => "#{Rails.root}/public/404", :status => 404, :format => :html
+    else
+      render :layout => false, :file => "#{Rails.root}/public/500", :status => 500, :format => :html
+    end
+  end
+
+  private
+  def extract_locale_from_accept_language_header
+    http_accept_language = request.env['HTTP_ACCEPT_LANGUAGE']
+    if http_accept_language.present?
+      http_accept_language.scan(/^[a-z]{2}/).first
+    else
+      :en
+    end
+  end
 end

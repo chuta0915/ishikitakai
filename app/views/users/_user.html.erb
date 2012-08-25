@@ -1,0 +1,11 @@
+<%= image_tag user.image, class:'face', size:'50x50' %>
+<h2><%= user.name %></h2>
+<ul class="unstyled providers">
+  <% user.providers.each do |provider| %>
+    <li>
+      <%= link_to '', rel: 'tooltip', :'data-title' => provider.name, :'data-placement' => 'bottom' do %>
+        <%= image_tag "#{provider.name}.png" %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,37 @@
+body {
+  img.face {
+    border-radius: 5px;
+  }
+
+  ul.sns {
+    margin-left: 0;
+    >li {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  ul.providers {
+    >li {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  section.login {
+    margin: 30px;
+    text-align: center;
+    ul.providers {
+      >li {
+        display: inline-block;
+        margin: 0 15px 15px;
+        a {
+          display: block;
+        }
+        img {
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}

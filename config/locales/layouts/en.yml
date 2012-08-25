@@ -1,0 +1,16 @@
+en:
+  nav:
+    about: "About"
+    terms: "Terms"
+    policy: "Policy"
+    login: "Login"
+    mypage: "Mypage"
+    settings: "Settings"
+    logout: "Logout"
+    followings: "Followings"
+    followers: "Followers"
+    new_post: "New Post"
+    posts: "Posts"
+    feeds: "Feeds"
+    groups: "Groups"
+    next_page: "Load Next Page"

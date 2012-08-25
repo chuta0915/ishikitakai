@@ -1,0 +1,27 @@
+<% if !user_signed_in? || !current_user.has_all_provider?%>
+<section class="login well">
+  <div class="page-header">
+    <h2><%= t('nav.login') %>
+      <small><%= t("shared._login_button.description.#{locale_key}")%></small>
+    </h2>
+  </div>
+  <ul class="unstyled providers">
+    <% Provider.all.each do|provider| %>
+      <% if !user_signed_in? || !current_user.has_provider?(provider.id) %>
+      <li>
+        <%=link_to user_omniauth_authorize_path(provider.name.to_sym), rel: 'tooltip', :'data-title' => t("shared._login_button.#{provider.name}.#{locale_key}"), :'data-placement' => 'bottom' do %>
+          <%= image_tag "#{provider.name}_button.png" %>
+        <% end %>
+      </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <footer>
+    <h2>
+      <small>
+        <%= t('shared._login_button.footer.description') %>
+      </small>
+    </h2>
+  </footer>
+</section>
+<% end %>
