@@ -4,7 +4,7 @@ describe EventPaymentKind do
   before do
     I18n.locale = :en
   end
-  it 'level has 3 providers' do
+  it 'EventPaymentKind has 3 kind' do
     EventPaymentKind.all.count.should == 3
   end
   describe 'label' do

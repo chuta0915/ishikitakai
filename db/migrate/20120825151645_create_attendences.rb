@@ -8,7 +8,7 @@ class CreateAttendences < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :attendences, [:event_id], :name => :idx_group_id_on_attendences
+    add_index :attendences, [:event_id], :name => :idx_event_id_on_attendences
     add_index :attendences, [:user_id, :event_id], :name => :idx_user_id_event_id_on_attendences, :unique => true
   end
 end

@@ -1,0 +1,66 @@
+<div class="page-header">
+  <hgroup>
+  <span class="badge"><%= @event.scope.label %></span>
+  <span class="badge"><%= @event.event_payment_kind.label %></span>
+  <h1>
+    <%= @event.name %>
+    <small><%= @event.summary %></small>
+  </h1>
+  <h2>
+  <%= @event.begin_at.strftime t('date.long') %>
+  -
+  <%= @event.end_at.strftime t('date.long') %>
+  <small>
+    <%= @event.receive_begin_at.strftime t('date.long') %>
+    -
+    <%= @event.receive_end_at.strftime t('date.long') %>
+  </small>
+  </h2>
+  </hgroup>
+</div>
+
+<section>
+<h3><%= @event.place_name %></h3>
+<ul>
+  <li><%= @event.place_url %></li>
+  <li><%= link_to @event.place_address, @event.place_map_url %></li>
+</ul>
+</section>
+
+<section>
+<div>
+  <%= @event.content.html_safe %>
+</div>
+</section>
+
+<% if @event.user_can_edit?(current_user) %>
+  <section class="form-actions">
+    <%= link_to t('.edit'), edit_event_path(@event), class: 'btn' %>
+  </section>
+<% end %>
+
+<% content_for_sidebar do %>
+  <div class="form-action">
+    <% if user_signed_in? && @event.user_is_attendence?(current_user.id) %>
+      <% unless @event.user_is_owner?(current_user.id) %>
+        <%= link_to t('.leave'), my_attendence_path(@event), class: 'btn btn-danger', confirm: t('.confirm_leave'), method: 'delete' %>
+      <% end %>
+    <% else %>
+      <%= link_to t('.join'), my_attendence_path(@event), class: 'btn btn-primary', method: 'put' %>
+    <% end %>
+  </div>
+  <section>
+  <h3>
+    <i class="icon-user"></i><%= t('.attendence') %><i class="icon-user"></i>
+  </h3>
+  <span class="badge"><%= @event.attendences.count %></span>/<span class="badge"><%= @event.capacity_max %></span> 
+  <table class="table table-condensed">
+    <% @event.attendences.each do|attendence| %>
+      <tr>
+        <td><span class="label <%= attendence.level.name %>"><%= attendence.level.label %></span></td>
+        <td><%= link_to attendence.user.name, user_path(attendence.user_id) %></td>
+      </tr>
+    <% end %>
+  </table>
+  </section>
+<% end %>

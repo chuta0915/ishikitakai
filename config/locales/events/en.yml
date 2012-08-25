@@ -1,1 +1,15 @@
 en:
+  events:
+    index:
+      title: "Events"
+      new: "Add new event."
+      show_html: "Detail &raquo;"
+    edit:
+      delete: "Delete event"
+      confirm_delete: "Are you really want to delete?"
+    new:
+      new_adjustment: "Add new adjustment"
+    show:
+      created: "Created %{name} event"
+      updated: "Updated %{name} event's setting"
+      destroyed: "Destroyed %{name} event"

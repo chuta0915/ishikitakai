@@ -12,6 +12,9 @@ en:
       friends_friends: "Friend's Friends" 
       closed: "Closed" 
       private: "Private" 
+  group:
+    records:
+      none: "No Community"
   event_payment_kind:
     records:
       free: "Free"

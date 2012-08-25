@@ -1,0 +1,5 @@
+<div class="thumbnail" id="event_template">
+  <h3><%= link_to event.name, event_path(event) %></h3>
+  <p><%= event.summary %></p>
+  <p><%= link_to t('events.index.show_html').html_safe, event_path(event), :class => "btn" %></p>
+</div>

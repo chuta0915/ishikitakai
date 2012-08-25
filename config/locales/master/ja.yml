@@ -12,6 +12,9 @@ ja:
       friends_friends: "友達の友達まで" 
       closed: "招待制" 
       private: "秘密" 
+  group:
+    records:
+      none: "コミュニティに紐づけない"
   event_payment_kind:
     records:
       free: "無料"

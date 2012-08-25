@@ -1,4 +1,7 @@
 ja:
+  date:
+    long: "%Y/%m/%d %H:%m"
+    short: "%Y/%m/%d"
   common:
     error:
       one: "%{count} 個のエラーがあります。%{model}は保存出来ませんでした。"

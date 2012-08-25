@@ -1,4 +1,5 @@
 class Group < ActiveRecord::Base
+  include Common::UserCreation
   attr_accessible :content, :name, :scope_id, :summary
   has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
@@ -21,13 +22,20 @@ class Group < ActiveRecord::Base
   before_create :create_memberships
 
   class << self
-    def create_by_user attr, user
-      group = self.new attr
-      group.user_id = user.try(:id)
-      return group unless group.valid?
-      group.save
-      group
+    def collection_select user_id
+      groups = self
+        .joins(:memberships)
+        .where('memberships.user_id = ? ', user_id)
+        .order('memberships.updated_at DESC')
+        .all
+      groups.unshift Group.new(:name => I18n.t('group.records.none'), :content => 'none', :summary => 'none') 
+      groups
     end
+  end
+
+  def content
+    c = super
+    c.to_md if c.present?
   end
 
   def user_is_owner? user_id
@@ -37,11 +45,6 @@ class Group < ActiveRecord::Base
   def user_can_edit? user_id
     membership = self.memberships.where(:user_id => user_id).first
     membership.present? && membership.level.name == 'master'
-  end
-
-  def content
-    c = super
-    c.to_md if c.present?
   end
 
   def user_is_member? user_id

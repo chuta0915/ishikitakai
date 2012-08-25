@@ -1,4 +1,7 @@
 en:
+  date:
+    long: "%H:%M %d %b %Y"
+    short: "%d %b %Y"
   common:
     error:
       one: "#{count} error prohibited this #{model} from being saved."

@@ -1,0 +1,133 @@
+<%= form_for(@event, html:{class: 'form-horizontal'}) do |f| %>
+  <% if @event.errors.any? %>
+    <div class="alert alert-block alert-error fade in">
+      <a class="close" data-dismiss="alert" href="#">&times;</a>
+      <h2><%= t('common.error', :count => @event.errors.count, :model => t("activerecord.models.#{@event.class.to_s.downcase}")) %></h2>
+
+      <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<fieldset>
+  <div class="control-group">
+    <%= f.label :group_id, class: 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :group_id, Group.collection_select(current_user.id), :id, :name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :name, class: 'control-label'%>
+    <div class="controls">
+      <%= f.text_field :name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :summary, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :summary, class: 'span5' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :content, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :content, class: 'span5' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :place_name, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :place_name, class: 'span5' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :place_url, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :place_url, class: 'span5' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :place_address, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :place_address, class: 'span5' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :place_map_url, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :place_map_url, class: 'span5' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :capacity_min, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :capacity_min, class: 'span1' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :capacity_max, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :capacity_max, class: 'span1' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :begin_at, class: 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :begin_at, {
+        :use_month_numbers => true, 
+        :default => Time.now + 1.day, 
+        :start_year => Time.now.year,
+        :minute_step => 15,
+        }, {:class => 'span1'} %>
+      〜
+      <%= f.datetime_select :end_at, {
+        :use_month_numbers => true, 
+        :default => Time.now + 1.day, 
+        :start_year => Time.now.year,
+        :minute_step => 15,
+        }, {:class => 'span1'} %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :receive_begin_at, class: 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :receive_begin_at, {
+        :use_month_numbers => true, 
+        :default => Time.now + 1.day, 
+        :start_year => Time.now.year,
+        :minute_step => 15,
+        }, {:class => 'span1'} %>
+      〜
+      <%= f.datetime_select :receive_end_at, {
+        :use_month_numbers => true, 
+        :default => Time.now + 1.day, 
+        :start_year => Time.now.year,
+        :minute_step => 15,
+        }, {:class => 'span1'} %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :event_payment_kind_id, class: 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :event_payment_kind_id, EventPaymentKind.order(:id).all, :id, :label %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :fee, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :fee, class: 'span2' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :scope, class: 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :scope_id, Scope.order(:id).all, :id, :label %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit nil, class:['btn', 'btn-primary'] %>
+  </div>
+</fieldset>
+<% end %>

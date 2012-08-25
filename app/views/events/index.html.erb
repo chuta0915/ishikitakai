@@ -1,0 +1,10 @@
+<% content_for :title,  "#{t('.title')} " %>
+<% content_for :body_class,  "events" %>
+<%= render 'search_form' %>
+<%= link_to t('.new'), new_event_path, :class => "btn btn-warning btn-large new_event" %>
+
+<ul class="thumbnails row">
+  <% @events.each do|event| %>
+    <li class="span4"><%= render 'event', event: event %></li>
+  <% end %>
+</ul> 

@@ -1,6 +1,4 @@
 IshikitakaiCom::Application.routes.draw do
-  get "groups/index"
-
   mount RailsAdmin::Engine => '/management', :as => 'rails_admin'
   devise_for :admins
 
@@ -12,11 +10,13 @@ IshikitakaiCom::Application.routes.draw do
   # /my scope for current_user
   scope :path => :my do
     delete '' => 'users#destroy'
-    resources :memberships, :only => [:index, :update, :destroy], :as => :my_memberships
+    resources :memberships, :only => [:update, :destroy], :as => :my_memberships
+    resources :attendences, :only => [:update, :destroy], :as => :my_attendences
     root :to => 'users#show', :as => :my_root
   end
   resources :users, :only => [:show]
   resources :groups
+  resources :events
 
   get 'login' => 'pages#login', :as => :new_user_session
   get 'logout' => 'pages#logout', :as => :logout

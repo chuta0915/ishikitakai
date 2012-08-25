@@ -51,4 +51,14 @@ describe Group do
       it { subject.user_is_member?(other_user.id).should be_false }
     end
   end
+
+  describe 'collection_select' do
+    subject { Group.collection_select(sendagayarb.user_id) }
+    it "should have 'no community'" do
+      subject[0].name.should == I18n.t('group.records.none')
+    end
+    it "should have 'sendagaya.rb'" do
+      subject[1].name.should == sendagayarb.name
+    end
+  end
 end

@@ -1,0 +1,11 @@
+// Place all the styles related to the events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body.events {
+  a.new_event {
+    margin-bottom: 20px; 
+  }  
+  .thumbnail {
+    padding: 10px 20px;
+  }
+}
