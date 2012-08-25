@@ -361,6 +361,7 @@ DEPENDENCIES
   jasmine-headless-webkit!
   jasmine-rails
   jquery-rails
+  kaminari
   newrelic_rpm
   omniauth
   omniauth-facebook
