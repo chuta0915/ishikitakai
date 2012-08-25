@@ -9,6 +9,6 @@ class MembershipsController < ApplicationController
 
   def destroy
     @group.leave current_user.id unless @group.user_is_owner?(current_user.id)
-    redirect_to Rails.application.routes.url_helpers.groups_path
+    redirect_to Rails.application.routes.url_helpers.group_path(params[:id])
   end
 end

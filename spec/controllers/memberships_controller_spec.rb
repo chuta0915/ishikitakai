@@ -33,7 +33,7 @@ describe MembershipsController do
         sign_in user
         delete 'destroy', :id => sendagayarb.id
       end
-      it { should redirect_to groups_path }
+      it { should redirect_to group_path(sendagayarb.id) }
     end
   end
 end
