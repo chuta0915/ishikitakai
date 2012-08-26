@@ -15,7 +15,9 @@ IshikitakaiCom::Application.routes.draw do
     root :to => 'users#show', :as => :my_root
   end
   resources :users, :only => [:show]
-  resources :groups
+  resources :groups do
+    resources :chats, :only => [:index, :show, :create, :destroy]
+  end
   resources :events do
     member do
       get :copy
