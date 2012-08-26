@@ -14,5 +14,8 @@ describe ChatsController do
     it "routes to #destroy" do
       delete("/groups/12345/chats/23456").should route_to("chats#destroy", :group_id => '12345', :id => '23456')
     end
+    it "routes to #authentication" do
+      post("/chats/authentication").should route_to("chats#authentication")
+    end
   end
 end

@@ -1,0 +1,32 @@
+jQuery ->
+  unless $('body').hasClass('chats')
+    console.info 'not chats'
+    return
+  pusher = new Pusher("<%=Pusher.key%>")
+  Pusher.channel_auth_endpoint = '/chats/authentication'
+  if '<%= Rails.env %>' isnt 'production'
+    #Pusher.log = (message) -> console.log(message)
+    true
+  group_id = $('body').attr('data-id')
+  console.info group_id
+  channel = pusher.subscribe('presence-group_chats_' + group_id)
+  channel.bind 'chat', (data) ->
+    $.ajax(
+      url: '/groups/' + group_id + '/chats/' + data.id,
+      success: (data) ->
+        $('ul[data-list="chats"]').append(data)
+        return
+    )
+    return
+  
+  channel.bind 'pusher:subscription_succeeded', (data) ->
+    return
+
+  channel.bind 'pusher:subscription_error', (data) ->
+    return
+    
+  channel.bind 'pusher:member_added', (data) ->
+    return
+  
+  channel.bind 'pusher:member_removed', (data) ->
+    return

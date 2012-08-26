@@ -1,9 +1,11 @@
+<% content_for :body_class, "chats " %>
+<% content_for :body_data_id, @group.id.to_s %>
 <ul class="breadcrumb">
   <li><a href="/groups/<%= @group.id %>"><%= @group.name %></a> <span class="divider">/</span></li>
   <li class="active"><%= t('nav.chat') %></li>
 </ul>
 <%= paginate @chats %>
-<ul class="unstyled">
+<ul class="unstyled" data-list="chats">
 <% @chats.each do|chat| %>
   <li>
     <%= render 'chat', chat: chat %> 

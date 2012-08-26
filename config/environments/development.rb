@@ -34,4 +34,9 @@ IshikitakaiCom::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # pusher api setting
+  Pusher.app_id = ENV["PUSHER_APP_ID"]
+  Pusher.key    = ENV["PUSHER_APP_KEY"]
+  Pusher.secret = ENV["PUSHER_APP_SECRET"]
 end
