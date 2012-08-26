@@ -21,6 +21,10 @@
 <% content_for_sidebar do %>
   <div class="form-action">
     <% if user_signed_in? && @group.user_is_member?(current_user.id) %>
+      <%= link_to group_chats_path(@group), class: 'btn btn-block btn-primary' do %>
+        <i class="icon-comment"></i>
+        <%= t('nav.chat') %>
+      <% end %>
       <% unless @group.user_is_owner?(current_user.id) %>
         <%= link_to t('.leave'), my_membership_path(@group), class: 'btn btn-danger', confirm: t('.confirm_leave'), method: 'delete' %>
       <% end %>
