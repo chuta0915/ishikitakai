@@ -8,6 +8,7 @@ class Event < ActiveRecord::Base
     :title, :user_id
   has_many :attendences, :dependent => :destroy
   has_many :users, :through => :attendences
+  belongs_to :group
   belongs_to :user
   belongs_to :scope
   belongs_to :event_payment_kind
