@@ -42,4 +42,10 @@
 <% end %>
 
 <hr />
-<%= render 'shared/paging' %>
+
+<% content_for :body_class,  "events" %>
+<ul class="thumbnails row">
+  <% @group.events.order('begin_at DESC').each do|event| %>
+    <li class="span4"><%= render 'events/event', event: event %></li>
+  <% end %>
+</ul> 

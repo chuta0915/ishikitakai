@@ -3,6 +3,7 @@ class Group < ActiveRecord::Base
   attr_accessible :content, :name, :scope_id, :summary
   has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
+  has_many :events
   belongs_to :scope
   attr_accessor :user_id
 
