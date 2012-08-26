@@ -3,5 +3,6 @@ ja:
     show:
       my:
         url: "あなたのページは以下のURLから参照可能です。"
+        add: "更にアカウントをひもづける"
   withdraw:
     completed: "退会しました"

@@ -3,5 +3,6 @@ en:
     show:
       my:
         url: "Following URL is your page URL"
+        add: "Connect other provider's account"
   withdraw:
     completed: "Withdraw completed"

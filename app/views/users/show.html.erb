@@ -5,3 +5,9 @@
 </div>
 <% end %>
 <%=render 'users/user', :user => @user %>
+<% if current_user.present? && current_user.me?(@user) && !current_user.has_all_provider? %>
+  <%= link_to new_user_session_path, class: 'btn' do %>
+    <i class="icon-plus"></i>
+    <%= t('users.show.my.add') %>
+  <% end %> 
+<% end %>
