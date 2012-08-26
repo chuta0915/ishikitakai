@@ -5,7 +5,13 @@ class ChatsController < ApplicationController
   before_filter :user_is_member?, :only => [:create, :destroy]
 
   def index
+    params[:page] ||= 1
+    params[:per] ||= 100
     @chats = @group.chats
+      .order('id DESC')
+      .page(params[:page])
+      .per(params[:per])
+    @chat = Chat.new
   end
 
   def show

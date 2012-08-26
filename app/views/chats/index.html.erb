@@ -1,0 +1,9 @@
+<%= paginate @chats %>
+<ul class="unstyled">
+<% @chats.each do|chat| %>
+  <li>
+    <%= render 'chat', chat: chat %> 
+  </li>
+<% end %>
+</ul>
+<%= render 'form' %>

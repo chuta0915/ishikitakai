@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="span1">
+    <%= image_tag chat.user.image, size: '25x25', class: 'face' %>
+    <h6><%= chat.user.name %></h6>
+  </div>
+  <div class="span11">
+    <%= chat.content.html_safe %>
+  </div>
+</div>
