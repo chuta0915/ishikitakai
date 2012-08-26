@@ -1,7 +1,7 @@
 <div class="page-header">
   <hgroup>
-  <span class="badge"><%= @event.scope.label %></span>
-  <span class="badge"><%= @event.event_payment_kind.label %></span>
+  <span class="badge <%= css_scope_badge(@event.scope) %>"><%= @event.scope.label %></span>
+  <span class="badge <%= css_event_payment_kind_badge(@event.event_payment_kind) %>"><%= @event.event_payment_kind.label %></span>
   <h1>
     <%= @event.name %>
     <small><%= @event.summary %></small>
@@ -53,7 +53,7 @@
   <table class="table table-condensed">
     <% @event.attendences.each do|attendence| %>
       <tr>
-        <td><span class="label <%= attendence.level.name %>"><%= attendence.level.label %></span></td>
+        <td><span class="label <%= css_level_badge(attendence.level) %>"><%= attendence.level.label %></span></td>
         <td><%= link_to attendence.user.name, user_path(attendence.user_id) %></td>
       </tr>
     <% end %>
