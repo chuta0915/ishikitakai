@@ -7,13 +7,9 @@
     <small><%= @event.summary %></small>
   </h1>
   <h2>
-  <%= @event.begin_at.strftime t('date.long') %>
-  -
-  <%= @event.end_at.strftime t('date.long') %>
+    <%= event_date_formatted @event.begin_at, @event.end_at %>
   <small>
-    <%= @event.receive_begin_at.strftime t('date.long') %>
-    -
-    <%= @event.receive_end_at.strftime t('date.long') %>
+    <%= event_date_formatted @event.receive_begin_at, @event.receive_end_at %>
   </small>
   </h2>
   </hgroup>

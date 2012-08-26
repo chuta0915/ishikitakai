@@ -2,6 +2,11 @@ en:
   date:
     long: "%H:%M %d %b %Y"
     short: "%d %b %Y"
+    span_1day: "%{begin_time} - %{end_time} %{begin_date}"
+    span_days: "%{begin_time} %{begin_date} - %{end_time} %{end_date}"
+  time:
+    long: "%H:%M:%s"
+    short: "%H:%M"
   common:
     error:
       one: "#{count} error prohibited this #{model} from being saved."

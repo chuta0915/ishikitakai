@@ -1,7 +1,12 @@
 ja:
   date:
-    long: "%Y/%m/%d %H:%m"
-    short: "%Y/%m/%d"
+    long: "%Y年%m月%d日 %H:%M"
+    short: "%Y年%m月%d日"
+    span_1day: "%{begin_date} %{begin_time} 〜 %{end_time}"
+    span_days: "%{begin_date} %{begin_time} 〜 %{end_date} %{end_time}"
+  time:
+    long: "%H:%M:%s"
+    short: "%H:%M"
   common:
     error:
       one: "%{count} 個のエラーがあります。%{model}は保存出来ませんでした。"
