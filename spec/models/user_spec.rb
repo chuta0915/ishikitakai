@@ -35,4 +35,7 @@ describe User do
   describe 'twitter login' do
     it { User.find_twitter(auth, nil).should be_present }
   end
+  describe 'github login' do
+    it { User.find_github(auth, nil).should be_present }
+  end
 end

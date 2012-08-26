@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   extend Providers::Facebook
   extend Providers::Twitter
+  extend Providers::Github
   
   class << self
     def find_by_path provider_name, user_key
