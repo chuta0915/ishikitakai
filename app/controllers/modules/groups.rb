@@ -5,10 +5,15 @@ module Modules::Groups
 
   private
   def set_group
-    @group = Group.find params[:id]
+    id = params[:group_id] ? params[:group_id] : params[:id]
+    @group = Group.find id
   end
 
   def user_can_edit?
     return head :not_found unless @group.user_can_edit? current_user.id
+  end
+
+  def user_is_member?
+    return head :not_found unless @group.user_is_member? current_user.id
   end
 end

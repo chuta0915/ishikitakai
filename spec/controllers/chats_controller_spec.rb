@@ -18,14 +18,24 @@ describe ChatsController do
   end
 
   describe "POST 'create'" do
-    subject { response }
-    before { post 'create', group_id: sendagayarb.id, chat: {content: chat.content} }
-    it { should be_success }
+    context "user signed in" do
+      subject { response }
+      before do
+        sign_in user
+        post 'create', group_id: sendagayarb.id, chat: {content: chat.content}
+      end
+      it { should redirect_to group_chats_path(sendagayarb.id) }
+    end
   end
   
   describe "DELETE 'destroy'" do
-    subject { response }
-    before { delete 'destroy', group_id: sendagayarb.id, id: chat.id }
-    it { should be_success }
+    context "user signed in" do
+      subject { response }
+      before do
+        sign_in user
+        delete 'destroy', group_id: sendagayarb.id, id: chat.id
+      end
+      it { should redirect_to group_chats_path(sendagayarb.id) }
+    end
   end
 end

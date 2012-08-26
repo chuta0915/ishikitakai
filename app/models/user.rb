@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :providers, :through => :providers_users
   has_many :memberships, :dependent => :destroy
   has_many :groups, :through => :memberships
+  has_many :chats
 
   extend Providers::Facebook
   extend Providers::Twitter
