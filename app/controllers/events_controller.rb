@@ -22,7 +22,7 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
+    @event = Event.new params[:event]
     @event.group_id = params[:group_id]
   end
 

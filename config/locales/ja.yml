@@ -14,6 +14,7 @@ ja:
     search:
       label: "フリーワード"
       button: "検索する"
+    range: "〜"
   activerecord:
     models:
       group: "グループ"

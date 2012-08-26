@@ -36,7 +36,8 @@ class Group < ActiveRecord::Base
 
   def content
     c = super
-    c.to_md if c.present?
+    c = '' if c.nil?
+    c.to_md
   end
 
   def user_is_owner? user_id

@@ -14,6 +14,7 @@ en:
     search:
       label: "Free word"
       button: "Search Now"
+    range: " - "
   activerecord:
     models:
       group: "Group"
