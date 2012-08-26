@@ -10,6 +10,12 @@ en:
     new:
       new_adjustment: "Add new adjustment"
     show:
+      leave: "Cancel"
+      confirm_leave: "Are you really want to cancel?"
+      join: "Attend"
+      attendence: "Attendences"
+      edit: "Edit this event"
+      copy: "New Event copy from this Event"
       created: "Created %{name} event"
       updated: "Updated %{name} event's setting"
       destroyed: "Destroyed %{name} event"

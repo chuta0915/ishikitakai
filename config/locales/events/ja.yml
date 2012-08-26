@@ -15,6 +15,8 @@ ja:
       join: "参加する"
       attendence: "参加者"
       edit: "イベントの設定を変更する"
+      copy: "このイベントをコピーして新しいイベントを登録"
       created: "「%{name}」イベントを作成しました"
       updated: "「%{name}」イベントの設定を変更しました"
       destroyed: "「%{name}」イベントを削除ました"
+

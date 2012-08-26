@@ -146,4 +146,27 @@ describe EventsController do
       end
     end
   end
+
+  describe "GET 'copy'" do
+    context "user not signed in" do
+      subject { response }
+      before { get 'copy', :id => sendagayarb.id }
+      it { should redirect_to new_user_session_path }
+    end
+    context "user signed in" do
+      subject { response }
+      before do
+        sign_in user
+        get 'copy', :id => mokmok_event.id
+      end
+      it { should be_success }
+      it { assigns[:event].name.should == mokmok_event.name }
+      it { assigns[:event].summary.should == mokmok_event.summary }
+      it { assigns[:event].group_id.should == mokmok_event.group_id }
+      it { assigns[:event].place_address.should == mokmok_event.place_address }
+      it { assigns[:event].place_map_url.should == mokmok_event.place_map_url }
+      it { assigns[:event].place_name.should == mokmok_event.place_name }
+      it { assigns[:event].place_url.should == mokmok_event.place_url }
+    end
+  end
 end

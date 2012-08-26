@@ -16,7 +16,11 @@ IshikitakaiCom::Application.routes.draw do
   end
   resources :users, :only => [:show]
   resources :groups
-  resources :events
+  resources :events do
+    member do
+      get :copy
+    end
+  end
 
   get 'login' => 'pages#login', :as => :new_user_session
   get 'logout' => 'pages#logout', :as => :logout
