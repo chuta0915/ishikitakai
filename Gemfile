@@ -16,6 +16,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-github'
 gem 'string_markdown'
 gem 'kaminari'
+gem 'rails_autolink'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
