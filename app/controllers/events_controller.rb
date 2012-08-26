@@ -23,6 +23,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @event.group_id = params[:group_id]
   end
 
   def create
