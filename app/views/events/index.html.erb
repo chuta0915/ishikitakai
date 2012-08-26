@@ -3,8 +3,10 @@
 <%= render 'search_form' %>
 <%= link_to t('.new'), new_event_path, :class => "btn btn-warning btn-large new_event" %>
 
+<%= paginate @events %>
 <ul class="thumbnails row">
   <% @events.each do|event| %>
     <li class="span4"><%= render 'event', event: event %></li>
   <% end %>
 </ul> 
+<%= paginate @events %>
