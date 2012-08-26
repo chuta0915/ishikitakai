@@ -17,6 +17,7 @@
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag '/favicon.ico', :rel => 'shortcut icon' %>
+    <%= render 'shared/pusher' %>
     <%= javascript_include_tag "application" %>
   </head>
   <body class="<%= yield :body_class %>" data-id="<%= yield :body_data_id %>">
