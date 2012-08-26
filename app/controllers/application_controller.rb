@@ -1,12 +1,20 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_locale
+  before_filter :basic_auth
   rescue_from Exception, :with => :catch_exceptions unless Rails.env.test?
 
   protected
   def set_locale
     I18n.locale = extract_locale_from_accept_language_header
     I18n.locale = :en if admin_signed_in?
+  end
+
+  def basic_auth
+    return if ENV['BASIC_AUTH_USER'].nil?
+    authenticate_or_request_with_http_basic do |user, pass|
+      user == ENV['BASIC_AUTH_USER'] && pass == ENV['BASIC_AUTH_PW']
+    end 
   end
 
   def catch_exceptions(e)
