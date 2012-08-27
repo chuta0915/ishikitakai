@@ -45,6 +45,7 @@ ja:
       wiki:
         name: "タイトル"
         content: "内容"
+        user: "最終更新者"
   action:
     close: "閉じる"
     save: "保存する"

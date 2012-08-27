@@ -45,6 +45,7 @@ en:
       wiki:
         name: "Title"
         content: "Content"
+        user: "Last update User"
   action:
     close: "Close"
     save: "Save"
