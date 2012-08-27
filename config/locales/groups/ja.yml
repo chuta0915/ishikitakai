@@ -16,3 +16,4 @@ ja:
       created: "「%{name}」グループを作成しました"
       updated: "「%{name}」グループの設定を変更しました"
       destroyed: "「%{name}」グループを削除ました"
+      all_events: "更にイベントを見る"

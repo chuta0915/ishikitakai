@@ -53,9 +53,11 @@
 
 <hr />
 
-<% content_for :body_class,  "events" %>
+<% content_for :body_class,  "group events" %>
 <ul class="thumbnails row">
-  <% @group.events.order('begin_at DESC').each do|event| %>
+  <% @group.events.limit(6).order('begin_at DESC').each do|event| %>
     <li class="span3"><%= render 'events/event', event: event %></li>
   <% end %>
 </ul> 
+
+<%= link_to t('.all_events'), events_path(group_id: @group.id), class: 'more_events' %>

@@ -9,6 +9,8 @@ class EventsController < ApplicationController
     params[:per] ||= 9 
     if params[:keyword].present?
       @events = Event.search params[:keyword]
+    elsif params[:group_id].present?
+      @events = Group.find(params[:group_id]).events
     else
       @events = Event
     end

@@ -16,3 +16,4 @@ en:
       created: "Created %{name} group"
       updated: "Updated %{name} group's setting"
       destroyed: "Destroyed %{name} group"
+      all_events: "See more events"
