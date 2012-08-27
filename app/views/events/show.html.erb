@@ -26,8 +26,13 @@
 <h3><%= @event.place_name %></h3>
 <ul>
   <li><%= link_to @event.place_url, @event.place_url %></li>
-  <li><%= link_to @event.place_address, @event.place_map_url %></li>
+  <li class="well">
+    <%= @event.place_address %>
+  </li>
 </ul>
+<%= link_to "https://maps.google.co.jp/maps?q=#{@event.place_address}", target: '_blank' do %>
+  <% image_tag "//maps.google.com/maps/api/staticmap?zoom=14&size=400x400&sensor=false&markers=#{@event.place_address}" %>
+<% end %>
 </section>
 
 <section>

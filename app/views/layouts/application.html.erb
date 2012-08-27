@@ -114,7 +114,17 @@
       </div><!--/content-->
 
       <footer>
-        <p>&copy; ppworks 2012</p>
+        <ul class="menu">
+          <li><%= link_to t('nav.about'), about_path, class:'push_state' %></li>
+          <li><%= link_to t('nav.terms'), terms_path, class:'push_state' %></li>
+          <li><%= link_to t('nav.policy'), policy_path, class:'push_state' %></li>
+        </ul>
+        <p>&copy; <%= Settings.site.copyright.html_safe %> <%= Time.current.year %></p>
+        <p>
+          <%= link_to 'http://twitter.github.com/bootstrap/' do %>
+            powered by twitter bootstrap
+          <% end %> 
+        </p>
       </footer>
 
     </div> <!-- /container -->

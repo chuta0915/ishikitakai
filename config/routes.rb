@@ -27,5 +27,9 @@ IshikitakaiCom::Application.routes.draw do
   post 'chats/authentication' => 'chats#authentication'
   get 'login' => 'pages#login', :as => :new_user_session
   get 'logout' => 'pages#logout', :as => :logout
+  get 'about' => 'pages#about', :as => :about
+  get 'terms' => 'pages#terms', :as => :terms
+  get 'policy' => 'pages#policy', :as => :policy
+  get 'login' => 'pages#login', :as => :new_user_session
   root :to => 'pages#index'
 end

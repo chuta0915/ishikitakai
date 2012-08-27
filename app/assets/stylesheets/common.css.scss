@@ -34,4 +34,27 @@ body {
       }
     }
   }
+
+  // 全体のフッター
+  >.container {
+    >footer {
+      >ul.menu {
+        display: inline-block;
+        margin-left: 0;
+        >li {
+          display: inline-block;
+          &:not(:last-child) {
+            &:after {
+              margin: 0 9px;
+              content:'|';
+            }
+          }
+        }
+      }
+      >p {//copyright
+        display: inline-block;
+        margin-left: 9px;
+      }
+    }
+  }
 }
