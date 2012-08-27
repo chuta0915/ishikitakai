@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   include Common::UserCreation
+  include Common::Markdown
   attr_accessible :begin_at, :capacity_max, :capacity_min,
     :content, :end_at, :event_payment_kind_id, :fee,
     :group_id, :name, :place_address, :place_map_url,
@@ -12,6 +13,7 @@ class Event < ActiveRecord::Base
     :receive_begin_date, :receive_begin_time, :receive_end_date, :receive_end_time
   has_many :attendences, :dependent => :destroy
   has_many :users, :through => :attendences
+  has_many :wikis, :as => :parent
   belongs_to :group
   belongs_to :user
   belongs_to :scope
@@ -35,12 +37,6 @@ class Event < ActiveRecord::Base
   before_validation :join_date
   after_find :split_date
 
-  def content
-    c = super
-    c = '' if c.nil?
-    c.to_md
-  end
-  
   def user_is_owner? user_id
     self.user_can_edit? user_id
   end

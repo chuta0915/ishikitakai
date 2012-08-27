@@ -1,10 +1,13 @@
 class Group < ActiveRecord::Base
   include Common::UserCreation
+  include Common::Markdown
+
   attr_accessible :content, :name, :scope_id, :summary
   has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
   has_many :events
   has_many :chats
+  has_many :wikis, :as => :parent
   belongs_to :scope
   attr_accessor :user_id
 
@@ -33,12 +36,6 @@ class Group < ActiveRecord::Base
       groups.unshift Group.new(:name => I18n.t('group.records.none'), :content => 'none', :summary => 'none') 
       groups
     end
-  end
-
-  def content
-    c = super
-    c = '' if c.nil?
-    c.to_md
   end
 
   def user_is_owner? user_id
