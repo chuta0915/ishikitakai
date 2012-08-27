@@ -125,8 +125,10 @@
             powered by twitter bootstrap
           <% end %> 
         </p>
+        <%= render 'shared/sns_buttons', :url => request.url %>
       </footer>
 
     </div> <!-- /container -->
+    <%= render 'shared/fb_load_js', :app_id => ENV['FB_APP_ID'] %>
   </body>
 </html>

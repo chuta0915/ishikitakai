@@ -10,3 +10,19 @@ jQuery ->
       $(this).find(find_key).removeAttr "readonly"
       $(this).find(find_key).val ""
     return
+ 
+  # init sns button
+  load_sns_script = (url) ->
+    po = document.createElement("script")
+    po.type = "text/javascript"
+    po.async = true
+    po.src = url
+    s = document.getElementsByTagName("script")[0]
+    s.parentNode.insertBefore po, s
+    return
+
+  load_sns_script('//apis.google.com/js/plusone.js')
+  load_sns_script('//static.mixi.jp/js/plugins.js#lang=ja')
+  load_sns_script('//platform.twitter.com/widgets.js')
+
+  return
