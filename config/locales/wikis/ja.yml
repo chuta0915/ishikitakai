@@ -1,0 +1,14 @@
+ja:
+  wikis:
+    index:
+      title: "登録されているwiki"
+      new: "wikiを登録する"
+      show_html: "詳しく見る &raquo;"
+    edit:
+      delete: "このwikiを削除します"
+      confirm_delete: "本当に削除しますか？"
+    show:
+      edit: "wikiを編集する"
+      created: "wikiを作成しました"
+      updated: "wikiを編集しました"
+      destroyed: "wikiを削除ました"

@@ -1,0 +1,11 @@
+<table class="table table-hover">
+  <tbody>
+  <% @wikis.each do |wiki| %>
+    <tr>
+      <td><%= link_to wiki.name, wiki_path(@parent, wiki) %></td> 
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new'), new_wiki_path(@parent), :class => "btn btn-warning btn-large new_group" %>

@@ -1,0 +1,30 @@
+<%= form_for([@parent, @wiki], class: '') do|f|%>
+  <% if @wiki.errors.any? %>
+    <div class="alert alert-block alert-error fade in">
+      <a class="close" data-dismiss="alert" href="#">&times;</a>
+      <h2><%= t('common.error', :count => @wiki.errors.count, :model => t("activerecord.models.#{@wiki.class.to_s.downcase}")) %></h2>
+      <ul>
+      <% @wiki.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :name, class: 'control-label'%>
+      <div class="controls">
+        <%= f.text_field :name %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :content, class: 'control-label auto_grow', rows: '3' %>
+      <div class="controls">
+        <%= f.text_area :content, class: 'span5' %>
+      </div>
+    </div>
+    <div class="form-actions">
+      <%= f.submit nil, class:['btn', 'btn-primary'] %>
+    </div>
+  </fieldset>
+<% end %>

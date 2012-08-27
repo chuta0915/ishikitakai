@@ -19,6 +19,7 @@ en:
     models:
       group: "Group"
       event: "Event"
+      wiki: "Wiki"
     attributes:
       group:
         name: "community name"
@@ -41,6 +42,9 @@ en:
         event_payment_kind_id: "payment kind"
         fee: "fee"
         group_id: "Select Community"
+      wiki:
+        name: "Title"
+        content: "Content"
   action:
     close: "Close"
     save: "Save"

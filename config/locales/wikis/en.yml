@@ -1,0 +1,14 @@
+en:
+  wikis:
+    index:
+      title: "Wiki list"
+      new: "Add new Wiki"
+      show_html: "Detail  &raquo;"
+    edit:
+      delete: "Delete"
+      confirm_delete: "Are you really want to delete?"
+    show:
+      edit: "Edit wiki"
+      created: "Created wiki"
+      updated: "Updated wiki"
+      destroyed: "Destroyed wiki"

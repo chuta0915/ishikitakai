@@ -19,6 +19,7 @@ ja:
     models:
       group: "グループ"
       event: "イベント"
+      wiki: "Wiki"
     attributes:
       group:
         name: "グループ名"
@@ -41,6 +42,9 @@ ja:
         event_payment_kind_id: "無料/有料"
         fee: "参加費"
         group_id: "どこのグループ？"
+      wiki:
+        name: "タイトル"
+        content: "内容"
   action:
     close: "閉じる"
     save: "保存する"

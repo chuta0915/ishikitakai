@@ -18,12 +18,15 @@ IshikitakaiCom::Application.routes.draw do
   resources :groups do
     resources :chats, :only => [:index, :show, :create, :destroy] do
     end
+    resources :wikis
   end
   resources :events do
     member do
       get :copy
     end
+    resources :wikis
   end
+  
   post 'chats/authentication' => 'chats#authentication'
   get 'login' => 'pages#login', :as => :new_user_session
   get 'logout' => 'pages#logout', :as => :logout
