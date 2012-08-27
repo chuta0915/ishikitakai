@@ -46,6 +46,7 @@ en:
         name: "Title"
         content: "Content"
         user: "Last update User"
+        updated_at: "Laste update"
   action:
     close: "Close"
     save: "Save"

@@ -46,6 +46,7 @@ ja:
         name: "タイトル"
         content: "内容"
         user: "最終更新者"
+        updated_at: "最終更新"
   action:
     close: "閉じる"
     save: "保存する"
