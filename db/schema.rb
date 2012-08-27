@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120827043519) do
+ActiveRecord::Schema.define(:version => 20120827043832) do
 
   create_table "admins", :force => true do |t|
     t.string   "name"
@@ -185,5 +185,17 @@ ActiveRecord::Schema.define(:version => 20120827043519) do
   end
 
   add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
+
+  create_table "wikis", :force => true do |t|
+    t.string   "parent_type", :null => false
+    t.integer  "parent_id",   :null => false
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "content",     :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "wikis", ["parent_type", "parent_id"], :name => "idx_parent_type_parent_id_on_wikis"
 
 end
