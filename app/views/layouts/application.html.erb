@@ -20,6 +20,7 @@
     <%= favicon_link_tag '/favicon.ico', :rel => 'shortcut icon' %>
     <%= render 'shared/pusher' %>
     <%= javascript_include_tag "application" %>
+    <%= yield :head %>
   </head>
   <body class="<%= yield :body_class %>" data-id="<%= yield :body_data_id %>">
 
