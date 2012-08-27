@@ -18,6 +18,7 @@ gem 'string_markdown'
 gem 'kaminari'
 gem 'rails_autolink'
 gem 'pusher'
+gem 'paper_trail'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
