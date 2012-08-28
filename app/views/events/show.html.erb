@@ -30,22 +30,28 @@
 </div>
 
 <section>
-<h3><%= @event.place_name %></h3>
-<ul>
-  <li><%= link_to @event.place_url, @event.place_url %></li>
-  <li class="well">
-    <%= @event.place_address %>
-  </li>
-</ul>
-<%= link_to "https://maps.google.co.jp/maps?q=#{@event.place_address}", target: '_blank' do %>
-  <% image_tag "//maps.google.com/maps/api/staticmap?zoom=14&size=400x400&sensor=false&markers=#{@event.place_address}" %>
-<% end %>
-</section>
-
-<section>
 <div class="markdown">
   <%= @event.content.html_safe %>
 </div>
+</section>
+
+<section>
+<h3>
+  <% if @event.place_url.present? %>
+    <%= link_to @event.place_name, @event.place_url %>
+  <% else %>
+    <%= @event.place_name %>
+  <% end %>
+</h3>
+
+<% if @event.place_address.present? %>
+  <div class="well">
+    <%= @event.place_address %>
+  </div>
+  <%= link_to "https://maps.google.co.jp/maps?q=#{@event.place_address}", target: '_blank' do %>
+    <% image_tag "//maps.google.com/maps/api/staticmap?zoom=14&size=400x400&sensor=false&markers=#{@event.place_address}" %>
+  <% end %>
+<% end %>
 </section>
 
 <% if @event.user_can_edit?(current_user) %>

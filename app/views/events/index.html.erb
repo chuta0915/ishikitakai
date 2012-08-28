@@ -6,7 +6,7 @@
 <%= paginate @events %>
 <ul class="thumbnails row">
   <% @events.each do|event| %>
-    <li class="span4"><%= render 'event', event: event %></li>
+    <li class="span4"><%= render 'event', event: event, show_group: true %></li>
   <% end %>
 </ul> 
 <%= paginate @events %>
