@@ -3,3 +3,22 @@
   <p>意識の高まりを広げ、人との繋がりを介してナレッジやノウハウの共有を行う機会を増やすサービスです。</p>
   <p><a class="btn btn-warning btn-large" data-toggle="modal" href="/events/new" >まずはイベントを登録する &raquo;</a></p>
 </div>
+
+<% if user_signed_in? %>
+  <% content_for_sidebar do %>
+    <h3><%= t('nav.my_group') %></h3>
+    <ul>
+      <% current_user.groups.order(:updated_at).each do|group| %>
+        <li>
+          <%= link_to group.name, group_path(group) %>
+          <%= link_to group_chats_path(group), class: '' do %>
+            <i class="icon-comment"></i>
+          <% end %>
+          <%= link_to group_tasks_path(group), class: '' do %>
+            <i class="icon-ok"></i>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
