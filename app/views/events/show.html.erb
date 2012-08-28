@@ -5,14 +5,14 @@
     description: @event.summary %>
 <% end %>
 
+<ul class="breadcrumb">
+  <li><a href="/events"><%= t('nav.events') %></a> <span class="divider">/</span></li>
+  <% if @event.group %>
+    <li><a href="/groups/<%= @event.group.id %>"><%= @event.group.name %></a> <span class="divider">/</span></li>
+  <% end %>
+  <li class="active"><%= @event.name %></li>
+</ul>
 <div class="page-header">
-  <ul class="breadcrumb">
-    <li><a href="/events"><%= t('nav.events') %></a> <span class="divider">/</span></li>
-    <% if @event.group %>
-      <li><a href="/groups/<%= @event.group.id %>"><%= @event.group.name %></a> <span class="divider">/</span></li>
-    <% end %>
-    <li class="active"><%= @event.name %></li>
-  </ul>
   <hgroup>
   <span class="badge <%= css_scope_badge(@event.scope) %>"><%= @event.scope.label %></span>
   <span class="badge <%= css_event_payment_kind_badge(@event.event_payment_kind) %>"><%= @event.event_payment_kind.label %></span>

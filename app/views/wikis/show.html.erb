@@ -1,3 +1,13 @@
+<ul class="breadcrumb">
+  <li><%= link_to t("nav.#{@parent.class.to_s.tableize}"), url_for(@parent) %></a> <span class="divider">/</span></li>
+  <% if @parent.respond_to?(:group) && @parent.group.present? %>
+    <li><%= link_to @parent.group.name, url_for(@parent.group) %> <span class="divider">/</span></li>
+  <% end %>
+  <li><%= link_to @parent.name, url_for(@parent) %> <span class="divider">/</span></li>
+  <li><%= link_to t('nav.wiki'), wikis_path(@parent) %> <span class="divider">/</span></li>
+  <li class="active"><%= @wiki.name %></li>
+</ul>
+
 <div class="page-header">
   <h1>
     <%= @wiki.name %>

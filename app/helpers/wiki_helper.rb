@@ -11,6 +11,10 @@ module WikiHelper
     send_wiki_path '', parent, wiki
   end
 
+  def wikis_path parent
+    send("#{parent.class.to_s.downcase}_wikis_path".to_sym, parent)
+  end
+
   private
   def send_wiki_path kind, parent, wiki
     kind = "#{kind}_" if kind.present?
