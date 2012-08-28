@@ -8,6 +8,7 @@ class Group < ActiveRecord::Base
   has_many :events
   has_many :chats
   has_many :wikis, :as => :parent
+  has_many :tasks
   belongs_to :scope
   attr_accessor :user_id
 

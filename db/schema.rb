@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120827043832) do
+ActiveRecord::Schema.define(:version => 20120828163158) do
 
   create_table "admins", :force => true do |t|
     t.string   "name"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20120827043832) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "attendences", ["event_id"], :name => "idx_group_id_on_attendences"
+  add_index "attendences", ["event_id"], :name => "idx_event_id_on_attendences"
   add_index "attendences", ["user_id", "event_id"], :name => "idx_user_id_event_id_on_attendences", :unique => true
 
   create_table "chats", :force => true do |t|
@@ -157,6 +157,18 @@ ActiveRecord::Schema.define(:version => 20120827043832) do
   end
 
   add_index "scopes", ["priority"], :name => "idx_priority_on_scopes"
+
+  create_table "tasks", :force => true do |t|
+    t.integer  "group_id",          :null => false
+    t.string   "name",              :null => false
+    t.boolean  "done"
+    t.integer  "created_user_id"
+    t.integer  "completed_user_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "tasks", ["group_id"], :name => "idx_group_id_on_tasks"
 
   create_table "users", :force => true do |t|
     t.string   "email"

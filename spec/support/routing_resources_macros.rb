@@ -1,5 +1,5 @@
 module RoutingResourcesMacros
-  def resources_should_routes resources, methods = [:index, :new, :show, :edit, :create, :destroy]
+  def resources_should_routes resources, methods = [:index, :new, :show, :edit, :create, :update, :destroy]
     id = '12345'
     describe "routing /#{resources} CRUD" do
       if methods.include? :index
@@ -22,9 +22,14 @@ module RoutingResourcesMacros
           get("/#{resources}/#{id}/edit").should route_to("#{resources}#edit", :id => id)
         end
       end
-      if methods.include? :post
-        it "routes to #post" do
+      if methods.include? :create
+        it "routes to #create" do
           post("/#{resources}").should route_to("#{resources}#create")
+        end
+      end
+      if methods.include? :update
+        it "routes to #update" do
+          put("/#{resources}/#{id}").should route_to("#{resources}#update", :id => id)
         end
       end
       if methods.include? :destroy
@@ -35,7 +40,7 @@ module RoutingResourcesMacros
     end
   end
 
-  def nasted_resources_should_routes parent, resources, methods = [:index, :new, :show, :edit, :create, :destroy]
+  def nasted_resources_should_routes parent, resources, methods = [:index, :new, :show, :edit, :create, :update, :destroy]
     parent_id = '12345'
     id = '23456'
     describe "routing /#{parent}/:#{parent.singularize}_id/#{resources} CRUD" do
@@ -59,9 +64,14 @@ module RoutingResourcesMacros
           get("/#{parent}/#{parent_id}/#{resources}/#{id}/edit").should route_to("#{resources}#edit", "#{parent.singularize}_id" => parent_id, :id => id)
         end
       end
-      if methods.include? :post
-        it "routes to #post" do
+      if methods.include? :create
+        it "routes to #create" do
           post("/#{parent}/#{parent_id}/#{resources}").should route_to("#{resources}#create", "#{parent.singularize}_id" => parent_id)
+        end
+      end
+      if methods.include? :update
+        it "routes to #update" do
+          put("/#{parent}/#{parent_id}/#{resources}/#{id}").should route_to("#{resources}#update", "#{parent.singularize}_id" => parent_id, :id => id)
         end
       end
       if methods.include? :destroy
