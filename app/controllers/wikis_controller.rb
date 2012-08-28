@@ -1,4 +1,5 @@
 class WikisController < ApplicationController
+  include WikiHelper
   before_filter Filters::NestedResourcesFilter.new
   before_filter :authenticate_user!, except: [:index, :show]
 
@@ -33,7 +34,7 @@ class WikisController < ApplicationController
   def create
     @wiki = @parent.wikis.create_by_user params[:wiki], current_user
     if @wiki.persisted?
-      redirect_to @parent, notice: t('wikis.show.created', name: @wiki.name)
+      redirect_to wikis_path(@parent), notice: t('wikis.show.created', name: @wiki.name)
     else
       render :new
     end
@@ -43,7 +44,7 @@ class WikisController < ApplicationController
     @wiki = Wiki.find params[:id]
     @wiki.attributes = params[:wiki]
     if @wiki.save
-      redirect_to @parent, notice: t('wikis.show.updated', name: @wiki.name)
+      redirect_to wiki_path(@parent, @wiki), notice: t('wikis.show.updated', name: @wiki.name)
     else
       render :edit
     end
@@ -52,6 +53,6 @@ class WikisController < ApplicationController
   def destroy
     @wiki = Wiki.find params[:id]
     @wiki.destroy
-    redirect_to @parent, notice: t('wikis.show.destroyed', name: @wiki.name)
+    redirect_to wikis_path(@parent), notice: t('wikis.show.destroyed', name: @wiki.name)
   end
 end

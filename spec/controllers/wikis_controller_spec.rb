@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe WikisController do
+  include WikiHelper
   let(:user) { FactoryGirl.create(:user) }
   let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
   let!(:mokmok_event) { FactoryGirl.create :mokmok_event, user_id: user.id, group_id: sendagayarb.id }
@@ -67,7 +68,7 @@ describe WikisController do
         post :create, event_id: mokmok_event.id, wiki: new_wiki
       end
       it { subject.response_code.should == 302 }
-      it { should redirect_to event_path(mokmok_event) }
+      it { should redirect_to wikis_path(mokmok_event) }
     end
     context "user not signed in" do
       before do
@@ -86,7 +87,7 @@ describe WikisController do
         put :update, event_id: mokmok_event.id, id: wiki.id, wiki: new_wiki
       end
       it { subject.response_code.should == 302 }
-      it { should redirect_to event_path(mokmok_event) }
+      it { should redirect_to wiki_path(mokmok_event, wiki) }
     end
     context "user not signed in" do
       before do
