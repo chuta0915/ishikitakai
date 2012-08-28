@@ -1,4 +1,4 @@
-module Modules::Groups
+module Common::Groups
   def self.included base
     return unless base < ActionController::Base
   end

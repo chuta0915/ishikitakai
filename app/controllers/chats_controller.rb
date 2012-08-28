@@ -1,5 +1,5 @@
 class ChatsController < ApplicationController
-  include Modules::Groups
+  include Common::Groups
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :set_group, except: [:authentication]
   before_filter :user_is_member?, only: [:create, :destroy]

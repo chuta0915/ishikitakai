@@ -1,5 +1,5 @@
 class AttendencesController < ApplicationController
-  include Modules::Events
+  include Common::Events
   before_filter :authenticate_user!
   before_filter :set_event
   def update

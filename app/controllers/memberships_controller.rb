@@ -1,5 +1,5 @@
 class MembershipsController < ApplicationController
-  include Modules::Groups
+  include Common::Groups
   before_filter :authenticate_user!
   before_filter :set_group
   def update

@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  include Modules::Groups
+  include Common::Groups
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :set_group, only: [:edit, :update, :destroy, :join, :leave]
   before_filter :user_can_edit?, only: [:edit, :update, :destroy]

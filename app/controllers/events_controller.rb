@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  include Modules::Events
+  include Common::Events
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :set_event, only: [:edit, :update, :destroy, :copy]
   before_filter :user_can_edit?, only: [:edit, :update, :destroy, :copy]

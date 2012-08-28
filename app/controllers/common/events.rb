@@ -1,4 +1,4 @@
-module Modules::Events
+module Common::Events
   def self.included base
     return unless base < ActionController::Base
   end
