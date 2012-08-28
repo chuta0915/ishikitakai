@@ -25,4 +25,14 @@ jQuery ->
   load_sns_script('//static.mixi.jp/js/plugins.js#lang=ja')
   load_sns_script('//platform.twitter.com/widgets.js')
 
+  # add twitter bootstrap error class
+  fix_style = () ->
+    error = $('form .control-group .field_with_errors').parent()
+    error.addClass('error')
+    setTimeout (->
+      error.removeClass('error')
+    ),3000
+    return
+  fix_style()
+
   return

@@ -69,4 +69,9 @@ body {
       color: inherit;
     }
   }
+
+  // error 表示
+  .field_with_errors {
+    display: inline;
+  }
 }

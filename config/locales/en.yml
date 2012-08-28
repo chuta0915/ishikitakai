@@ -15,6 +15,7 @@ en:
       label: "Free word"
       button: "Search Now"
     range: " - "
+    require: "*required"
   activerecord:
     models:
       group: "Group"

@@ -12,8 +12,8 @@ class Group < ActiveRecord::Base
   attr_accessor :user_id
 
   validates_presence_of :name, :content, :summary, :scope_id
-  validates_length_of :name, :minimum => 1, :maximum => 30
-  validates_length_of :summary, :minimum => 1, :maximum => 30
+  validates_length_of :name, :minimum => 0, :maximum => 30
+  validates_length_of :summary, :minimum => 0, :maximum => 30
   validates_length_of :content, :minimum => 0, :maximum => 2000
 
   scope :search, lambda {|keyword| where(["
