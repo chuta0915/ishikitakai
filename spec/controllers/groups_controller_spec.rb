@@ -3,7 +3,7 @@ require 'spec_helper'
 describe GroupsController do
   let!(:user) { FactoryGirl.create(:user) }
   let(:invalid_user) { FactoryGirl.create :new_user }
-  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, :user_id => user.id }
+  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
   let(:ishikitakai) { FactoryGirl.attributes_for :ishikitakai }
 
   describe "GET 'index'" do
@@ -13,12 +13,12 @@ describe GroupsController do
       it { should be_success }
     end
     context 'with "word" keyword' do
-      before { get 'index', :keyword => 'word' }
+      before { get 'index', keyword: 'word' }
       it { should be_success }
       it { assigns[:groups].should be_blank }
     end
     context 'with "sendagaya" keyword' do
-      before { get 'index', :keyword => 'sendagaya' }
+      before { get 'index', keyword: 'sendagaya' }
       it { should be_success }
       it { assigns[:groups].should be_present }
     end
@@ -26,7 +26,7 @@ describe GroupsController do
 
   describe "GET 'show'" do
     subject { response }
-    before { get 'show', :id => sendagayarb.id }
+    before { get 'show', id: sendagayarb.id }
     it { should be_success }
   end
 
@@ -59,7 +59,7 @@ describe GroupsController do
           @created_group = FactoryGirl.create(:ishikitakai, user_id:user.id)
           Group.stub(:create_by_user).and_return(@created_group) 
           sign_in user
-          post 'create', { :group => ishikitakai }
+          post 'create', { group: ishikitakai }
         end
         it { should redirect_to group_path(@created_group.id) }
       end
@@ -78,14 +78,14 @@ describe GroupsController do
   describe "GET 'edit'" do
     context "user not signed in" do
       subject { response }
-      before { get 'edit', :id => sendagayarb.id }
+      before { get 'edit', id: sendagayarb.id }
       it { should redirect_to new_user_session_path }
     end
     context "user signed in" do
       subject { response }
       before do
         sign_in user
-        get 'edit', :id => sendagayarb.id
+        get 'edit', id: sendagayarb.id
       end
       it { should be_success }
     end
@@ -94,7 +94,7 @@ describe GroupsController do
   describe "PUT 'update'" do
     context "user not signed in" do
       subject { response }
-      before { put 'update', :id => sendagayarb.id }
+      before { put 'update', id: sendagayarb.id }
       it { should redirect_to new_user_session_path }
     end
     context "user signed in" do
@@ -102,7 +102,7 @@ describe GroupsController do
         subject { response }
         before do
           sign_in user
-          put 'update', :id => sendagayarb.id, :group => {:name => sendagayarb.name, :content => sendagayarb.content}
+          put 'update', id: sendagayarb.id, group: { name: sendagayarb.name, content: sendagayarb.content}
         end
         it { should redirect_to group_path(sendagayarb.id) }
       end
@@ -110,7 +110,7 @@ describe GroupsController do
         subject { response }
         before do
           sign_in user
-          put 'update', :id => sendagayarb.id, :group => {:name => ""}
+          put 'update', id: sendagayarb.id, group: { name: '' }
         end
         it { should be_success }
         it { assigns(:group).errors.should be_present }
@@ -121,7 +121,7 @@ describe GroupsController do
   describe "DELETE 'destroy'" do
     context "user not signed in" do
       subject { response }
-      before { delete 'destroy', :id => sendagayarb.id }
+      before { delete 'destroy', id: sendagayarb.id }
       it { should redirect_to new_user_session_path }
     end
     context "user signed in" do
@@ -129,7 +129,7 @@ describe GroupsController do
         subject { response }
         before do
           sign_in user
-          delete 'destroy', :id => sendagayarb.id
+          delete 'destroy', id: sendagayarb.id
         end
         it { should redirect_to groups_path }
       end
@@ -138,7 +138,7 @@ describe GroupsController do
         before do
           user.id = invalid_user.id
           sign_in user
-          delete 'destroy', :id => sendagayarb.id
+          delete 'destroy', id: sendagayarb.id
         end
         it { should be_not_found }
       end

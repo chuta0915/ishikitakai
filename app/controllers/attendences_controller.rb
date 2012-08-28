@@ -4,11 +4,11 @@ class AttendencesController < ApplicationController
   before_filter :set_event
   def update
     @event.join current_user.id
-    redirect_to Rails.application.routes.url_helpers.event_path(params[:id])
+    redirect_to event_path(params[:id])
   end
 
   def destroy
     @event.leave current_user.id unless @event.user_is_owner?(current_user.id)
-    redirect_to Rails.application.routes.url_helpers.event_path(params[:id])
+    redirect_to event_path(params[:id])
   end
 end

@@ -16,13 +16,13 @@ FactoryGirl.define do
     ]}
   end
   
-  factory :new_user, :class => User do
+  factory :new_user, class: User do
     name 'ppworks2'
     image 'http://a1.twimg.com/profile_images/1805350696/twitter_icon_20101007_06_normal.png'
     email 'xxx@twitter.example.com'
   end
 
-  factory :friend, :class => User do
+  factory :friend, class: User do
     name 'naoto5959'
     image 'http://a1.twimg.com/profile_images/1805350696/twitter_icon_20101007_06_normal.png'
     email '90558022@twitter.example.com'

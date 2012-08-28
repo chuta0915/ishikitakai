@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Wiki do
   let(:user) { FactoryGirl.create :user }
-  let(:sendagayarb) { FactoryGirl.create :sendagayarb, :user_id => FactoryGirl.create(:user).id }
+  let(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: FactoryGirl.create(:user).id }
   let(:event) { FactoryGirl.create :mokmok_event, user: user }
   describe 'Group wiki' do
     describe 'create wiki' do

@@ -11,7 +11,7 @@ class Provider < ActiveRecord::Base
 
     private
     def find_by_provider_name provider_name
-      Rails.cache.fetch("model_provider_#{provider_name}", :expires_in => 365.days) do
+      Rails.cache.fetch("model_provider_#{provider_name}", expires_in: 365.days) do
         select(:id).find_by_name(provider_name)
       end
     end

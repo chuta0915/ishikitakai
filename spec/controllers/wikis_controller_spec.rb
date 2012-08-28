@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe WikisController do
   let(:user) { FactoryGirl.create(:user) }
-  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, :user_id => user.id }
-  let!(:mokmok_event) { FactoryGirl.create :mokmok_event, :user_id => user.id, :group_id => sendagayarb.id }
-  let(:wiki) { FactoryGirl.create(:wiki, :user => user, :parent => mokmok_event) }
+  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
+  let!(:mokmok_event) { FactoryGirl.create :mokmok_event, user_id: user.id, group_id: sendagayarb.id }
+  let(:wiki) { FactoryGirl.create(:wiki, user: user, parent: mokmok_event) }
   let(:new_wiki) { FactoryGirl.attributes_for(:wiki) }
   
   describe "GET index" do

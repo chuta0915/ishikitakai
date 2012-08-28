@@ -9,22 +9,22 @@ module Providers::Github
     if providers_user.nil?
       if current_user.nil?
         user = User.create!({
-          :name => name,
-          :email => email,
-          :image => image,
-          :default_provider_id => Provider.github.id
+          name: name,
+          email: email,
+          image: image,
+          default_provider_id: Provider.github.id,
         })
       else
         user = current_user
       end
       providers_user = ProvidersUser.create!({
-        :provider_id => Provider.github.id,
-        :user_id => user.id,
-        :user_key => auth['uid'].to_s,
-        :access_token => auth['credentials']['token'],
-        :name => name,
-        :email => email,
-        :image => image,
+        provider_id: Provider.github.id,
+        user_id: user.id,
+        user_key: auth['uid'].to_s,
+        access_token: auth['credentials']['token'],
+        name: name,
+        email: email,
+        image: image,
       })
     else
       user = User.find providers_user[:user_id]

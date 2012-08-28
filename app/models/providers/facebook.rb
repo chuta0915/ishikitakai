@@ -6,22 +6,22 @@ module Providers::Facebook
     if providers_user.nil?
       if current_user.nil?
         user = User.create!({
-          :name => name,
-          :email => auth['info']['email'],
-          :image => image,
-          :default_provider_id => Provider.facebook.id
+          name: name,
+          email: auth['info']['email'],
+          image: image,
+          default_provider_id: Provider.facebook.id,
         })
       else
         user = current_user
       end
       providers_user = ProvidersUser.create!({
-        :provider_id => Provider.facebook.id,
-        :user_id => user.id,
-        :user_key => auth['uid'].to_s,
-        :access_token => auth['credentials']['token'],
-        :name => name,
-        :email => auth['info']['email'],
-        :image => image
+        provider_id: Provider.facebook.id,
+        user_id: user.id,
+        user_key: auth['uid'].to_s,
+        access_token: auth['credentials']['token'],
+        name: name,
+        email: auth['info']['email'],
+        image: image,
       })
     else
       user = User.find providers_user[:user_id]

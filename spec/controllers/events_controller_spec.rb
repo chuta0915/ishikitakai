@@ -3,8 +3,8 @@ require 'spec_helper'
 describe EventsController do
   let!(:user) { FactoryGirl.create(:user) }
   let(:invalid_user) { FactoryGirl.create :new_user }
-  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, :user_id => user.id }
-  let!(:mokmok_event) { FactoryGirl.create :mokmok_event, :user_id => user.id, :group_id => sendagayarb.id }
+  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
+  let!(:mokmok_event) { FactoryGirl.create :mokmok_event, user_id: user.id, group_id: sendagayarb.id }
   let(:reading_event) { FactoryGirl.attributes_for :reading_event }
 
   describe "GET 'index'" do
@@ -14,12 +14,12 @@ describe EventsController do
       it { should be_success }
     end
     context 'with "word" keyword' do
-      before { get 'index', :keyword => 'word' }
+      before { get 'index', keyword: 'word' }
       it { should be_success }
       it { assigns[:events].should be_blank }
     end
     context 'with "mokmok" keyword' do
-      before { get 'index', :keyword => 'mokmok' }
+      before { get 'index', keyword: 'mokmok' }
       it { should be_success }
       it { assigns[:events].should be_present }
     end
@@ -27,7 +27,7 @@ describe EventsController do
 
   describe "GET 'show'" do
     subject { response }
-    before { get 'show', :id => mokmok_event.id }
+    before { get 'show', id: mokmok_event.id }
     it { should be_success }
   end
 
@@ -60,7 +60,7 @@ describe EventsController do
           @created_event = FactoryGirl.create(:reading_event, user_id:user.id)
           Event.stub(:create_by_user).and_return(@created_event) 
           sign_in user
-          post 'create', { :event => reading_event }
+          post 'create', { event: reading_event }
         end
         it { should redirect_to event_path(@created_event.id) }
       end
@@ -79,14 +79,14 @@ describe EventsController do
   describe "GET 'edit'" do
     context "user not signed in" do
       subject { response }
-      before { get 'edit', :id => mokmok_event.id }
+      before { get 'edit', id: mokmok_event.id }
       it { should redirect_to new_user_session_path }
     end
     context "user signed in" do
       subject { response }
       before do
         sign_in user
-        get 'edit', :id => mokmok_event.id
+        get 'edit', id: mokmok_event.id
       end
       it { should be_success }
     end
@@ -103,8 +103,8 @@ describe EventsController do
         subject { response }
         before do
           sign_in user
-          put 'update', :id => mokmok_event.id, :event => {
-            :name => mokmok_event.name, :content => mokmok_event.content}
+          put 'update', id: mokmok_event.id, event: {
+            name: mokmok_event.name, content: mokmok_event.content}
         end
         it { should redirect_to event_path(mokmok_event.id) }
       end
@@ -112,7 +112,7 @@ describe EventsController do
         subject { response }
         before do
           sign_in user
-          put 'update', :id => mokmok_event.id, :event => {:name => ""}
+          put 'update', id: mokmok_event.id, event: { name: '' }
         end
         it { should be_success }
         it { assigns(:event).errors.should be_present }
@@ -123,7 +123,7 @@ describe EventsController do
   describe "DELETE 'destroy'" do
     context "user not signed in" do
       subject { response }
-      before { delete 'destroy', :id => mokmok_event.id }
+      before { delete 'destroy', id: mokmok_event.id }
       it { should redirect_to new_user_session_path }
     end
     context "user signed in" do
@@ -131,7 +131,7 @@ describe EventsController do
         subject { response }
         before do
           sign_in user
-          delete 'destroy', :id => mokmok_event.id
+          delete 'destroy', id: mokmok_event.id
         end
         it { should redirect_to events_path }
       end
@@ -140,7 +140,7 @@ describe EventsController do
         before do
           user.id = invalid_user.id
           sign_in user
-          delete 'destroy', :id => sendagayarb.id
+          delete 'destroy', id: sendagayarb.id
         end
         it { should be_not_found }
       end
@@ -150,14 +150,14 @@ describe EventsController do
   describe "GET 'copy'" do
     context "user not signed in" do
       subject { response }
-      before { get 'copy', :id => sendagayarb.id }
+      before { get 'copy', id: sendagayarb.id }
       it { should redirect_to new_user_session_path }
     end
     context "user signed in" do
       subject { response }
       before do
         sign_in user
-        get 'copy', :id => mokmok_event.id
+        get 'copy', id: mokmok_event.id
       end
       it { should be_success }
       it { assigns[:event].name.should == mokmok_event.name }

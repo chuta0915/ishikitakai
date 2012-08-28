@@ -20,7 +20,7 @@
 
 <% if @group.user_can_edit?(current_user) %>
   <section class="form-actions">
-    <%= link_to t('events.index.new'), new_event_path(group_id: @group.id), :class => "btn btn-warning" %>
+    <%= link_to t('events.index.new'), new_event_path(group_id: @group.id), class: "btn btn-warning" %>
     <%= link_to t('.edit'), edit_group_path(@group), class: 'btn' %>
   </section>
 <% end %>

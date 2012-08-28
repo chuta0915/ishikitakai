@@ -13,11 +13,11 @@
     <![endif]-->
 
     <%= render 'shared/ga' %>
-    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= stylesheet_link_tag "application", media: "all" %>
 
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
-    <%= favicon_link_tag '/favicon.ico', :rel => 'shortcut icon' %>
+    <%= favicon_link_tag '/favicon.ico', rel: 'shortcut icon' %>
     <%= render 'shared/pusher' %>
     <%= javascript_include_tag "application" %>
     <%= yield :head %>
@@ -127,10 +127,10 @@
             powered by twitter bootstrap
           <% end %> 
         </p>
-        <%= render 'shared/sns_buttons', :url => request.url %>
+        <%= render 'shared/sns_buttons', url: request.url %>
       </footer>
 
     </div> <!-- /container -->
-    <%= render 'shared/fb_load_js', :app_id => ENV['FB_APP_ID'] %>
+    <%= render 'shared/fb_load_js', app_id: ENV['FB_APP_ID'] %>
   </body>
 </html>

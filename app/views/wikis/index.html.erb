@@ -6,7 +6,7 @@
   <li><%= link_to @parent.name, url_for(@parent) %> <span class="divider">/</span></li>
   <li class="active"><%= t('nav.wiki') %></li>
 </ul>
-<%= link_to t('.new'), new_wiki_path(@parent), :class => "btn btn-warning " %>
+<%= link_to t('.new'), new_wiki_path(@parent), class: "btn btn-warning " %>
 <table class="table table-striped table-hover">
   <thead>
     <tr>

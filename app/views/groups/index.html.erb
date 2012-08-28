@@ -1,7 +1,7 @@
 <% content_for :title,  "#{t('.title')} " %>
 <% content_for :body_class,  "groups " %>
 <%= render 'search_form' %>
-<%= link_to t('.new'), new_group_path, :class => "btn btn-warning btn-large new_group" %>
+<%= link_to t('.new'), new_group_path, class: "btn btn-warning btn-large new_group" %>
 
 <%= paginate @groups %>
 <ul id="list" class="thumbnails">

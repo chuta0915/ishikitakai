@@ -1,9 +1,9 @@
 class ChatsController < ApplicationController
   include Modules::Groups
-  before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :set_group, :except => [:authentication]
-  before_filter :user_is_member?, :only => [:create, :destroy]
-  protect_from_forgery :except => :authentication
+  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :set_group, except: [:authentication]
+  before_filter :user_is_member?, only: [:create, :destroy]
+  protect_from_forgery except: :authentication
   layout Proc.new { |controller| controller.request.xhr? ? nil : 'application' }
 
   def index
@@ -29,12 +29,12 @@ class ChatsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html {
+      format.html do
         redirect_to group_chats_path(@group)
-      }
-      format.js { 
+      end
+      format.js do
         render :show
-      }
+      end
     end
   end
 

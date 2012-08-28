@@ -11,18 +11,18 @@ class Event < ActiveRecord::Base
     :receive_begin_date, :receive_begin_time, :receive_end_date, :receive_end_time
   attr_accessor :begin_date, :begin_time, :end_date, :end_time,
     :receive_begin_date, :receive_begin_time, :receive_end_date, :receive_end_time
-  has_many :attendences, :dependent => :destroy
-  has_many :users, :through => :attendences
-  has_many :wikis, :as => :parent
+  has_many :attendences, dependent: :destroy
+  has_many :users, through: :attendences
+  has_many :wikis, as: :parent
   belongs_to :group
   belongs_to :user
   belongs_to :scope
   belongs_to :event_payment_kind
 
   validates_presence_of :name, :summary, :place_name, :capacity_min, :capacity_max, :event_payment_kind_id
-  validates_length_of :name, :minimum => 0, :maximum => 30
-  validates_length_of :summary, :minimum => 0, :maximum => 100
-  validates_length_of :content, :minimum => 0, :maximum => 2000
+  validates_length_of :name, minimum: 0, maximum: 30
+  validates_length_of :summary, minimum: 0, maximum: 100
+  validates_length_of :content, minimum: 0, maximum: 2000
 
   scope :search, lambda {|keyword| where(["
     name LIKE ? OR 
@@ -42,25 +42,26 @@ class Event < ActiveRecord::Base
   end
   
   def user_can_edit? user_id
-    attendence = self.attendences.where(:user_id => user_id).first
+    attendence = self.attendences.where(user_id: user_id).first
     attendence.present? && attendence.level.name == 'master'
   end
 
   def user_is_attendence? user_id
-    attendence = self.attendences.where(:user_id => user_id).first
+    attendence = self.attendences.where(user_id: user_id).first
     attendence.present?
   end
   
   def join user_id, level = 'member'
     return if self.user_is_attendence? user_id
     self.attendences << Attendence.new(
-      :user_id => user_id, 
-      :level_id => Level.find_by_name(level).id)
+      user_id: user_id, 
+      level_id: Level.find_by_name(level).id,
+    )
   end
 
   def leave user_id
     return unless self.user_is_attendence? user_id
-    self.attendences.where(:user_id => user_id).first.destroy
+    self.attendences.where(user_id: user_id).first.destroy
   end
 
   private
@@ -78,8 +79,9 @@ class Event < ActiveRecord::Base
   def create_attendences
     if self.user_id.present?
       self.attendences << Attendence.new(
-        :user_id => self.user_id, 
-        :level_id => Level.find_by_name(:master).id)
+        user_id: self.user_id, 
+        level_id: Level.find_by_name(:master).id,
+      )
     else
       false
     end

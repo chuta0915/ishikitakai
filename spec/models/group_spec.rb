@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Group do
   ancestors_should_include [ActiveRecord::Base]
-  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, :user_id => FactoryGirl.create(:user).id }
+  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: FactoryGirl.create(:user).id }
   let!(:other_user) { FactoryGirl.create :new_user }
   let(:post) { FactoryGirl.create :post }
 

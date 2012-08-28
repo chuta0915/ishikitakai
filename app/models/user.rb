@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
   devise :rememberable, :trackable, :omniauthable
   attr_accessible :remember_me, :name, :image, :default_provider_id, :email
-  has_many :providers_users, :dependent => :destroy
-  has_many :providers, :through => :providers_users
-  has_many :memberships, :dependent => :destroy
-  has_many :groups, :through => :memberships
+  has_many :providers_users, dependent: :destroy
+  has_many :providers, through: :providers_users
+  has_many :memberships, dependent: :destroy
+  has_many :groups, through: :memberships
   has_many :chats
 
   extend Providers::Facebook
@@ -13,13 +13,13 @@ class User < ActiveRecord::Base
   
   class << self
     def find_by_path provider_name, user_key
-      providers_user = ProvidersUser.where(:provider_id => Provider.send(provider_name).id, :user_key => user_key).first
+      providers_user = ProvidersUser.where(provider_id: Provider.send(provider_name).id, user_key: user_key).first
       self.find providers_user.user_id
     end
   end
   
   def user_key
-    self.providers_users.where(:provider_id => self.default_provider_id).first.user_key
+    self.providers_users.where(provider_id: self.default_provider_id).first.user_key
   end
   
   def default_provider

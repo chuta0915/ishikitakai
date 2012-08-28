@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_locale
   before_filter :basic_auth
-  rescue_from Exception, :with => :catch_exceptions unless Rails.env.test?
+  rescue_from Exception, with: :catch_exceptions unless Rails.env.test?
 
   protected
   def set_locale
@@ -20,10 +20,10 @@ class ApplicationController < ActionController::Base
   def catch_exceptions(e)
     logger.error e.to_yaml
         e.backtrace.each { |line| logger.error line }
-    if (params[:controller] == "user" && params[:action] == "show")
-      render :layout => false, :file => "#{Rails.root}/public/404", :status => 404, :format => :html
+    if params[:controller] == "user" && params[:action] == "show"
+      render layout: false, file: "#{Rails.root}/public/404", status: 404, format:  :html
     else
-      render :layout => false, :file => "#{Rails.root}/public/500", :status => 500, :format => :html
+      render layout: false, file: "#{Rails.root}/public/500", status: 500, format: :html
     end
   end
 

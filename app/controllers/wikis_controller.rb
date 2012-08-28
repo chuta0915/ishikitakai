@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   before_filter Filters::NestedResourcesFilter.new
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, except: [:index, :show]
 
   def index
     params[:page] ||= 1

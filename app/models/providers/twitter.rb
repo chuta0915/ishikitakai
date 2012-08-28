@@ -9,23 +9,23 @@ module Providers::Twitter
     if providers_user.nil?
       if current_user.nil?
         user = User.create!({
-          :name => name,
-          :email => email,
-          :image => image,
-          :default_provider_id => Provider.twitter.id
+          name: name,
+          email: email,
+          image: image,
+          default_provider_id: Provider.twitter.id,
         })
       else
         user = current_user
       end
       providers_user = ProvidersUser.create!({
-        :provider_id => Provider.twitter.id,
-        :user_id => user.id,
-        :user_key => auth['uid'].to_s,
-        :access_token => auth['credentials']['token'],
-        :secret => auth['credentials']['secret'],
-        :name => name,
-        :email => email,
-        :image => image,
+        provider_id: Provider.twitter.id,
+        user_id: user.id,
+        user_key: auth['uid'].to_s,
+        access_token: auth['credentials']['token'],
+        secret: auth['credentials']['secret'],
+        name: name,
+        email: email,
+        image: image,
       })
     else
       user = User.find providers_user[:user_id]

@@ -6,7 +6,7 @@ describe UsersController do
   describe "GET show" do
     context 'user not singed in' do
       before do
-        get :show, :id => user.id
+        get :show, id: user.id
       end
       it { response.response_code.should == 200 }
       it { response.should be_success }

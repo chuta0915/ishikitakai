@@ -1,16 +1,5 @@
 <%= form_for(@event, html:{class: 'form-horizontal'}) do |f| %>
-  <% if @event.errors.any? %>
-    <div class="alert alert-block alert-error fade in">
-      <a class="close" data-dismiss="alert" href="#">&times;</a>
-      <h2><%= t('common.error', :count => @event.errors.count, :model => t("activerecord.models.#{@event.class.to_s.downcase}")) %></h2>
-
-      <ul>
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/error', model: @event %>
 <fieldset>
   <div class="control-group">
     <%= f.label :group_id, class: 'control-label' %>
