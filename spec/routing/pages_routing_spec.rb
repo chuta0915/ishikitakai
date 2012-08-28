@@ -1,9 +1,14 @@
 require "spec_helper"
 
 describe PagesController do
-  describe "routing /" do
-    it "routes to #index" do
-      get("/").should route_to("pages#index")
+  describe "routing /login" do
+    it "routes to #login" do
+      get("/login").should route_to("pages#login")
+    end
+  end
+  describe "routing /logout" do
+    it "routes to #logout" do
+      get("/logout").should route_to("pages#logout")
     end
   end
   describe "routing /about" do
@@ -21,9 +26,9 @@ describe PagesController do
       get("/policy").should route_to("pages#policy")
     end
   end
-  describe "routing /login" do
-    it "routes to #login" do
-      get("/login").should route_to("pages#login")
+  describe "routing /" do
+    it "routes to #index" do
+      get("/").should route_to("pages#index")
     end
   end
 end
