@@ -34,7 +34,7 @@
           <% end %> 
         <% end %> 
       </td> 
-      <td><%= link_to truncate(task.name, length: 30), task_path(@parent, task) %></td> 
+      <td><%= task.name %></td> 
       <td>
         <% if task.done? %>
           <%= link_to task_path(@parent, task), method: :delete, class: 'btn btn-danger' do %>
