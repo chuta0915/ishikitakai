@@ -5,6 +5,29 @@
     description: @group.summary %>
 <% end %>
 
+<% if @today_event.present? %>
+<div class="alert alert-info">
+  <h4><%= t('.today_event') %></h4>
+  <div class="well">
+    <%= link_to event_path(@today_event) do %>
+      <h3>
+        <%= @today_event.name %>
+        <small>
+        <%= @today_event.summary %>
+        </small>
+        <%= link_to event_wikis_path(@today_event), class: 'btn' do %>
+          <i class="icon-align-justify"></i>
+          <%= t('nav.wiki') %>
+        <% end %>
+        <% unless @today_event.user_is_attendence?(current_user.id) %>
+          <%= link_to t('events.show.join'), my_attendence_path(@today_event), class: 'btn btn-primary', method: 'put' %>
+        <% end %>
+      </h3>
+    <% end %>
+  </div>
+</div>
+<% end %>
+
 <div class="page-header">
   <h1>
     <%= @group.name %>
@@ -28,16 +51,13 @@
 <% content_for_sidebar do %>
   <div class="form-action">
     <% if user_signed_in? && @group.user_is_member?(current_user.id) %>
-      <%= link_to group_chats_path(@group), class: 'btn btn-block btn-primary' do %>
+      <%= link_to group_chats_path(@group), class: 'btn btn-block' do %>
         <i class="icon-comment"></i>
         <%= t('nav.chat') %>
       <% end %>
-      <%= link_to group_tasks_path(@group), class: 'btn btn-block btn-primary' do %>
+      <%= link_to group_tasks_path(@group), class: 'btn btn-block' do %>
         <i class="icon-ok"></i>
         <%= t('nav.task') %>
-      <% end %>
-      <% unless @group.user_is_owner?(current_user.id) %>
-        <%= link_to t('.leave'), my_membership_path(@group), class: 'btn btn-danger', confirm: t('.confirm_leave'), method: 'delete' %>
       <% end %>
     <% else %>
       <%= link_to t('.join'), my_membership_path(@group), class: 'btn btn-primary', method: 'put' %>
@@ -46,13 +66,18 @@
   <section>
   <h3><i class="icon-user"></i><%= t('.member') %><i class="icon-user"></i></h3>
   <table class="table table-condensed">
-    <% @group.memberships.each do|membership| %>
+    <% @group.memberships.order(:id).each do|membership| %>
         <td><span class="label <%= css_level_badge(membership.level) %>"><%= membership.level.label %></span></td>
         <td><%= link_to membership.user.name, user_path(membership.user_id) %></td>
       </tr>
     <% end %>
   </table>
   </section>
+  <% if user_signed_in? && @group.user_is_member?(current_user.id) %>
+    <% unless @group.user_is_owner?(current_user.id) %>
+      <%= link_to t('.leave'), my_membership_path(@group), class: 'btn btn-danger', confirm: t('.confirm_leave'), method: 'delete' %>
+    <% end %>
+  <% end %>
 <% end %>
 
 <hr />

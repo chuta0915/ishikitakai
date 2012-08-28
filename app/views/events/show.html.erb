@@ -64,12 +64,17 @@
 <% content_for_sidebar do %>
   <div class="form-action">
     <% if user_signed_in? && @event.user_is_attendence?(current_user.id) %>
-      <%= link_to event_wikis_path(@event), class: 'btn btn-block btn-primary' do %>
+      <%= link_to group_chats_path(@event.group), class: 'btn btn-block' do %>
+        <i class="icon-comment"></i>
+        <%= t('nav.chat') %>
+      <% end %>
+      <%= link_to group_tasks_path(@event.group), class: 'btn btn-block' do %>
+        <i class="icon-ok"></i>
+        <%= t('nav.task') %>
+      <% end %>
+      <%= link_to event_wikis_path(@event), class: 'btn btn-block' do %>
         <i class="icon-align-justify"></i>
         <%= t('nav.wiki') %>
-      <% end %>
-      <% unless @event.user_is_owner?(current_user.id) %>
-        <%= link_to t('.leave'), my_attendence_path(@event), class: 'btn btn-danger', confirm: t('.confirm_leave'), method: 'delete' %>
       <% end %>
     <% else %>
       <%= link_to t('.join'), my_attendence_path(@event), class: 'btn btn-primary', method: 'put' %>
@@ -81,7 +86,7 @@
   </h3>
   <span class="badge"><%= @event.attendences.count %></span>/<span class="badge"><%= @event.capacity_max %></span> 
   <table class="table table-condensed">
-    <% @event.attendences.each do|attendence| %>
+    <% @event.attendences.order(:id).each do|attendence| %>
       <tr>
         <td><span class="label <%= css_level_badge(attendence.level) %>"><%= attendence.level.label %></span></td>
         <td><%= link_to attendence.user.name, user_path(attendence.user_id) %></td>
@@ -89,4 +94,9 @@
     <% end %>
   </table>
   </section>
+  <% if user_signed_in? && @event.user_is_attendence?(current_user.id) %>
+    <% unless @event.user_is_owner?(current_user.id) %>
+      <%= link_to t('.leave'), my_attendence_path(@event), class: 'btn btn-danger', confirm: t('.confirm_leave'), method: 'delete' %>
+    <% end %>
+  <% end %>
 <% end %>

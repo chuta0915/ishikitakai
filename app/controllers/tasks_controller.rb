@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   include TaskHelper
+
   before_filter Filters::NestedResourcesFilter.new
   before_filter :authenticate_user!
 

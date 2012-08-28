@@ -30,6 +30,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find params[:id]
+    @today_event = @group.events.today.first
   end
 
   def new

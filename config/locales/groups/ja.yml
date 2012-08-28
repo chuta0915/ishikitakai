@@ -17,3 +17,4 @@ ja:
       updated: "「%{name}」グループの設定を変更しました"
       destroyed: "「%{name}」グループを削除ました"
       all_events: "更にイベントを見る"
+      today_event: "本日開催のイベント"
