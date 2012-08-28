@@ -49,7 +49,7 @@
     <%= @event.place_address %>
   </div>
   <%= link_to "https://maps.google.co.jp/maps?q=#{@event.place_address}", target: '_blank' do %>
-    <% image_tag "//maps.google.com/maps/api/staticmap?zoom=14&size=400x400&sensor=false&markers=#{@event.place_address}" %>
+    <% image_tag "#{Settings.map.prefix + @event.place_address}", class: 'img-polaroid' %>
   <% end %>
 <% end %>
 </section>

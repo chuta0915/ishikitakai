@@ -1,2 +1,4 @@
 site:
   copyright: '<a href="http://twitter.com/ppworks">ppworks</a>'
+map:
+  prefix: '//maps.google.com/maps/api/staticmap?zoom=14&size=400x400&sensor=false&markers='
