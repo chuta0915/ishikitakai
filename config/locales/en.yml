@@ -21,6 +21,7 @@ en:
       group: "Group"
       event: "Event"
       wiki: "Wiki"
+      task: "TODO"
     attributes:
       group:
         name: "community name"
@@ -48,6 +49,8 @@ en:
         content: "Content"
         user: "Last update User"
         updated_at: "Laste update"
+      task:
+        name: "TODO"
   action:
     close: "Close"
     save: "Save"

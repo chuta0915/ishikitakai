@@ -1,0 +1,10 @@
+en:
+  tasks:
+    index:
+      created: "Created %{name} TODO"
+      updated: "Updated %{name} TODO status"
+      destroyed: "Destroyed %{name} TODO"
+      update: "Complete!"
+      delete: "Delete"
+    _form:
+      submit: "Create"

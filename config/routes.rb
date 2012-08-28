@@ -19,6 +19,7 @@ IshikitakaiCom::Application.routes.draw do
     resources :chats, :only => [:index, :show, :create, :destroy] do
     end
     resources :wikis
+    resources :tasks, :only => [:index, :create, :update, :destroy]
   end
   resources :events do
     member do

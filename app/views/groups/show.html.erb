@@ -32,6 +32,10 @@
         <i class="icon-comment"></i>
         <%= t('nav.chat') %>
       <% end %>
+      <%= link_to group_tasks_path(@group), class: 'btn btn-block btn-primary' do %>
+        <i class="icon-ok"></i>
+        <%= t('nav.task') %>
+      <% end %>
       <% unless @group.user_is_owner?(current_user.id) %>
         <%= link_to t('.leave'), my_membership_path(@group), class: 'btn btn-danger', confirm: t('.confirm_leave'), method: 'delete' %>
       <% end %>

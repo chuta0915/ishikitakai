@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :task do
     group_id 1
-    name "MyString"
+    name "remember the milk"
     done false
   end
 end

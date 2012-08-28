@@ -1,0 +1,6 @@
+<%= form_for([@parent, @task], class: 'form-inline') do|f|%>
+  <div class="controls controls-row">
+    <%= f.text_field :name, class: 'span10 auto_grow auto_clear' %>
+    <%= f.submit t('tasks._form.submit'), class:'btn btn-primary span2' %>
+  </div>
+<% end %>

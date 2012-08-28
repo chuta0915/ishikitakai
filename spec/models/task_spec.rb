@@ -1,35 +1,17 @@
 require 'spec_helper'
 
 describe Task do
-  let!(:task) { FactoryGirl.create(:task) }
-  let!(:user) { FactoryGirl.create(:user) }
-  let!(:friend) { FactoryGirl.create(:friend) }
+  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: FactoryGirl.create(:user).id }
+  let!(:task) { FactoryGirl.create(:task, group_id: sendagayarb.id) }
   describe 'change status done' do
-    context 'no user' do
-      context 'created' do
-        it { task.done.should be_false }
-      end
-      context 'completed' do
-        before do
-          task.complete
-        end
-        it { task.done.should be_true }
-      end
+    context 'created' do
+      it { task.done.should be_false }
     end
-
-    context 'specified user' do
-      context 'created' do
-        before do
-          task.created_user = user
-        end
-        it { task.done.should be_false }
+    context 'completed' do
+      before do
+        task.complete
       end
-      context 'completed' do
-        before do
-          task.complete
-        end
-        it { task.done.should be_true }
-      end
+      it { task.done.should be_true }
     end
   end
 end

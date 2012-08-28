@@ -21,6 +21,7 @@ ja:
       group: "グループ"
       event: "イベント"
       wiki: "Wiki"
+      task: "TODO"
     attributes:
       group:
         name: "グループ名"
@@ -47,6 +48,10 @@ ja:
         name: "タイトル"
         content: "内容"
         user: "最終更新者"
+        updated_at: "最終更新"
+      task:
+        name: "TODO"
+        created_user: "更新者"
         updated_at: "最終更新"
   action:
     close: "閉じる"
