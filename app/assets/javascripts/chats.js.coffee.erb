@@ -11,6 +11,7 @@ jQuery ->
       url: '/groups/' + group_id + '/chats/' + data.id,
       success: (data) ->
         $('ul[data-list="chats"]').append(data)
+        $('.progress').hide()
         return
     )
     return
@@ -26,3 +27,13 @@ jQuery ->
   
   channel.bind 'pusher:member_removed', (data) ->
     return
+
+  # when shift + enter pushed
+  $('textarea').keyup (event) ->
+    event.stopPropagation()
+    if event.keyCode == 13 && event.shiftKey
+      $(@).parent().submit()
+
+  $('.new_chat').submit (event) ->
+    $('.progress').show()
+

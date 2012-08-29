@@ -1,5 +1,6 @@
 jQuery ->
   $('textarea.auto_grow').auto_grow()
+  $('textarea.tabby').tabby()
 
   # remote="true" な処理のlisten
   $('form[data-remote="true"]').live "submit", (e) ->

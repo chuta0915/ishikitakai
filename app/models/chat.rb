@@ -8,6 +8,7 @@ class Chat < ActiveRecord::Base
   def content
     c = super
     c = '' if c.nil?
+    c.gsub! /\t/, '  '
     c.to_md
   end
 end
