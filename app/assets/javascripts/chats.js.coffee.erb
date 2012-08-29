@@ -16,17 +16,26 @@ jQuery ->
     )
     return
   
-  channel.bind 'pusher:subscription_succeeded', (data) ->
+  channel.bind 'pusher:subscription_succeeded', (members) ->
+    members.each (member) ->
+      add_member(member)
     return
 
   channel.bind 'pusher:subscription_error', (data) ->
     return
     
   channel.bind 'pusher:member_added', (data) ->
+    add_member(data)
     return
   
   channel.bind 'pusher:member_removed', (data) ->
+    $('ul.member').find('[data-class="chat_user"][data-id="' + data.id.toString() + '"]').remove()
     return
+
+  add_member = (member) ->
+    $('ul.member').append(
+      '<li><img src="' + member.info.image + '" width="25" height="25" class="face" data-class="chat_user" data-id="' + member.id.toString() + '"></li>')
+
 
   # when shift + enter pushed
   $('textarea').keyup (event) ->
