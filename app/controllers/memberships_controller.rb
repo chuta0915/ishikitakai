@@ -3,7 +3,11 @@ class MembershipsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :set_group
   def update
-    @group.join current_user.id
+    if @group.scope.name == 'private'
+      @group.join current_user.id, 'pending'
+    else
+      @group.join current_user.id
+    end
     redirect_to group_path(params[:id])
   end
 
