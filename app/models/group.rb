@@ -13,7 +13,7 @@ class Group < ActiveRecord::Base
   belongs_to :scope
   attr_accessor :user_id
 
-  validates_presence_of :name, :content, :summary, :scope_id
+  validates_presence_of :name, :summary, :scope_id
   validates_length_of :name, minimum: 0, maximum: 30
   validates_length_of :summary, minimum: 0, maximum: 30
   validates_length_of :content, minimum: 0, maximum: 2000

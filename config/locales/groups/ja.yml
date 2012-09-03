@@ -1,5 +1,9 @@
 ja:
   groups:
+    _form:
+      notice:
+        name: "グループの名前は公開情報です"
+        summary: "グループの概要は公開情報です"
     index:
       title: "登録されているグループ"
       new: "グループを登録する"

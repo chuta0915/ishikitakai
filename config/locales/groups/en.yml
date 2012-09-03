@@ -1,5 +1,9 @@
 en:
   groups:
+    _form:
+      notice:
+        name: "name is public information"
+        summary: "summary is public information"
     index:
       title: "Groups"
       new: "Add new Group"
