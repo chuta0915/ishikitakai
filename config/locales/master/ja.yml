@@ -5,6 +5,7 @@ ja:
       support: "スタッフ"
       member: "メンバー"
       guest: "ゲスト" 
+      pending: "承認待ち" 
   scope:
     records:
       public: "全体公開"

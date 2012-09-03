@@ -5,6 +5,7 @@ en:
       support: "Staff"
       member: "Member"
       guest: "Guest"
+      pending: "Pending" 
   scope:
     records:
       public: "Public"

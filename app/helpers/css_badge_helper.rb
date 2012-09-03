@@ -25,6 +25,7 @@ module CssBadgeHelper
       support: 'label-info',
       member: 'label-success',
       guest: 'label',
+      pending: 'label',
     }
     classes[level.name.to_sym]
   end
