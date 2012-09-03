@@ -1,0 +1,50 @@
+<ul class="breadcrumb">
+  <li><%= link_to t("nav.#{@parent.class.to_s.tableize}"), url_for(@parent) %></a> <span class="divider">/</span></li>
+  <% if @parent.respond_to?(:group) && @parent.group.present? %>
+    <li><%= link_to @parent.group.name, url_for(@parent.group) %> <span class="divider">/</span></li>
+  <% end %>
+  <li><%= link_to @parent.name, url_for(@parent) %> <span class="divider">/</span></li>
+  <li class="active"><%= t('nav.kpt') %></li>
+</ul>
+<%= render 'form' %>
+<div class="row-fluid">
+  <div class="span4">
+    <h2>KEEP</h2>
+    <ul class="unstyled">
+    <% @keeps.each do |kpt| %>
+      <li class="well">
+        <%= kpt.name %>
+        <%= link_to kpt_path(@parent, kpt), method: :delete, class: 'close' do %>
+          &times;
+        <% end %> 
+      </li>
+    <% end %>
+    </ul>
+  </div>
+  <div class="span4">
+    <h2>PROBLEM</h2>
+    <ul class="unstyled">
+    <% @problems.each do |kpt| %>
+      <li class="well">
+        <%= kpt.name %>
+        <%= link_to kpt_path(@parent, kpt), method: :delete, class: 'close' do %>
+          &times;
+        <% end %> 
+      </li>
+    <% end %>
+  </ul>
+  </div>
+  <div class="span4">
+    <h2>TRY</h2>
+    <ul class="unstyled">
+    <% @trys.each do |kpt| %>
+      <li class="well">
+        <%= kpt.name %>
+        <%= link_to kpt_path(@parent, kpt), method: :delete, class: 'close' do %>
+          &times;
+        <% end %> 
+      </li>
+    <% end %>
+  </ul>
+  </div>
+</div>

@@ -9,6 +9,7 @@ class Group < ActiveRecord::Base
   has_many :chats
   has_many :wikis, :as => :parent
   has_many :tasks
+  has_many :kpts
   belongs_to :scope
   attr_accessor :user_id
 

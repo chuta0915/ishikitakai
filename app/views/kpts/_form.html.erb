@@ -1,0 +1,9 @@
+<%= form_for([@parent, @kpt], class: 'form-inline') do|f|%>
+  <div class="controls controls-row">
+    <div class="controls">
+      <%= f.select :status, [['Keep', Kpt::KEEP], ['Problem', Kpt::PROBLEM], ['Try', Kpt::TRY]] %>
+    </div>
+    <%= f.text_field :name, class: 'span10 auto_grow auto_clear' %>
+    <%= f.submit t('kpts._form.submit'), class:'btn btn-primary span2' %>
+  </div>
+<% end %>

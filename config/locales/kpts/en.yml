@@ -1,0 +1,10 @@
+en:
+  kpts:
+    index:
+      created: "Created %{name} KPT"
+      updated: "Updated %{name} KPT status"
+      destroyed: "Destroyed %{name} KPT"
+      update: "Complete!"
+      delete: "Delete"
+    _form:
+      submit: "Create"

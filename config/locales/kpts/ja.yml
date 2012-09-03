@@ -1,0 +1,10 @@
+ja:
+  kpts:
+    index:
+      created: "KPT %{name} を作成しました。"
+      updated: "KPT %{name} を完了しました。"
+      destroyed: "KPT %{name} を削除しました。"
+      update: "完了"
+      delete: "削除"
+    _form:
+      submit: "追加"
