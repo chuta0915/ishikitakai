@@ -20,6 +20,7 @@ IshikitakaiCom::Application.routes.draw do
     end
     resources :wikis
     resources :tasks, :only => [:index, :create, :update, :destroy]
+    resources :kpts, :only => [:index, :create, :update, :destroy]
   end
   resources :events do
     member do
