@@ -18,3 +18,8 @@ en:
       destroyed: "Destroyed %{name} group"
       all_events: "See more events"
       today_event: "Today's Event"
+    show_guest:
+      join: "Apply to membership"
+      warning:
+        headline: "This group is closed setting"
+        content: "If you are invated this group, you could send for approval."

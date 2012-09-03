@@ -31,6 +31,10 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find params[:id]
     @today_event = @group.events.today.first
+
+    unless @group.scope.name == 'public'
+      render :show_guest unless @group.user_is_member? current_user.try(:id)
+    end
   end
 
   def new

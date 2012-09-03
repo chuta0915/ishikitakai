@@ -4,6 +4,7 @@ describe GroupsController do
   let!(:user) { FactoryGirl.create(:user) }
   let(:invalid_user) { FactoryGirl.create :new_user }
   let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
+  let!(:closed) { FactoryGirl.create :ishikitakai, user_id: user.id }
   let(:ishikitakai) { FactoryGirl.attributes_for :ishikitakai }
 
   describe "GET 'index'" do
@@ -26,8 +27,26 @@ describe GroupsController do
 
   describe "GET 'show'" do
     subject { response }
-    before { get 'show', id: sendagayarb.id }
-    it { should be_success }
+    context "public group" do
+      before { get 'show', id: sendagayarb.id }
+      it { should be_success }
+      it { should render_template(:show) }
+    end
+    context "not public group" do
+      context "not member" do
+        before { get 'show', id: closed.id }
+        it { should be_success }
+        it { should render_template(:show_guest) }
+      end
+      context "member" do
+        before do
+          sign_in user
+          get 'show', id: closed.id
+        end
+        it { should be_success }
+        it { should render_template(:show) }
+      end
+    end
   end
 
   describe "GET 'new'" do

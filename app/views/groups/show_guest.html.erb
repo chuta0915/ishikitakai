@@ -1,0 +1,24 @@
+<% content_for :head do %>
+  <%= render 'shared/ogp',
+    title: @group.name, type: 'website',
+    url: group_url(@group), image: "//#{request.host}/assets/ishikitakai.png",
+    description: @group.summary %>
+<% end %>
+
+<div class="page-header">
+  <h1>
+    <%= @group.name %>
+    <small><%= @group.summary %></small>
+  </h1>
+</div>
+
+<div class="alert alert-warning">
+  <h4><%= t('.warning.headline') %></h4>
+  <p><%= t('.warning.content') %></p>
+</div>
+
+<% content_for_sidebar do %>
+  <div class="form-action">
+    <%= link_to t('.join'), my_membership_path(@group), class: 'btn btn-primary btn-block', method: 'put' %>
+  </div>
+<% end %>
