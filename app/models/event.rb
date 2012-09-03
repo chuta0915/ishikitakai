@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
   include Common::UserCreation
   include Common::Markdown
   include Common::TimeScope
+  self.time_scope_field = :begin_at
   attr_accessible :begin_at, :capacity_max, :capacity_min,
     :content, :end_at, :event_payment_kind_id, :fee,
     :group_id, :name, :place_address, :place_map_url,
