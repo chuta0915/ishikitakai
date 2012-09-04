@@ -14,7 +14,9 @@ class EventsController < ApplicationController
     else
       @events = Event
     end
-    @events = @events.order('id DESC')
+    @events = @events
+      .where(scope_id: Scope.find_by_name('public').id)
+      .order('id DESC')
       .page(params[:page])
       .per(params[:per])
   end

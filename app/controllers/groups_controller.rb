@@ -12,7 +12,9 @@ class GroupsController < ApplicationController
     else
       @groups = Group
     end
-    @groups = @groups.order('id DESC')
+    @groups = @groups
+      .where(scope_id: Scope.find_by_name('public').id)
+      .order('id DESC')
       .page(params[:page])
       .per(params[:per])
     respond_to do |format|
