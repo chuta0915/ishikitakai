@@ -10,12 +10,13 @@ IshikitakaiCom::Application.routes.draw do
   # /my scope for current_user
   scope :path => :my do
     delete '' => 'users#destroy'
-    resources :memberships, :only => [:update, :destroy], :as => :my_memberships
+    resources :memberships, :only => [:destroy], :as => :my_memberships
     resources :attendences, :only => [:update, :destroy], :as => :my_attendences
     root :to => 'users#show', :as => :my_root
   end
   resources :users, :only => [:show]
   resources :groups do
+    resources :memberships, :only => [:index, :create, :update]
     resources :chats, :only => [:index, :show, :create, :destroy] do
     end
     resources :wikis

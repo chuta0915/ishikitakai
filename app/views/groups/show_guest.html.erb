@@ -18,7 +18,13 @@
 </div>
 
 <% content_for_sidebar do %>
-  <div class="form-action">
-    <%= link_to t('.join'), my_membership_path(@group), class: 'btn btn-primary btn-block', method: 'put' %>
-  </div>
+    <% if @group.user_is_pending? current_user.try(:id) %>
+      <div class="form-action">
+        <%= link_to t('.pending'), '#', class: 'btn btn-block', disabled: 'disabled' %>
+      </div>
+    <% else %>
+      <div class="form-action">
+        <%= link_to t('.join'), group_memberships_path(@group), class: 'btn btn-primary btn-block', method: 'post' %>
+      </div>
+    <% end %>
 <% end %>

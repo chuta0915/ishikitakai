@@ -1,0 +1,31 @@
+<% content_for :body_class,  "memberships " %>
+<h3><i class="icon-user"></i><%= t('groups.show.member') %><i class="icon-user"></i></h3>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th class="span3"><%= t('activerecord.attributes.membership.level') %></th>
+      <th class="span2"><%= t('activerecord.attributes.user.name') %></th>
+      <th class="span2"><%= t('activerecord.attributes.membership.updated_at') %></th>
+      <th class="span5"></th>
+    </tr>
+  </thead>
+  <% @memberships.order(:level_id, :id).each do|membership| %>
+    <tr>
+      <td>
+        <span class="label <%= css_level_badge(membership.level) %>">
+          <%= membership.level.label %>
+        </span>
+      </td>
+      <td><%= link_to membership.user.name, user_path(membership.user_id) %></td>
+      <td><%= membership.updated_at.strftime(t('date.long')) %></td>
+      <td>
+        <div class="controls controls-row">
+          <%= form_for([membership.group, membership]) do |f|%>
+            <%= f.collection_select :level_id, Level.enable_list.all, :id, :label %>
+            <%= f.submit nil, class: 'btn' %>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</table>

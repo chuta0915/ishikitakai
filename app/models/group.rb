@@ -61,6 +61,11 @@ class Group < ActiveRecord::Base
     membership.present?
   end
 
+  def user_is_pending? user_id
+    membership = self.memberships.where(user_id: user_id).first
+    membership.present? && membership.level.name == 'pending'
+  end
+
   def join user_id, level = 'member'
     return if self.user_is_in? user_id
     self.memberships << Membership.new(

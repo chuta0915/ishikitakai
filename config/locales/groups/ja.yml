@@ -24,6 +24,7 @@ ja:
       today_event: "本日開催のイベント"
     show_guest:
       join: "グループ入会申請"
+      pending: "グループ入会の申請中です"
       warning: 
         headline: "このグループは承認制グループです"
         content: "このグループへ招待された場合は、「グループ入会申請」をクリックして下さい。"

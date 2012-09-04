@@ -18,11 +18,14 @@ en:
     require: "*required"
   activerecord:
     models:
+      user: "User"
       group: "Group"
       event: "Event"
       wiki: "Wiki"
       task: "TODO"
     attributes:
+      user:
+        name: "User name"
       group:
         name: "community name"
         summary: "summary"
@@ -48,9 +51,15 @@ en:
         name: "Title"
         content: "Content"
         user: "Last update User"
-        updated_at: "Laste update"
+        updated_at: "Last update"
       task:
         name: "TODO"
+        created_user: "Laste update User"
+        updated_at: "Last update"
+      membership:
+        level: "Member level"
+        created_at: "Created at"
+        updated_at: "Updatet at"
   action:
     close: "Close"
     save: "Save"

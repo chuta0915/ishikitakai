@@ -8,6 +8,10 @@ module Common::Groups
     id = params[:group_id] ? params[:group_id] : params[:id]
     @group = Group.find id
   end
+  
+  def user_is_owner?
+    return head :not_found unless @group.user_is_owner? current_user.id
+  end
 
   def user_can_edit?
     return head :not_found unless @group.user_can_edit? current_user.id
