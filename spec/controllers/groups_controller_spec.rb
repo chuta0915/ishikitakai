@@ -32,7 +32,7 @@ describe GroupsController do
       it { should be_success }
       it { should render_template(:show) }
     end
-    context "not public group" do
+    context "non public group" do
       context "not member" do
         before { get 'show', id: closed.id }
         it { should be_success }
