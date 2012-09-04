@@ -3,7 +3,9 @@ require 'spec_helper'
 describe KptsController do
   include KptHelper
   let!(:user) { FactoryGirl.create(:user) }
+  let!(:other_user) { FactoryGirl.create :other_user }
   let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
+  let!(:closed) { FactoryGirl.create :sendagayarb, user_id: other_user.id }
   let!(:kpt) { FactoryGirl.create :kpt, group_id: sendagayarb.id }
   let!(:new_kpt) { FactoryGirl.attributes_for :kpt }
 
@@ -12,12 +14,22 @@ describe KptsController do
     end
 
     context "user signed in" do
-      subject { response }
-      before do
-        sign_in user
-        get 'index', group_id: sendagayarb.id
+      context "public group" do
+        subject { response }
+        before do
+          sign_in user
+          get 'index', group_id: sendagayarb.id
+        end
+        it { should be_success }
       end
-      it { should be_success }
+      context "non public group" do
+        subject { response }
+        before do
+          sign_in user
+          get 'index', group_id: closed.id
+        end
+        it { should be_not_found }
+      end
     end
   end
 
@@ -29,14 +41,26 @@ describe KptsController do
     end
     context "user signed in" do
       context "with valid parameters" do
-        subject { response }
-        before do
-          @created_kpt = FactoryGirl.create(:kpt, group_id: sendagayarb.id)
-          Group.stub(:create).and_return(@created_kpt) 
-          sign_in user
-          post 'create', group_id: sendagayarb.id, kpt: new_kpt
+        context "public group" do
+          subject { response }
+          before do
+            @created_kpt = FactoryGirl.create(:kpt, group_id: sendagayarb.id)
+            Group.stub(:create).and_return(@created_kpt) 
+            sign_in user
+            post 'create', group_id: sendagayarb.id, kpt: new_kpt
+          end
+          it { should redirect_to kpts_path(sendagayarb) }
         end
-        it { should redirect_to kpts_path(sendagayarb) }
+        context "non public group" do
+          subject { response }
+          before do
+            @created_kpt = FactoryGirl.create(:kpt, group_id: closed.id)
+            Group.stub(:create).and_return(@created_kpt) 
+            sign_in user
+            post 'create', group_id: closed.id, kpt: new_kpt
+          end
+          it { should be_not_found }
+        end
       end
       context "with invalid parameters" do
         subject { response }
@@ -57,12 +81,22 @@ describe KptsController do
       it { should redirect_to new_user_session_path }
     end
     context "user signed in" do
-      subject { response }
-      before do
-        sign_in user
-        put 'update', group_id: sendagayarb.id, id: kpt.id, kpt: { status: Kpt::PROBLEM }
+      context "public group" do
+        subject { response }
+        before do
+          sign_in user
+          put 'update', group_id: sendagayarb.id, id: kpt.id, kpt: { status: Kpt::PROBLEM }
+        end
+        it { should redirect_to kpts_path(sendagayarb) }
       end
-      it { should redirect_to kpts_path(sendagayarb) }
+      context "non public group" do
+        subject { response }
+        before do
+          sign_in user
+          put 'update', group_id: closed.id, id: kpt.id, kpt: { status: Kpt::PROBLEM }
+        end
+        it { should be_not_found }
+      end
     end
   end
 
@@ -73,12 +107,22 @@ describe KptsController do
       it { should redirect_to new_user_session_path }
     end
     context "user signed in" do
-      subject { response }
-      before do
-        sign_in user
-        delete 'destroy', group_id: sendagayarb.id, id: kpt.id
+      context "public group" do
+        subject { response }
+        before do
+          sign_in user
+          delete 'destroy', group_id: sendagayarb.id, id: kpt.id
+        end
+        it { should redirect_to kpts_path(sendagayarb) }
       end
-      it { should redirect_to kpts_path(sendagayarb) }
+      context "non public group" do
+        subject { response }
+        before do
+          sign_in user
+          delete 'destroy', group_id: closed.id, id: kpt.id
+        end
+        it { should be_not_found }
+      end
     end
   end
 end

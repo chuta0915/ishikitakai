@@ -3,7 +3,9 @@ require 'spec_helper'
 describe TasksController do
   include TaskHelper
   let!(:user) { FactoryGirl.create(:user) }
+  let!(:other_user) { FactoryGirl.create :other_user }
   let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
+  let!(:closed) { FactoryGirl.create :sendagayarb, user_id: other_user.id }
   let!(:task) { FactoryGirl.create :task, group_id: sendagayarb.id }
   let!(:new_task) { FactoryGirl.attributes_for :task }
 
@@ -13,28 +15,37 @@ describe TasksController do
 
     context "user signed in" do
       subject { response }
-      context 'with no keyword' do
-        before do
-          sign_in user
-          get 'index', group_id: sendagayarb.id
+      context "public group" do
+        context 'with no keyword' do
+          before do
+            sign_in user
+            get 'index', group_id: sendagayarb.id
+          end
+          it { should be_success }
         end
-        it { should be_success }
+        context 'with "coffee" keyword' do
+          before do
+            sign_in user
+            get 'index', group_id: sendagayarb.id, keyword: 'coffee'
+          end
+          it { should be_success }
+          it { assigns[:tasks].should be_blank }
+        end
+        context 'with "milk" keyword' do
+          before do
+            sign_in user
+            get 'index', group_id: sendagayarb.id, keyword: 'milk'
+          end
+          it { should be_success }
+          it { assigns[:tasks].should be_present }
+        end
       end
-      context 'with "coffee" keyword' do
-        before do
-          sign_in user
-          get 'index', group_id: sendagayarb.id, keyword: 'coffee'
-        end
-        it { should be_success }
-        it { assigns[:tasks].should be_blank }
-      end
-      context 'with "milk" keyword' do
-        before do
-          sign_in user
-          get 'index', group_id: sendagayarb.id, keyword: 'milk'
-        end
-        it { should be_success }
-        it { assigns[:tasks].should be_present }
+      context "non public group" do
+          before do
+            sign_in user
+            get 'index', group_id: closed.id, keyword: 'coffee'
+          end
+          it { should be_not_found }
       end
     end
   end
@@ -46,24 +57,35 @@ describe TasksController do
       it { should redirect_to new_user_session_path }
     end
     context "user signed in" do
-      context "with valid parameters" do
-        subject { response }
-        before do
-          @created_task = FactoryGirl.create(:task)
-          Group.stub(:create).and_return(@created_task) 
-          sign_in user
-          post 'create', group_id: sendagayarb.id, task: new_task
+      context "public group" do
+        context "with valid parameters" do
+          subject { response }
+          before do
+            @created_task = FactoryGirl.create(:task)
+            Group.stub(:create).and_return(@created_task) 
+            sign_in user
+            post 'create', group_id: sendagayarb.id, task: new_task
+          end
+          it { should redirect_to tasks_path(sendagayarb) }
         end
-        it { should redirect_to tasks_path(sendagayarb) }
+        context "with invalid parameters" do
+          subject { response }
+          before do
+            sign_in user
+            post 'create', group_id: sendagayarb.id
+          end
+          it { should redirect_to tasks_path(sendagayarb) }
+          it { assigns(:task).errors.should be_present }
+        end
       end
-      context "with invalid parameters" do
+
+      context "non public group" do
         subject { response }
         before do
           sign_in user
-          post 'create', group_id: sendagayarb.id
+          post 'create', group_id: closed.id
         end
-        it { should redirect_to tasks_path(sendagayarb) }
-        it { assigns(:task).errors.should be_present }
+        it { should  }
       end
     end
   end
@@ -75,12 +97,22 @@ describe TasksController do
       it { should redirect_to new_user_session_path }
     end
     context "user signed in" do
-      subject { response }
-      before do
-        sign_in user
-        put 'update', group_id: sendagayarb.id, id: task.id
+      context "public group" do
+        subject { response }
+        before do
+          sign_in user
+          put 'update', group_id: sendagayarb.id, id: task.id
+        end
+        it { should redirect_to tasks_path(sendagayarb) }
       end
-      it { should redirect_to tasks_path(sendagayarb) }
+      context "non public group" do
+        subject { response }
+        before do
+          sign_in user
+          put 'update', group_id: closed.id, id: task.id
+        end
+        it { should be_not_found }
+      end
     end
   end
 
@@ -91,12 +123,22 @@ describe TasksController do
       it { should redirect_to new_user_session_path }
     end
     context "user signed in" do
-      subject { response }
-      before do
-        sign_in user
-        delete 'destroy', group_id: sendagayarb.id, id: task.id
+      context "public group" do
+        subject { response }
+        before do
+          sign_in user
+          delete 'destroy', group_id: sendagayarb.id, id: task.id
+        end
+        it { should redirect_to tasks_path(sendagayarb) }
       end
-      it { should redirect_to tasks_path(sendagayarb) }
+      context "non public group" do
+        subject { response }
+        before do
+          sign_in user
+          delete 'destroy', group_id: closed.id, id: task.id
+        end
+        it { should be_not_found }
+      end
     end
   end
 end
