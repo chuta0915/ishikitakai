@@ -29,6 +29,7 @@
 <% end %>
 
 <div class="page-header">
+  <span class="badge <%= css_scope_badge(@group.scope) %>"><%= @group.scope.label %></span>
   <h1>
     <%= @group.name %>
     <small><%= @group.summary %></small>
