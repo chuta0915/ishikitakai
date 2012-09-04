@@ -1,9 +1,9 @@
 <ul class="breadcrumb">
-  <li><%= link_to t("nav.#{@parent.class.to_s.tableize}"), url_for(@parent) %></a> <span class="divider">/</span></li>
-  <% if @parent.respond_to?(:group) && @parent.group.present? %>
-    <li><%= link_to @parent.group.name, url_for(@parent.group) %> <span class="divider">/</span></li>
+  <li><%= link_to t("nav.#{@group.class.to_s.tableize}"), url_for(@group) %></a> <span class="divider">/</span></li>
+  <% if @group.respond_to?(:group) && @group.group.present? %>
+    <li><%= link_to @group.group.name, url_for(@group.group) %> <span class="divider">/</span></li>
   <% end %>
-  <li><%= link_to @parent.name, url_for(@parent) %> <span class="divider">/</span></li>
+  <li><%= link_to @group.name, url_for(@group) %> <span class="divider">/</span></li>
   <li class="active"><%= t('nav.task') %></li>
 </ul>
 <%= render 'form' %>
@@ -37,11 +37,11 @@
       <td><%= task.name %></td> 
       <td>
         <% if task.done? %>
-          <%= link_to task_path(@parent, task), method: :delete, class: 'btn btn-danger' do %>
+          <%= link_to task_path(@group, task), method: :delete, class: 'btn btn-danger' do %>
             <%= t('.delete') %>
           <% end %> 
         <% else %>
-          <%= link_to task_path(@parent, task), method: :put, class: 'btn btn-success' do %>
+          <%= link_to task_path(@group, task), method: :put, class: 'btn btn-success' do %>
             <%= t('.update') %>
           <% end %> 
         <% end %>

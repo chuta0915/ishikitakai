@@ -2,6 +2,8 @@ class WikisController < ApplicationController
   include WikiHelper
   before_filter Filters::NestedResourcesFilter.new
   before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :user_is_member?
+  before_filter :user_is_attendence?
 
   def index
     params[:page] ||= 1
@@ -54,5 +56,16 @@ class WikisController < ApplicationController
     @wiki = Wiki.find params[:id]
     @wiki.destroy
     redirect_to wikis_path(@parent), notice: t('wikis.show.destroyed', name: @wiki.name)
+  end
+
+  private
+  def user_is_member?
+    return unless  @parent.is_a? Group
+    return head :not_found unless @parent.user_is_member? current_user.try(:id)
+  end
+
+  def user_is_attendence?
+    return unless  @parent.is_a? Event
+    return head :not_found unless @parent.user_is_attendence? current_user.try(:id)
   end
 end

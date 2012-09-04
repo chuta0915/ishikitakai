@@ -11,6 +11,7 @@ describe WikisController do
   describe "GET index" do
     subject { response }
     before do
+      sign_in user
       get :index, event_id: mokmok_event.id
     end
     it { should be_success }
@@ -19,6 +20,7 @@ describe WikisController do
   describe "GET show" do
     subject { response }
     before do
+      sign_in user
       get :show, event_id: mokmok_event.id, id: wiki.id
     end
     it { should be_success }

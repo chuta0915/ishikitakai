@@ -1,9 +1,9 @@
 <ul class="breadcrumb">
-  <li><%= link_to t("nav.#{@parent.class.to_s.tableize}"), url_for(@parent) %></a> <span class="divider">/</span></li>
-  <% if @parent.respond_to?(:group) && @parent.group.present? %>
-    <li><%= link_to @parent.group.name, url_for(@parent.group) %> <span class="divider">/</span></li>
+  <li><%= link_to t("nav.#{@group.class.to_s.tableize}"), url_for(@group) %></a> <span class="divider">/</span></li>
+  <% if @group.respond_to?(:group) && @group.group.present? %>
+    <li><%= link_to @group.group.name, url_for(@group.group) %> <span class="divider">/</span></li>
   <% end %>
-  <li><%= link_to @parent.name, url_for(@parent) %> <span class="divider">/</span></li>
+  <li><%= link_to @group.name, url_for(@group) %> <span class="divider">/</span></li>
   <li class="active"><%= t('nav.kpt') %></li>
 </ul>
 <%= render 'form' %>
@@ -14,7 +14,7 @@
     <% @keeps.each do |kpt| %>
       <li class="well">
         <%= kpt.name %>
-        <%= link_to kpt_path(@parent, kpt), method: :delete, class: 'close' do %>
+        <%= link_to kpt_path(@group, kpt), method: :delete, class: 'close' do %>
           &times;
         <% end %> 
       </li>
@@ -27,7 +27,7 @@
     <% @problems.each do |kpt| %>
       <li class="well">
         <%= kpt.name %>
-        <%= link_to kpt_path(@parent, kpt), method: :delete, class: 'close' do %>
+        <%= link_to kpt_path(@group, kpt), method: :delete, class: 'close' do %>
           &times;
         <% end %> 
       </li>
@@ -40,7 +40,7 @@
     <% @trys.each do |kpt| %>
       <li class="well">
         <%= kpt.name %>
-        <%= link_to kpt_path(@parent, kpt), method: :delete, class: 'close' do %>
+        <%= link_to kpt_path(@group, kpt), method: :delete, class: 'close' do %>
           &times;
         <% end %> 
       </li>
