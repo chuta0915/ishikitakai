@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :memberships, dependent: :destroy
   has_many :groups, through: :memberships
   has_many :chats
+  has_many :notifications
 
   extend Providers::Facebook
   extend Providers::Twitter
