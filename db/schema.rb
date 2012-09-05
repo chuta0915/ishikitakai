@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120903170110) do
+ActiveRecord::Schema.define(:version => 20120905054831) do
 
   create_table "admins", :force => true do |t|
     t.string   "name"
@@ -121,6 +121,21 @@ ActiveRecord::Schema.define(:version => 20120903170110) do
 
   add_index "memberships", ["group_id"], :name => "idx_group_id_on_memberships"
   add_index "memberships", ["user_id", "group_id", "level_id"], :name => "idx_user_id_group_id_level_id_on_memberships", :unique => true
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "type"
+    t.string   "trigger_type"
+    t.integer  "trigger_id"
+    t.string   "name"
+    t.text     "content"
+    t.boolean  "read",         :default => false, :null => false
+    t.datetime "read_at"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "notifications", ["user_id", "read"], :name => "idx_user_id_read_on_notifications"
 
   create_table "providers", :force => true do |t|
     t.string   "name",       :null => false
