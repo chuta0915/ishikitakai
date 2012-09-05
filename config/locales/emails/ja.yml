@@ -1,0 +1,6 @@
+ja:
+  emails:
+    updated: "確認メールを送信しました。メールに含まれるURLをクリックしメールアドレスの変更を完了して下さい。"
+    confirmation:
+      complete: "メールアドレスを変更しました。"
+      error: "有効なURLではありません。"

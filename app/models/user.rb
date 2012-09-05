@@ -47,4 +47,26 @@ class User < ActiveRecord::Base
   def me? user
     return self.id == user.id
   end
+
+  def update_email email
+    self.unconfirmed_email = email
+    self.confirm_limit_at = Time.current + 3.hour
+    self.hash_to_confirm_email = confirm_key
+    self.save
+  end
+
+  def confirm_email hash
+    if hash == self.hash_to_confirm_email && Time.current <= self.confirm_limit_at
+      self.email = self.unconfirmed_email
+      self.unconfirmed_email = nil
+      self.confirm_limit_at = nil
+      self.hash_to_confirm_email = nil
+      self.save
+    end
+  end
+
+  private
+  def confirm_key
+    Digest::SHA1.hexdigest("#{self.id}#{Time.current.to_i}")
+  end
 end

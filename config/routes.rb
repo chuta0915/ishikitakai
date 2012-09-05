@@ -13,6 +13,11 @@ IshikitakaiCom::Application.routes.draw do
     delete '' => 'users#destroy'
     resources :memberships, :only => [:destroy], :as => :my_memberships
     resources :attendences, :only => [:update, :destroy], :as => :my_attendences
+    resource :email, :only => [:show, :edit, :update] do
+      member do
+        get 'confirmation/:hash' => :confirmation, :hash => /[0-9a-f]+/
+      end
+    end
     root :to => 'users#show', :as => :my_root
   end
   resources :users, :only => [:show]

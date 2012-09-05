@@ -1,0 +1,6 @@
+en:
+  emails:
+    updated: "Sent email to confrim your email address. Please click URL in the mail"
+    confirmation:
+      complete: "Email address is updated"
+      error: "invalid URL"

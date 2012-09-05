@@ -70,3 +70,4 @@ en:
   action:
     close: "Close"
     save: "Save"
+    update: "Update"
