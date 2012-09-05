@@ -1,0 +1,16 @@
+<ul class="breadcrumb">
+  <li><%= link_to t('nav.notification'), notifications_path %></a> <span class="divider">/</span></li>
+  <li class="active"><%= @notification.name %></li>
+</ul>
+
+<div class="page-header">
+  <h1>
+    <%= @notification.name %>
+  </h1>
+</div>
+
+<section>
+<div class="markdown">
+  <%= @notification.content.html_safe %>
+</div>
+</section>

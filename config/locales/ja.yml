@@ -24,6 +24,7 @@ ja:
       wiki: "Wiki"
       task: "TODO"
       membership: "メンバー"
+      notification: "通知"
     attributes:
       user:
         name: "ユーザー名"
@@ -61,6 +62,12 @@ ja:
         level: "権限"
         created_at: "作成日時"
         updated_at: "更新日時"
+      notification:
+        name: "タイトル"
+        content: "内容"
+        created_at: "通知日時"
+        read_at: "開封日時"
+        read: "状態"
   action:
     close: "閉じる"
     save: "保存する"

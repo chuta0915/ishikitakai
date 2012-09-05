@@ -23,6 +23,7 @@ en:
       event: "Event"
       wiki: "Wiki"
       task: "TODO"
+      notification: "Notification"
     attributes:
       user:
         name: "User name"
@@ -60,6 +61,12 @@ en:
         level: "Member level"
         created_at: "Created at"
         updated_at: "Updatet at"
+      notification:
+        name: "Name"
+        content: "Content"
+        created_at: "Notified Date"
+        read_at: "Read Date"
+        read: "Status"
   action:
     close: "Close"
     save: "Save"

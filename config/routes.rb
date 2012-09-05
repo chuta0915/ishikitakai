@@ -9,6 +9,7 @@ IshikitakaiCom::Application.routes.draw do
 
   # /my scope for current_user
   scope :path => :my do
+    resources :notifications, :only => [:index, :show]
     delete '' => 'users#destroy'
     resources :memberships, :only => [:destroy], :as => :my_memberships
     resources :attendences, :only => [:update, :destroy], :as => :my_attendences

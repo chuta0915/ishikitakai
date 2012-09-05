@@ -1,0 +1,6 @@
+en:
+  notifications:
+    index:
+      already_read: "already read"
+      not_yet_read: "not yet read"
+      no_items: "No notification exists."

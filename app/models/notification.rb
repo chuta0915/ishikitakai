@@ -1,6 +1,9 @@
 class Notification < ActiveRecord::Base
+  include Common::Markdown
   attr_accessible :content, :name, :read, :read_at, :trigger_type, :trigger_id, :type, :user_id
   belongs_to :user
+
+  validates_presence_of :name, :content
 
   scope :not_yet_read, lambda {
     where(read: false)

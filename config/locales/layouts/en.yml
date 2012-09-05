@@ -19,3 +19,5 @@ en:
     wiki: "Wiki"
     task: "Todo"
     my_group: "Joined groups"
+    notification: "Notificaiton"
+    all_notifications: "Show more notifications"
