@@ -15,7 +15,7 @@ IshikitakaiCom::Application.routes.draw do
     resources :attendences, :only => [:update, :destroy], :as => :my_attendences
     resource :email, :only => [:show, :edit, :update] do
       member do
-        get 'confirmation/:hash' => :confirmation, :hash => /[0-9a-f]+/
+        get 'confirmation/:hash' => :confirmation, :hash => /[0-9a-f]+/, :as => :confirmation
       end
     end
     root :to => 'users#show', :as => :my_root
