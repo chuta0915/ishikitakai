@@ -39,4 +39,8 @@ IshikitakaiCom::Application.configure do
   Pusher.app_id = ENV["PUSHER_APP_ID"]
   Pusher.key    = ENV["PUSHER_APP_KEY"]
   Pusher.secret = ENV["PUSHER_APP_SECRET"]
+
+  ActionMailer::Base.delivery_method = :sendmail
+  ActionMailer::Base.perform_deliveries = true
+
 end

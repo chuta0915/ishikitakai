@@ -41,4 +41,8 @@ IshikitakaiCom::Application.configure do
   
   # guard-rails-assets
   config.assets.prefix = 'assets-test'
+
+  ActionMailer::Base.delivery_method = :test
+  ActionMailer::Base.perform_deliveries = false
+  ActionMailer::Base.deliveries = []
 end

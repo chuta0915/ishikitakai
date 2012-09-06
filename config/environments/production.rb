@@ -67,4 +67,15 @@ IshikitakaiCom::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   
   RubyPython.configure python_exe: 'python2.6'
+
+  ActionMailer::Base.smtp_settings = {
+    :address        => ENV['MAIL_HOST'],
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => ENV['MAIL_DOMAIN'],
+  }
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.perform_deliveries = true
 end
