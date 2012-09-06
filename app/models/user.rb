@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
     self.unconfirmed_email = email
     self.confirm_limit_at = Time.current + 3.hour
     self.hash_to_confirm_email = confirm_key
-    self.save
+    self.save!
     UserMailer.email_confirmation(self).deliver
   end
 
@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
       self.unconfirmed_email = nil
       self.confirm_limit_at = nil
       self.hash_to_confirm_email = nil
-      self.save
+      self.save!
     end
   end
 
