@@ -63,6 +63,12 @@
                       <%= t('nav.mypage') %>
                     <% end %>
                   </li>
+                  <li>
+                    <%= link_to edit_email_path do %>
+                      <i class="icon-wrench"></i>
+                      <%= t('nav.setting') %>
+                    <% end %>
+                  </li>
                   <li class="divider"></li>
                   <li>
                     <%= link_to logout_path do %>

@@ -1,3 +1,20 @@
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#">Email</a>
+  </li>
+</ul>
+
+<dl>
+  <dt><%= t('.email') %></dt> 
+  <dd><span class="label"><%= @user.email %></span></dd>
+  <% if @user.unconfirmed_email.present? %>
+    <dt><%= t('.unconfirmed_email') %></dt> 
+    <dd>
+      <span class="label"><%= @user.unconfirmed_email %></span>
+      <span class="label label-important"><%= t('.unconfirmed') %></span>
+    </dd>
+  <% end %>
+</dl>
 <%= form_tag email_path, method: :put do %>
   <div class="controls controls-row">
     <%= text_field_tag :email, nil, class: 'span10' %>

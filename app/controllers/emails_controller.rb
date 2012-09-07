@@ -1,4 +1,5 @@
 class EmailsController < ApplicationController
+  include Common::Users
   before_filter :authenticate_user!
   before_filter :set_user
 
@@ -23,10 +24,5 @@ class EmailsController < ApplicationController
     else
       redirect_to my_root_path, alert: t('emails.confirmation.error')
     end
-  end
-
-  private
-  def set_user
-    @user = User.find current_user.id
   end
 end

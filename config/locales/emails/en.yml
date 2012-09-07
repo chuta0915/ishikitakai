@@ -4,3 +4,7 @@ en:
     confirmation:
       complete: "Email address is updated"
       error: "invalid URL"
+    edit:
+      email: "Current Email address"
+      unconfirmed_email: "Unconfirmed Email address"
+      unconfirmed: "unconfirmed"
