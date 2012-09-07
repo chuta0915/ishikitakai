@@ -49,10 +49,13 @@ describe EmailsController do
     context "user signed in" do
       subject { response }
       before do
+        ActionMailer::Base.deliveries = []
         sign_in user
-        put 'update'
+        put 'update', email: 'hoge@example.com'
       end
       it { should redirect_to my_root_path }
+      it { flash[:notice].should be_present }
+      it { ActionMailer::Base.deliveries.size.should == 1 }
     end
   end
 
