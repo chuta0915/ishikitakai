@@ -135,7 +135,7 @@
   <div class="control-group">
     <%= f.label :event_payment_kind_id, class: 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :event_payment_kind_id, EventPaymentKind.order(:id).all, :id, :label %>
+      <%= f.collection_select :event_payment_kind_id, EventPaymentKind.enable_list.order(:id).all, :id, :label %>
     </div>
   </div>
   <div class="control-group">
