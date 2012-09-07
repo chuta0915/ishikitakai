@@ -8,3 +8,4 @@ en:
       email: "Current Email address"
       unconfirmed_email: "Unconfirmed Email address"
       unconfirmed: "unconfirmed"
+      unregistered: "unregistered yet"

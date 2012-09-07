@@ -18,6 +18,13 @@ class User < ActiveRecord::Base
       self.find providers_user.user_id
     end
   end
+
+  def valid_email
+    if email =~ /\.example\.com$/
+      return ''
+    end
+    self.email
+  end
   
   def user_key
     self.providers_users.where(provider_id: self.default_provider_id).first.user_key

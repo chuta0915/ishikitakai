@@ -8,3 +8,4 @@ ja:
       email: "現在登録されているメールアドレス"
       unconfirmed_email: "現在変更申請されているメールアドレス"
       unconfirmed: "未承認"
+      unregistered: "まだメールアドレスが登録されていません"

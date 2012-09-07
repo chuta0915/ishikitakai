@@ -6,7 +6,13 @@
 
 <dl>
   <dt><%= t('.email') %></dt> 
-  <dd><span class="label"><%= @user.email %></span></dd>
+  <dd>
+    <% if @user.valid_email.present? %>
+      <span class="label"><%= @user.valid_email %></span>
+    <% else %>
+      <span class="label label-important"><%= t('.unregistered') %></span>
+    <% end %>
+  </dd>
   <% if @user.unconfirmed_email.present? %>
     <dt><%= t('.unconfirmed_email') %></dt> 
     <dd>
