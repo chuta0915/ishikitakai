@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_locale
+  before_filter :set_notification
   before_filter :basic_auth
   rescue_from Exception, with: :catch_exceptions unless Rails.env.test?
 
@@ -8,6 +9,11 @@ class ApplicationController < ActionController::Base
   def set_locale
     I18n.locale = extract_locale_from_accept_language_header
     I18n.locale = :en if admin_signed_in?
+  end
+
+  def set_notification
+    return unless user_signed_in?
+    Notification::Basic.notify_by_key [current_user], 'confirm_email' if current_user.valid_email.blank?
   end
 
   def basic_auth

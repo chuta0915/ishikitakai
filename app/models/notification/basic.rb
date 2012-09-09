@@ -7,7 +7,13 @@ class Notification::Basic < Notification
         name: "notification.basic.#{key}.name",
         content: "notification.basic.#{key}.content",
       }
-      self.notify users, params, nil
+      target_users = []
+      users.each do|user|
+        unless self.where(user_id: user.id).where(name: params[:name]).exists?
+          target_users << user
+        end
+      end
+      self.notify target_users, params, nil
     end
   end
 
