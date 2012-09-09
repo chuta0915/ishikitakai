@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :basic_auth
   rescue_from Exception, with: :catch_exceptions unless Rails.env.test?
 
-  protected
+  private
   def set_locale
     I18n.locale = extract_locale_from_accept_language_header
     I18n.locale = :en if admin_signed_in?
@@ -27,7 +27,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  private
   def extract_locale_from_accept_language_header
     http_accept_language = request.env['HTTP_ACCEPT_LANGUAGE']
     if http_accept_language.present?
