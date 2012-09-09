@@ -1,4 +1,9 @@
 ja:
+  notification:
+    basic:
+      confirm_email:
+        name: "メールアドレスを登録しませんか？"
+        content: "まだメールアドレスが登録されていないようです。\nメールアドレスを登録することで便利な通知を忘れず受け取りましょう。\n\n[メールアドレスの登録はこちらから](/my/email)"
   notifications:
     index:
       already_read: "既読"
