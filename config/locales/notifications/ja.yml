@@ -4,6 +4,10 @@ ja:
       confirm_email:
         name: "メールアドレスを登録しませんか？"
         content: "まだメールアドレスが登録されていないようです。\nメールアドレスを登録することで便利な通知を忘れず受け取りましょう。\n\n[メールアドレスの登録はこちらから](/my/email)"
+    attend_status:
+      change_status:
+        name: "イベント「%{event_name}」に参加可能となりました"
+        content: "[%{event_name}](%{event_url})"
   notifications:
     index:
       already_read: "既読"

@@ -38,6 +38,7 @@ class Event < ActiveRecord::Base
   before_create :create_attendences
   before_validation :join_date
   after_find :split_date
+  after_save :update_attendence
 
   def user_is_owner? user_id
     self.user_can_edit? user_id
@@ -110,5 +111,29 @@ class Event < ActiveRecord::Base
     self.receive_begin_time = self.receive_begin_at.to_s(:time)
     self.receive_end_date = self.receive_end_at.to_date
     self.receive_end_time = self.receive_end_at.to_s(:time)
+  end
+
+  def update_attendence
+    capacity_changes = self.changes[:capacity_max]
+    if capacity_changes.present? &&
+      capacity_changes[0].present? &&
+      capacity_changes[1].present? &&
+      (capacity_changes[1] > capacity_changes[0])
+      # capacity_maxが増えていれば繰り上がりの可能性がある
+
+      diff = capacity_changes[1] - capacity_changes[0]
+      self.attendences.order(:id).offset(capacity_changes[0]).limit(diff).each do |attendence|
+        if self.group.present?
+          if self.group.user_is_member? attendence.user
+            attendence.level_id = Level.find_by_name(:member).id
+          else
+            attendence.level_id = Level.find_by_name(:guest).id
+          end
+        else
+          attendence.level_id = Level.find_by_name(:guest).id
+        end
+        attendence.save!
+      end 
+    end
   end
 end

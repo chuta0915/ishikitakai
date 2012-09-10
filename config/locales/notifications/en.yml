@@ -4,6 +4,10 @@ en:
       confirm_email:
         name: "Why don't you register your email address?"
         content: "It seems that you have not register your email address.\nLet's register your email address, and get useful notification.\n\n[Register your email address](/my/email)"
+    attend_status:
+      change_status:
+        name: "You could attend the event %{event_name}"
+        content: "[%{event_name}](%{event_url})"
   notifications:
     index:
       already_read: "already read"
