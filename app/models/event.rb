@@ -55,6 +55,9 @@ class Event < ActiveRecord::Base
   
   def join user_id, level = 'member'
     return if self.user_is_attendence? user_id
+    if self.attendences.count >= self.capacity_max
+      level = 'pending'
+    end
     self.attendences << Attendence.new(
       user_id: user_id, 
       level_id: Level.find_by_name(level).id,

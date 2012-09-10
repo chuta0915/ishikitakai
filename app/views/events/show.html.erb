@@ -86,8 +86,8 @@
   </h3>
   <span class="badge"><%= @event.attendences.count %></span>/<span class="badge"><%= @event.capacity_max %></span> 
   <table class="table table-condensed">
-    <% @event.attendences.order(:id).each do|attendence| %>
-      <tr>
+    <% @event.attendences.order(:id).each_with_index do|attendence, i| %>
+      <tr class="<%= ((i+1) <= @event.capacity_max)? 'success':'muted' %>">
         <td><span class="label <%= css_level_badge(attendence.level) %>"><%= attendence.level.label %></span></td>
         <td><%= link_to attendence.user.name, user_path(attendence.user_id) %></td>
       </tr>
