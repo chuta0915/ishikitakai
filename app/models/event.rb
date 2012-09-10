@@ -68,13 +68,15 @@ class Event < ActiveRecord::Base
 
   private
   def default_values
-    self.capacity_min = 0
-    self.capacity_max = 10
-    self.receive_begin_at = Time.zone.parse(Time.now.strftime('%Y-%m-%d %H:15:00')) + 1.day
-    self.receive_end_at = self.receive_begin_at + 1.day
-    self.begin_at = self.receive_end_at
-    self.end_at = self.begin_at + 2.hour
-    self.fee = 0
+    unless self.persisted?
+      self.capacity_min = 0
+      self.capacity_max = 10
+      self.receive_begin_at = Time.zone.parse(Time.now.strftime('%Y-%m-%d %H:15:00')) + 1.day
+      self.receive_end_at = self.receive_begin_at + 1.day
+      self.begin_at = self.receive_end_at
+      self.end_at = self.begin_at + 2.hour
+      self.fee = 0
+    end
     split_date
   end
 
