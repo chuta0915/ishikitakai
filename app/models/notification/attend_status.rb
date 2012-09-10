@@ -14,6 +14,9 @@ class Notification::AttendStatus < Notification
         end
       end
       self.notify target_users, params, event
+      target_users.each do|user|
+        NotificationMailer.attend_status(user, event).deliver
+      end
     end
   end
 

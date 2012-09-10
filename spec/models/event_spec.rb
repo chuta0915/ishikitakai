@@ -16,6 +16,7 @@ describe Event do
   describe "notify " do
     context "when capacity_max is changed" do
       before do
+        ActionMailer::Base.deliveries = []
         event.capacity_max = 1
         event.save
         event.join friend.id
@@ -24,6 +25,7 @@ describe Event do
       end
       it { friend.notifications.should have(1).items }
       it { friend.notifications[0].type.should == 'Notification::AttendStatus' }
+      it { ActionMailer::Base.deliveries.size.should == 1 }
     end
   end
 end
