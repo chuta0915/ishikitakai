@@ -4,7 +4,9 @@ class NotificationMailer < ActionMailer::Base
   def attend_status(user, event)
     @user = user
     @event = event
-    mail(:to => "#{user.name} <#{user.email}>", :subject => I18n.t("notification.attend_status.change_status.name"))
+    if @user.valid_email.present?
+      mail(:to => "#{user.name} <#{user.email}>", :subject => I18n.t("notification.attend_status.change_status.name"))
+    end
   end
 end
 

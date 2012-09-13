@@ -3,6 +3,8 @@ class UserMailer < ActionMailer::Base
 
   def email_confirmation(user)
     @user = user
-    mail(:to => "#{user.name} <#{user.email}>", :subject => "Confirm your email address")
+    if @user.valid_email.present?
+      mail(:to => "#{user.name} <#{user.email}>", :subject => "Confirm your email address")
+    end
   end
 end
