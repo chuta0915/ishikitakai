@@ -4,6 +4,7 @@ describe Event do
   ancestors_should_include ActiveRecord::Base
   let(:user) { FactoryGirl.create :user }
   let(:friend) { FactoryGirl.create :friend }
+  let(:other_user) { FactoryGirl.create :other_user }
   let(:event) { FactoryGirl.create :mokmok_event, user: user }
   let(:master) { Level.find 1 }
 
@@ -22,6 +23,20 @@ describe Event do
         event.join friend.id
         event.capacity_max = 2
         event.save
+      end
+      it { friend.notifications.should have(1).items }
+      it { friend.notifications[0].type.should == 'Notification::AttendStatus' }
+      it { ActionMailer::Base.deliveries.size.should == 1 }
+    end
+
+    context "when leave event" do
+      before do
+        ActionMailer::Base.deliveries = []
+        event.capacity_max = 2
+        event.save
+        event.join other_user.id
+        event.join friend.id
+        event.leave other_user.id
       end
       it { friend.notifications.should have(1).items }
       it { friend.notifications[0].type.should == 'Notification::AttendStatus' }

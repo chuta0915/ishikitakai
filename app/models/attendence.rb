@@ -5,7 +5,20 @@ class Attendence < ActiveRecord::Base
   belongs_to :level
 
   after_save :notify_attendence
-  after_destroy :notify_attendence
+  after_destroy :notify_attendences
+
+  def accept
+    if self.event.group.present?
+      if self.event.group.user_is_member? self.user
+        self.level_id = Level.find_by_name(:member).id
+      else
+        self.level_id = Level.find_by_name(:guest).id
+      end
+    else
+      self.level_id = Level.find_by_name(:guest).id
+    end
+    self.save!
+  end
 
   private
   def notify_attendence
@@ -15,6 +28,15 @@ class Attendence < ActiveRecord::Base
         level_changes[0] == Level.find_by_name(:pending).id &&
         level_changes[1] != Level.find_by_name(:pending).id
         ::Notification::AttendStatus.notify_changing [self.user], self.event
+    end
+  end
+
+  def notify_attendences
+    return if self.level_id == Level.find_by_name(:pending).id
+    # 1つ前の参加者のレベルを変更する
+    prev = Attendence.where(event_id: self.event_id).where('id > ?', self.id).order('id asc').first
+    if prev.present?
+      prev.accept
     end
   end
 end

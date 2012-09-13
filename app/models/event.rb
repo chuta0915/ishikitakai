@@ -123,16 +123,7 @@ class Event < ActiveRecord::Base
 
       diff = capacity_changes[1] - capacity_changes[0]
       self.attendences.order(:id).offset(capacity_changes[0]).limit(diff).each do |attendence|
-        if self.group.present?
-          if self.group.user_is_member? attendence.user
-            attendence.level_id = Level.find_by_name(:member).id
-          else
-            attendence.level_id = Level.find_by_name(:guest).id
-          end
-        else
-          attendence.level_id = Level.find_by_name(:guest).id
-        end
-        attendence.save!
+        attendence.accept
       end 
     end
   end
