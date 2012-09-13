@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   has_many :groups, through: :memberships
   has_many :chats
   has_many :notifications
+  has_one :setting, :class_name => 'UserSetting'
+
+  before_create :create_setting
 
   extend Providers::Facebook
   extend Providers::Twitter
@@ -76,5 +79,9 @@ class User < ActiveRecord::Base
   private
   def confirm_key
     Digest::SHA1.hexdigest("#{self.id}#{Time.current.to_i}")
+  end
+
+  def create_setting
+    self.setting = UserSetting.new
   end
 end

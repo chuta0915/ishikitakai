@@ -6,6 +6,10 @@ class CreateUserSettings < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :user_settings, :user_id, name: :idx_user_id_on_user_settings
+    add_index :user_settings, :user_id, name: :idx_user_id_on_user_settings, unique: true
+    User.all.each do|user|
+      user.setting = UserSetting.new
+      user.save!
+    end
   end
 end
