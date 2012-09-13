@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20120913191202) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "attendences", ["event_id"], :name => "idx_group_id_on_attendences"
+  add_index "attendences", ["event_id"], :name => "idx_event_id_on_attendences"
   add_index "attendences", ["user_id", "event_id"], :name => "idx_user_id_event_id_on_attendences", :unique => true
 
   create_table "chats", :force => true do |t|
