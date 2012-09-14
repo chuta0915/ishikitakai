@@ -1,7 +1,9 @@
 <% content_for :title,  "#{t('.title')} " %>
 <% content_for :body_class,  "events" %>
 <%= render 'search_form' %>
-<%= link_to t('.new'), new_event_path, class: "btn btn-warning btn-large new_event" %>
+<% if ENV['CREATABLE_EVENT_USER_IDS'].nil? %>
+  <%= link_to t('.new'), new_event_path, class: "btn btn-warning btn-large new_event" %>
+<% end %>
 
 <%= paginate @events %>
 <ul class="thumbnails row">

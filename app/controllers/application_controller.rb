@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   before_filter :set_notification
   before_filter :basic_auth
+  before_filter :restrict_save
   rescue_from Exception, with: :catch_exceptions unless Rails.env.test?
 
   private
@@ -39,6 +40,24 @@ class ApplicationController < ActionController::Base
       http_accept_language.scan(/^[a-z]{2}/).first
     else
       :en
+    end
+  end
+
+  def restrict_save
+    return if Rails.env.test?
+    if ENV['CREATABLE_GROUP_USER_IDS'].present? &&
+      request.path =~ /^\/groups/ &&
+      request.method != 'GET'
+      unless ENV['CREATABLE_GROUP_USER_IDS'].split(',').include? current_user.id.to_s
+        return head :unauthorized
+      end
+    end
+    if ENV['CREATABLE_EVENT_USER_IDS'].present? &&
+      request.path =~ /^\/events/ &&
+      request.method != 'GET'
+      unless ENV['CREATABLE_EVENT_USER_IDS'].split(',').include? current_user.id.to_s
+        return head :unauthorized
+      end
     end
   end
 end
