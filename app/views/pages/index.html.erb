@@ -10,11 +10,17 @@
       <% current_user.groups.order(:updated_at).each do|group| %>
         <li>
           <%= link_to group.name, group_path(group) %>
-          <%= link_to group_chats_path(group), class: '' do %>
+          <%= link_to group_chats_path(group), rel: 'tooltip', :'data-title' => t('nav.chat'), :'data-placement' => 'bottom' do %>
             <i class="icon-comment"></i>
           <% end %>
-          <%= link_to group_tasks_path(group), class: '' do %>
+          <%= link_to group_tasks_path(group), rel: 'tooltip', :'data-title' => t('nav.task'), :'data-placement' => 'bottom' do %>
             <i class="icon-ok"></i>
+          <% end %>
+          <%= link_to group_wikis_path(group), rel: 'tooltip', :'data-title' => t('nav.wiki'), :'data-placement' => 'bottom' do %>
+            <i class="icon-list-alt"></i>
+          <% end %>
+          <%= link_to group_kpts_path(group), rel: 'tooltip', :'data-title' => t('nav.kpt'), :'data-placement' => 'bottom' do %>
+            <i class="icon-tasks"></i>
           <% end %>
         </li>
       <% end %>
