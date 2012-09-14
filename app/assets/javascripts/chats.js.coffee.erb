@@ -37,10 +37,11 @@ jQuery ->
       '<li><img src="' + member.info.image + '" width="25" height="25" class="face" data-class="chat_user" data-id="' + member.id.toString() + '"></li>')
 
 
-  # when shift + enter pushed
-  $('textarea').keyup (event) ->
+  # when enter pushed
+  $('textarea').keydown (event) ->
     event.stopPropagation()
-    if event.keyCode == 13 && event.shiftKey
+    if event.keyCode == 13
+      return if event.shiftKey
       $(@).parent().submit()
 
   $('.new_chat').submit (event) ->

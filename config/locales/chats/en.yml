@@ -2,3 +2,5 @@ en:
   chats:
     _form:
       submit: "Say"
+      content:
+        placeholder: "If you push Enter-key, message sent. If you push Enter-key with Shift-key, return code is inputed."    
