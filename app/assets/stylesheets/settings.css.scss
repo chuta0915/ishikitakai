@@ -1,3 +1,17 @@
 // Place all the styles related to the settings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body.setting {
+  .control-label {
+    width: 420px;
+  }
+  label.setting_label {
+    display: inline-block;
+    padding-top: 5px;
+    margin-bottom: 0;
+    margin-left: 15px;
+  }
+  input[type="radio"] {
+    margin: 0;
+  }
+}

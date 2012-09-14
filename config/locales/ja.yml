@@ -16,9 +16,12 @@ ja:
       button: "検索する"
     range: "〜"
     require: "※必須"
+    yes_label: "はい"
+    no_label: "いいえ"
   activerecord:
     models:
       user: "ユーザー"
+      user_setting: "ユーザー設定"
       group: "グループ"
       event: "イベント"
       wiki: "Wiki"
@@ -28,6 +31,8 @@ ja:
     attributes:
       user:
         name: "ユーザー名"
+      user_setting:
+        mail_attend_status: "イベント参加可能となった時にメールを配信する"
       group:
         name: "グループ名"
         summary: "概要"

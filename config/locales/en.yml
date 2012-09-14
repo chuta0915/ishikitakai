@@ -16,9 +16,12 @@ en:
       button: "Search Now"
     range: " - "
     require: "*required"
+    yes_label: "Yes"
+    no_label: "No"
   activerecord:
     models:
       user: "User"
+      user_setting: "User Setting"
       group: "Group"
       event: "Event"
       wiki: "Wiki"
@@ -27,6 +30,8 @@ en:
     attributes:
       user:
         name: "User name"
+      user_setting:
+        mail_attend_status: "Deliver Email when attend status was changed"
       group:
         name: "community name"
         summary: "summary"

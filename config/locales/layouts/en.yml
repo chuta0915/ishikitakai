@@ -22,3 +22,5 @@ en:
     notification: "Notificaiton"
     all_notifications: "Show more notifications"
     setting: "Setting"
+    mail_address: "Email Address"
+    mail_setting: "Email Delivery Setting"

@@ -22,3 +22,5 @@ ja:
     notification: "通知"
     all_notifications: "すべての通知を覧る"
     setting: "設定"
+    mail_address: "メールアドレス"
+    mail_setting: "メール配信設定"

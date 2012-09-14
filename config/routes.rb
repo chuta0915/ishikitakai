@@ -18,7 +18,7 @@ IshikitakaiCom::Application.routes.draw do
         get 'confirmation/:hash' => :confirmation, :hash => /[0-9a-f]+/, :as => :confirmation
       end
     end
-    resource :setting, :only => [:show], :as => :my_setting
+    resource :setting, :only => [:show, :edit, :update], :as => :my_setting
     root :to => 'users#show', :as => :my_root
   end
   resources :users, :only => [:show]

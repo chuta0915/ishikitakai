@@ -1,6 +1,13 @@
 <ul class="nav nav-tabs">
   <li class="active">
-    <a href="#">Email</a>
+    <%= link_to '#' do %>
+      <%= t('nav.mail_address') %>
+    <% end %>
+  </li>
+  <li class="">
+    <%= link_to my_setting_path do %>
+      <%= t('nav.mail_setting') %>
+    <% end %>
   </li>
 </ul>
 
