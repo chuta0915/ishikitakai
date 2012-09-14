@@ -1,8 +1,5 @@
 <ul class="breadcrumb">
-  <li><%= link_to t("nav.#{@group.class.to_s.tableize}"), url_for(@group) %></a> <span class="divider">/</span></li>
-  <% if @group.respond_to?(:group) && @group.group.present? %>
-    <li><%= link_to @group.group.name, url_for(@group.group) %> <span class="divider">/</span></li>
-  <% end %>
+  <li><%= link_to t("nav.groups"), groups_path %></a> <span class="divider">/</span></li>
   <li><%= link_to @group.name, url_for(@group) %> <span class="divider">/</span></li>
   <li class="active"><%= t('nav.task') %></li>
 </ul>

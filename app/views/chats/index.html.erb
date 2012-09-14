@@ -1,6 +1,7 @@
 <% content_for :body_class, "chats " %>
 <% content_for :body_data_id, @group.id.to_s %>
 <ul class="breadcrumb">
+  <li><%= link_to t("nav.groups"), groups_path %></a> <span class="divider">/</span></li>
   <li><a href="/groups/<%= @group.id %>"><%= @group.name %></a> <span class="divider">/</span></li>
   <li class="active"><%= t('nav.chat') %></li>
 </ul>

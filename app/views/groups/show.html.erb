@@ -5,6 +5,11 @@
     description: @group.summary %>
 <% end %>
 
+<ul class="breadcrumb">
+  <li><a href="/groups"><%= t('nav.groups') %></a> <span class="divider">/</span></li>
+  <li class="active"><%= @group.name %></li>
+</ul>
+
 <% if @today_event.present? %>
 <div class="alert alert-info">
   <h4><%= t('.today_event') %></h4>
