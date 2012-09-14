@@ -162,11 +162,13 @@
           <li><%= link_to t('nav.policy'), policy_path, class:'push_state' %></li>
         </ul>
         <p>&copy; <%= Settings.site.copyright.html_safe %> <%= Time.current.year %></p>
-        <p>
-          <%= link_to 'http://twitter.github.com/bootstrap/' do %>
-            powered by twitter bootstrap
-          <% end %> 
-        </p>
+        <% if Rails.env.development? %>
+          <p>
+            <%= link_to 'http://twitter.github.com/bootstrap/' do %>
+              powered by twitter bootstrap
+            <% end %>
+          </p>
+        <% end %>
         <%= render 'shared/sns_buttons', url: request.url %>
       </footer>
 
