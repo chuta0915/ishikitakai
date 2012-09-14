@@ -20,10 +20,6 @@
         <small>
         <%= @today_event.summary %>
         </small>
-        <%= link_to event_wikis_path(@today_event), class: 'btn' do %>
-          <i class="icon-align-justify"></i>
-          <%= t('nav.wiki') %>
-        <% end %>
         <% if user_signed_in? && !@today_event.user_is_attendence?(current_user.id) %>
           <%= link_to t('events.show.join'), my_attendence_path(@today_event), class: 'btn btn-primary', method: 'put' %>
         <% end %>
