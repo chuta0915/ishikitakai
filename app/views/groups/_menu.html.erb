@@ -1,0 +1,45 @@
+<% if group.present? %>
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <% if @event.present? %>
+        <li class="<%= (request.path == event_path(@event))?'active':'' %>">
+          <%= link_to event_path(@event) do %>
+            <i class="icon-tasks"></i>
+            <%= t('nav.event') %>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="<%= (request.path == group_path(group))?'active':'' %>">
+          <%= link_to group_path(group) do %>
+            <i class="icon-comment"></i>
+            <%= t('nav.group') %>
+          <% end %>
+        </li>
+      <% end %>
+      <li class="<%= (request.path == group_chats_path(group))?'active':'' %>">
+        <%= link_to group_chats_path(group) do %>
+          <i class="icon-comment"></i>
+          <%= t('nav.chat') %>
+        <% end %>
+      </li>
+      <li class="<%= (request.path == group_tasks_path(group))?'active':'' %>">
+        <%= link_to group_tasks_path(group) do %>
+          <i class="icon-ok"></i>
+          <%= t('nav.task') %>
+        <% end %>
+      </li>
+      <li class="<%= (request.path == group_wikis_path(group))?'active':'' %>">
+        <%= link_to group_wikis_path(group) do %>
+          <i class="icon-list-alt"></i>
+          <%= t('nav.wiki') %>
+        <% end %>
+      </li>
+      <li class="<%= (request.path == group_kpts_path(group))?'active':'' %>">
+        <%= link_to group_kpts_path(group) do %>
+          <i class="icon-tasks"></i>
+          <%= t('nav.kpt') %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+<% end %>

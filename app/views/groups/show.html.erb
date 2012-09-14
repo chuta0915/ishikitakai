@@ -10,6 +10,8 @@
   <li class="active"><%= @group.name %></li>
 </ul>
 
+<%= render 'groups/menu', group: @group %>
+
 <% if @today_event.present? %>
 <div class="alert alert-info">
   <h4><%= t('.today_event') %></h4>
@@ -53,21 +55,6 @@
 <% content_for_sidebar do %>
   <div class="form-action">
     <% if user_signed_in? && @group.user_is_member?(current_user.id) %>
-      <%= link_to group_chats_path(@group), class: 'btn btn-block' do %>
-        <i class="icon-comment"></i>
-        <%= t('nav.chat') %>
-      <% end %>
-      <%= link_to group_tasks_path(@group), class: 'btn btn-block' do %>
-        <i class="icon-ok"></i>
-        <%= t('nav.task') %>
-      <% end %>
-      <%= link_to group_wikis_path(@group), class: 'btn btn-block' do %>
-        <i class="icon-align-justify"></i>
-        <%= t('nav.wiki') %>
-      <% end %>
-      <%= link_to group_kpts_path(@group), class: 'btn btn-block' do %>
-        <%= t('nav.kpt') %>
-      <% end %>
     <% else %>
       <%= link_to t('.join'), group_memberships_path(@group), class: 'btn btn-primary btn-block', method: 'post' %>
     <% end %>

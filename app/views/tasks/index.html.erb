@@ -3,6 +3,7 @@
   <li><%= link_to @group.name, url_for(@group) %> <span class="divider">/</span></li>
   <li class="active"><%= t('nav.task') %></li>
 </ul>
+<%= render 'groups/menu', group: @group %>
 <%= render 'form' %>
 <table class="table table-striped table-hover">
   <thead>
