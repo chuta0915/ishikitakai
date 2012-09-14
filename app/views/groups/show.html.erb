@@ -60,6 +60,10 @@
         <i class="icon-ok"></i>
         <%= t('nav.task') %>
       <% end %>
+      <%= link_to group_wikis_path(@group), class: 'btn btn-block' do %>
+        <i class="icon-align-justify"></i>
+        <%= t('nav.wiki') %>
+      <% end %>
       <%= link_to group_kpts_path(@group), class: 'btn btn-block' do %>
         <%= t('nav.kpt') %>
       <% end %>

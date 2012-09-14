@@ -64,17 +64,19 @@
 <% content_for_sidebar do %>
   <div class="form-action">
     <% if user_signed_in? && @event.user_is_attendence?(current_user.id) %>
-      <%= link_to group_chats_path(@event.group), class: 'btn btn-block' do %>
-        <i class="icon-comment"></i>
-        <%= t('nav.chat') %>
-      <% end %>
-      <%= link_to group_tasks_path(@event.group), class: 'btn btn-block' do %>
-        <i class="icon-ok"></i>
-        <%= t('nav.task') %>
-      <% end %>
-      <%= link_to event_wikis_path(@event), class: 'btn btn-block' do %>
-        <i class="icon-align-justify"></i>
-        <%= t('nav.wiki') %>
+      <% if @event.group.present? %>
+        <%= link_to group_chats_path(@event.group), class: 'btn btn-block' do %>
+          <i class="icon-comment"></i>
+          <%= t('nav.chat') %>
+        <% end %>
+        <%= link_to group_tasks_path(@event.group), class: 'btn btn-block' do %>
+          <i class="icon-ok"></i>
+          <%= t('nav.task') %>
+        <% end %>
+        <%= link_to group_wikis_path(@event.group), class: 'btn btn-block' do %>
+          <i class="icon-align-justify"></i>
+          <%= t('nav.wiki') %>
+        <% end %>
       <% end %>
     <% else %>
       <%= link_to t('.join'), my_attendence_path(@event), class: 'btn btn-primary', method: 'put' %>
