@@ -4,6 +4,7 @@ class Attendence < ActiveRecord::Base
   belongs_to :user
   belongs_to :level
 
+  before_save :check_master_level, if: Proc.new{|p| !p.new_record?}
   after_save :notify_attendence
   after_destroy :notify_attendences
 
@@ -38,5 +39,19 @@ class Attendence < ActiveRecord::Base
     if prev.present?
       prev.accept
     end
+  end
+
+  def check_master_level
+    master_level_id = Level.find_by_name('master').id
+
+    # master以外に更新した場合は、
+    # 当レコード以外にmaster以外が存在することを確認する
+    unless self.level_id == master_level_id
+      return self.event.attendences
+        .where(level_id: master_level_id)
+        .where('attendences.id NOT IN (?)', self.id)
+        .exists?
+    end
+    true
   end
 end

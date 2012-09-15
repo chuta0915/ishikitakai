@@ -5,7 +5,12 @@ module Common::Events
 
   private
   def set_event
-    @event = Event.find params[:id]
+    id = params[:event_id] ? params[:event_id] : params[:id]
+    @event = Event.find id
+  end
+
+  def user_is_owner?
+    return head :not_found unless @event.user_is_owner? current_user.id
   end
 
   def user_can_edit?

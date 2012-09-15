@@ -7,17 +7,33 @@ describe AttendencesController do
   let!(:mokmok_event) { FactoryGirl.create :mokmok_event, user_id: user.id, group_id: sendagayarb.id }
   let(:reading_event) { FactoryGirl.attributes_for :reading_event }
 
-  describe "PUT 'update'" do
+  describe "GET 'index'" do
     context "user not signed in" do
       subject { response }
-      before { put 'update', id: mokmok_event.id }
+      before { get 'index', event_id: mokmok_event.id }
       it { should redirect_to new_user_session_path }
     end
     context "user signed in" do
       subject { response }
       before do
         sign_in user
-        put 'update', id: mokmok_event.id
+        get 'index', event_id: mokmok_event.id
+      end
+      it { should be_success } 
+    end
+  end
+
+  describe "POST 'create'" do
+    context "user not signed in" do
+      subject { response }
+      before { post 'create', event_id: mokmok_event.id }
+      it { should redirect_to new_user_session_path }
+    end
+    context "user signed in" do
+      subject { response }
+      before do
+        sign_in user
+        post 'create', event_id: mokmok_event.id
       end
       it { should redirect_to event_path(sendagayarb) }
     end
