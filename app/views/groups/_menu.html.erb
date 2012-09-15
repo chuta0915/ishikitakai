@@ -28,7 +28,7 @@
           <%= t('nav.task') %>
         <% end %>
       </li>
-      <li class="<%= (request.path == group_wikis_path(group))?'active':'' %>">
+      <li class="<%= (request.path =~ /wikis/ )?'active':'' %>">
         <%= link_to group_wikis_path(group) do %>
           <i class="icon-list-alt"></i>
           <%= t('nav.wiki') %>
