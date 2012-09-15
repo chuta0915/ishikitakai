@@ -1,7 +1,7 @@
 jQuery ->
   unless $('body').hasClass('chats')
     return
-  Pusher.channel_auth_endpoint = '/chats/authentication'
+  Pusher.channel_auth_endpoint = '/pusher/authentication'
   if rack_env isnt 'production'
     Pusher.log = (message) -> console.log(message)
   group_id = $('body').attr('data-id')

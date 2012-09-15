@@ -3,7 +3,6 @@ class ChatsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :set_group, except: [:authentication]
   before_filter :user_is_member?, except: [:authentication]
-  protect_from_forgery except: :authentication
   layout Proc.new { |controller| controller.request.xhr? ? nil : 'application' }
 
   def index
@@ -42,14 +41,5 @@ class ChatsController < ApplicationController
     chat = current_user.chats.find params[:id]
     chat.destroy 
     redirect_to group_chats_path(@group)
-  end
-
-  def authentication
-    res = Pusher[params[:channel_name]].authenticate(
-      params[:socket_id],
-      user_id: current_user.id,
-      user_info: current_user
-    )
-    render json: res
   end
 end

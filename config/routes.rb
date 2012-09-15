@@ -38,7 +38,7 @@ IshikitakaiCom::Application.routes.draw do
     resources :wikis
   end
   
-  post 'chats/authentication' => 'chats#authentication'
+  post 'pusher/authentication' => 'pushers#authentication'
 
   get 'login' => 'pages#login', :as => :new_user_session
   get 'logout' => 'pages#logout', :as => :logout

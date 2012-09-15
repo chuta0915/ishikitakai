@@ -1,5 +1,4 @@
 class AuthController < Devise::OmniauthCallbacksController
-
   Provider.order('id DESC').all.each do|provider|
     define_method provider.name do
       user = User.send("find_#{provider.name}", env["omniauth.auth"], current_user)
