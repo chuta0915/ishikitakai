@@ -2,5 +2,5 @@ ja:
   chats:
     _form:
       submit: "発言"
-      content:
-        placeholder: "発言内容を入力してEnterキーで発言(改行を入力したい場合は、Shiftキーを押しながらEnterキー)"
+      placeholder:
+        content: "発言内容を入力してEnterキーで発言(改行を入力したい場合は、Shiftキーを押しながらEnterキー)"

@@ -1,5 +1,13 @@
 en:
   events:
+    _form:
+      placeholder:
+        name: "Event name(ex. Sendagaya.rb #21)"
+        summary: "Event summary(ex. study ruby on rails)"
+        content: "Event content"
+        place_name: "Chari sendagaya"
+        place_url: "http://"
+        place_address: "... shibuya-ku, tokyo"
     index:
       title: "Events"
       new: "Add new event."

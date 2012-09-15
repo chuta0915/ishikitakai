@@ -4,6 +4,10 @@ en:
       notice:
         name: "name is public information"
         summary: "summary is public information"
+      placeholder:
+        name: "Group name(ex. Sendagaya.rb)"
+        summary: "Group summary(ex. study ruby on rails)"
+        content: "Group content"
     index:
       title: "Groups"
       new: "Add new Group"

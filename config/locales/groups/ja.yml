@@ -4,6 +4,10 @@ ja:
       notice:
         name: "グループの名前は公開情報です"
         summary: "グループの概要は公開情報です"
+      placeholder:
+        name: "グループを表す名称(例: Sendagaya.rb)"
+        summary: "簡潔なグループの説明(例: 皆で集まってもくもくします)"
+        content: "詳細なグループの説明"
     index:
       title: "登録されているグループ"
       new: "グループを登録する"

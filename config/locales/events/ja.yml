@@ -1,5 +1,13 @@
 ja:
   events:
+    _form:
+      placeholder:
+        name: "イベントを表す名称(例: Sendagaya.rb #21)"
+        summary: "簡潔なイベントの説明(例: 皆で集まってもくもくします)"
+        content: "詳細なイベントの説明"
+        place_name: "チャリ千駄ヶ谷"
+        place_url: "http://"
+        place_address: "東京都渋谷区..."
     index:
       title: "登録されているイベント"
       new: "イベントを登録する"
