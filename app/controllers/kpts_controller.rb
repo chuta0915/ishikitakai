@@ -6,9 +6,9 @@ class KptsController < ApplicationController
   before_filter :user_is_member?
 
   def index
-    @keeps = @group.kpts.where(status: Kpt::KEEP).order('id DESC').all
-    @problems = @group.kpts.where(status: Kpt::PROBLEM).order('id DESC').all
-    @trys = @group.kpts.where(status: Kpt::TRY).order('id DESC').all
+    @keeps = @group.kpts.where(status: Kpt::KEEP).order('priority DESC').all
+    @problems = @group.kpts.where(status: Kpt::PROBLEM).order('priority DESC').all
+    @trys = @group.kpts.where(status: Kpt::TRY).order('priority DESC').all
     
     @kpt = @group.kpts.build
     respond_to do |format|
@@ -27,6 +27,7 @@ class KptsController < ApplicationController
 
   def update
     @kpt = Kpt.find params[:id]
+    @kpt.priority_ids = params[:priority_ids]
     @kpt.status = params[:kpt][:status]
     if @kpt.save
       redirect_to kpts_path(@group), notice: t('kpts.index.updated', name: @kpt.name)
