@@ -46,14 +46,14 @@ class ApplicationController < ActionController::Base
   def restrict_save
     return if Rails.env.test?
     if ENV['CREATABLE_GROUP_USER_IDS'].present? &&
-      request.path =~ /^\/groups/ &&
+      request.path =~ /^\/groups$/ &&
       request.method != 'GET'
       unless ENV['CREATABLE_GROUP_USER_IDS'].split(',').include? current_user.id.to_s
         return head :unauthorized
       end
     end
     if ENV['CREATABLE_EVENT_USER_IDS'].present? &&
-      request.path =~ /^\/events/ &&
+      request.path =~ /^\/events$/ &&
       request.method != 'GET'
       unless ENV['CREATABLE_EVENT_USER_IDS'].split(',').include? current_user.id.to_s
         return head :unauthorized
