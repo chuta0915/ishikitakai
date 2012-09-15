@@ -138,12 +138,7 @@
       <%= f.text_field :fee, class: 'span2' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :scope, class: 'control-label' %>
-    <div class="controls">
-      <%= f.collection_select :scope_id, Scope.enable_list.all, :id, :label %>
-    </div>
-  </div>
+  <%= f.hidden_field :scope_id, '1' %>
   <div class="form-actions">
     <%= f.submit nil, class:['btn', 'btn-primary'] %>
   </div>
