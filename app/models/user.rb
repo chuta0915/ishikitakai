@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def valid_email
-    if email =~ /\.example\.com$/
+    if self.email =~ /\.example\.com$/
       return ''
     end
     self.email
