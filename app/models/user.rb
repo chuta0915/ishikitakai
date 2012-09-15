@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :notifications
   has_one :setting, :class_name => 'UserSetting'
 
+  validates_presence_of :email
   before_create :create_setting
 
   extend Providers::Facebook
@@ -62,8 +63,9 @@ class User < ActiveRecord::Base
     self.unconfirmed_email = email
     self.confirm_limit_at = Time.current + 3.hour
     self.hash_to_confirm_email = confirm_key
-    self.save!
-    UserMailer.email_confirmation(self).deliver
+    if self.save
+      UserMailer.email_confirmation(self).deliver
+    end
   end
 
   def confirm_email hash
