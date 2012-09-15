@@ -15,6 +15,7 @@ class Kpt < ActiveRecord::Base
 
   private
   def update_priorities
+    return unless self.priority_ids
     ids = self.priority_ids.reverse
     ids.each_with_index do |id, priority|
       kpt = Kpt.where(id: id).update_all(priority: priority)
