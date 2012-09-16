@@ -16,7 +16,7 @@
     <% @keeps.each do |kpt| %>
       <li class="well" data-id="<%= kpt.id %>" data-priority="<%= kpt.priority %>">
         <%= kpt.name %>
-        <%= link_to kpt_path(@group, kpt), method: :delete, class: 'close' do %>
+        <%= link_to kpt_path(@group, kpt), method: :delete, class: 'close', remote: true do %>
           &times;
         <% end %> 
       </li>
@@ -29,7 +29,7 @@
     <% @problems.each do |kpt| %>
       <li class="well" data-id="<%= kpt.id %>" data-priority="<%= kpt.priority %>">
         <%= kpt.name %>
-        <%= link_to kpt_path(@group, kpt), method: :delete, class: 'close' do %>
+        <%= link_to kpt_path(@group, kpt), method: :delete, class: 'close', remote: true do %>
           &times;
         <% end %> 
       </li>
@@ -42,7 +42,7 @@
     <% @trys.each do |kpt| %>
       <li class="well" data-id="<%= kpt.id %>" data-priority="<%= kpt.priority %>">
         <%= kpt.name %>
-        <%= link_to kpt_path(@group, kpt), method: :delete, class: 'close' do %>
+        <%= link_to kpt_path(@group, kpt), method: :delete, class: 'close', remote: true do %>
           &times;
         <% end %> 
       </li>

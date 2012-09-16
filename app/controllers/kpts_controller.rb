@@ -42,6 +42,11 @@ class KptsController < ApplicationController
   def destroy
     @kpt = Kpt.find params[:id]
     @kpt.destroy
-    redirect_to kpts_path(@group), notice: t('kpts.index.destroyed', name: @kpt.name)
+    Pusher["presence-group_kpts_#{@group.id}"].trigger('updated', nil) unless Rails.env.test?
+    if request.xhr?
+      head :ok
+    else
+      redirect_to kpts_path(@group), notice: t('kpts.index.destroyed', name: @kpt.name)
+    end
   end
 end
