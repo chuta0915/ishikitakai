@@ -36,6 +36,8 @@ jQuery ->
     $('ul.member').append(
       '<li><img src="' + member.info.image + '" width="25" height="25" class="face" data-class="chat_user" data-id="' + member.id.toString() + '"></li>')
 
+  # loaded
+  $('textarea').focus()
 
   # when enter pushed
   $('textarea').keydown (event) ->

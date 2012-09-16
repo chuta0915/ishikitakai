@@ -7,7 +7,7 @@ class ChatsController < ApplicationController
 
   def index
     params[:page] ||= 1
-    params[:per] ||= 10
+    params[:per] ||= 100
     @chats = @group.chats
       .order('id DESC')
       .page(params[:page])
