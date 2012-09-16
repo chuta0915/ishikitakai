@@ -1,7 +1,7 @@
-<meta property="og:title" content="<%=title%>"/>
+<meta property="og:title" content="<%= content_for?(:title) ? yield(:title) : Settings.site.name %>"/>
 <meta property="og:type" content="<%=type%>"/>
 <meta property="og:url" content="<%=url%>"/>
-<meta property="og:site_name" content="<%=title%>"/>
+<meta property="og:site_name" content="<%= content_for?(:title) ? yield(:title) : Settings.site.name %>"/>
 <meta property="og:image" content="<%=image%>" />
 <meta property="fb:admins" content="<%=ENV['FB_ADMINS']%>" />
 <meta property="fb:app_id" content="<%=ENV['FB_APP_ID']%>" />

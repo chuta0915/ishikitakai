@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "#ishikitakai" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : Settings.site.name %></title>
     <%= csrf_meta_tags %>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -21,6 +21,7 @@
     <%= render 'shared/pusher' %>
     <%= javascript_include_tag "application" %>
     <%= yield :head %>
+    <%= content_for?(:ogp) ? yield(:ogp) : render('shared/ogp', type: 'website', url: request.url, image: "#{request.scheme}://#{ENV['HOST']}#{Settings.site.image}", description: Settings.site.description) %>
   </head>
   <body class="<%= yield :body_class %>" data-id="<%= yield :body_data_id %>">
 
