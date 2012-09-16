@@ -4,6 +4,7 @@ class KptsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :set_group
   before_filter :user_is_member?
+  layout Proc.new { |controller| controller.request.xhr? ? nil : 'application' }
 
   def index
     @keeps = @group.kpts.where(status: Kpt::KEEP).order('priority DESC').all
@@ -19,6 +20,7 @@ class KptsController < ApplicationController
   def create
     @kpt = @group.kpts.create_by_user params[:kpt], current_user
     if @kpt.persisted?
+      Pusher["presence-group_kpts_#{@group.id}"].trigger('updated', nil) unless Rails.env.test?
       redirect_to kpts_path(@group), notice: t('kpts.index.created', name: @kpt.name)
     else
       redirect_to kpts_path(@group), alert: @kpt.errors.full_messages.join(',')
@@ -30,6 +32,7 @@ class KptsController < ApplicationController
     @kpt.priority_ids = params[:priority_ids]
     @kpt.status = params[:kpt][:status]
     if @kpt.save
+      Pusher["presence-group_kpts_#{@group.id}"].trigger('updated', nil) unless Rails.env.test?
       redirect_to kpts_path(@group), notice: t('kpts.index.updated', name: @kpt.name)
     else
       redirect_to kpts_path(@group), alert: @kpt.errors.full_messages.join(',')

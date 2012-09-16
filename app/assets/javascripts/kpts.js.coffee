@@ -26,3 +26,23 @@ jQuery ->
           status: status
         priority_ids: ids
     return
+
+  Pusher.channel_auth_endpoint = '/pusher/authentication'
+  if rack_env isnt 'production'
+    Pusher.log = (message) -> console.log(message)
+  group_id = $('body').attr('data-id')
+  channel = pusher.subscribe('presence-group_kpts_' + group_id)
+  channel.bind 'updated', (data) ->
+    $.ajax(
+      url: '/groups/' + group_id + '/kpts/'
+      success: (data) ->
+        $('.kpt_content').replaceWith($(data))
+        return
+    )
+    return
+  
+  channel.bind 'pusher:subscription_succeeded', (members) ->
+    return
+
+  channel.bind 'pusher:subscription_error', (data) ->
+    return
