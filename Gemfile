@@ -31,6 +31,7 @@ group :development do
   gem 'foreman'
   gem 'guard-livereload'
   gem 'quiet_assets'
+  gem 'tapp'
 end
 
 group :development, :test do
