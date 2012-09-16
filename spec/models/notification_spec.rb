@@ -31,7 +31,7 @@ describe Notification do
     it { subject.trigger_type.should == 'User' }
     it { subject.trigger_id.should == user.id }
     it { subject.name.should == 'name' }
-    it { subject.content.should == "<p>content</p>\n" }
+    it { subject.content.should == "content" }
     it { subject.read.should be_false }
     it { subject.read_at.should be_nil }
   end

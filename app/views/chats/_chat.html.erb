@@ -5,6 +5,6 @@
     <div><time><span class="muted"><%= chat.created_at.strftime(t('date.long')) %></span></time></div>
   </div>
   <div class="span10">
-    <%= chat.content.html_safe %>
+    <%= render 'shared/content_md', model: chat %>
   </div>
 </div>

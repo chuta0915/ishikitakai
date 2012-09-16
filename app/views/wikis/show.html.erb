@@ -17,9 +17,7 @@
 </div>
 
 <section>
-<div class="markdown">
-  <%= @wiki.content.html_safe %>
-</div>
+  <%= render 'shared/content_md', model: @wiki %>
 </section>
 
 <section class="form-actions">

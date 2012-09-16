@@ -10,7 +10,5 @@
 </div>
 
 <section>
-<div class="markdown">
-  <%= @notification.content.html_safe %>
-</div>
+  <%= render 'shared/content_md', model: @notification %>
 </section>

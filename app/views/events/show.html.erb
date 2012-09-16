@@ -33,9 +33,7 @@
 </div>
 
 <section>
-<div class="markdown">
-  <%= @event.content.html_safe %>
-</div>
+  <%= render 'shared/content_md', model: @event %>
 </section>
 
 <section>

@@ -40,9 +40,7 @@
 </div>
 
 <section>
-<div class="markdown">
-  <%= @group.content.html_safe %>
-</div>
+  <%= render 'shared/content_md', model: @group %>
 </section>
 
 <% if @group.user_can_edit?(current_user) %>

@@ -6,7 +6,7 @@ module Common::Markdown
   module ClassMethods
   end
 
-  def content
+  def content_md
     c = super
     c = '' if c.nil?
     c.to_md
