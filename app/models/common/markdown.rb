@@ -7,8 +7,9 @@ module Common::Markdown
   end
 
   def content_md
-    c = super
+    c = self.content
     c = '' if c.nil?
+    c.gsub! /\t/, '  '
     c.to_md
   end
 end
