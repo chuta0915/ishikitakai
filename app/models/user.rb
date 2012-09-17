@@ -64,7 +64,11 @@ class User < ActiveRecord::Base
     self.confirm_limit_at = Time.current + 3.hour
     self.hash_to_confirm_email = confirm_key
     if self.save
-      UserMailer.email_confirmation(self).deliver
+      if Settings.delayed
+        UserMailer.delay.email_confirmation(self)
+      else
+        UserMailer.email_confirmation(self).deliver
+      end
     end
   end
 
