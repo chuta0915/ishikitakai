@@ -1,8 +1,12 @@
-<% content_for :head do %>
-  <%= render 'shared/ogp',
-    title: @event.name, type: 'website',
-    url: group_url(@event), image: "//#{request.host}/assets/ishikitakai.png",
-    description: @event.summary %>
+<%= content_for :title do %>
+  <%= "#{@event.name} - #{Settings.site.name}" %>
+<% end %>
+<%= content_for :ogp do %>
+  <%= render('shared/ogp', 
+             type: 'website',
+             url: request.url,
+             image: "#{request.scheme}://#{ENV['HOST']}#{Settings.site.image}", 
+             description: "#{@event.summary}") %>
 <% end %>
 
 <ul class="breadcrumb">
