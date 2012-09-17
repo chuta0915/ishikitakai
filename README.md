@@ -9,4 +9,5 @@ heroku addons:add newrelic
 heroku domains:add ishikitakai.com
 heroku addons:add pusher:sandbox
 heroku addons:add sendgrid:starter
+heroku addons:add papertrail:choklad
 ```
