@@ -16,7 +16,7 @@ class Notification::AttendStatus < Notification
       self.notify target_users, params, event
       target_users.each do|user|
         if user.valid_email.present? && user.setting.mail_attend_status
-          if Settings.delayed
+          if ENV['DELAYED'] == '1'
             NotificationMailer.delay.attend_status(user, event)
           else
             NotificationMailer.attend_status(user, event).deliver
