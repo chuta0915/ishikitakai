@@ -1,8 +1,8 @@
 class ChatsController < ApplicationController
   include Common::Groups
   before_filter :authenticate_user!
-  before_filter :set_group, except: [:authentication]
-  before_filter :user_is_member?, except: [:authentication]
+  before_filter :set_group
+  before_filter :user_is_member?
   layout Proc.new { |controller| controller.request.xhr? ? nil : 'application' }
 
   def index
