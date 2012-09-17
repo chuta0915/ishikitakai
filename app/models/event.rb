@@ -75,7 +75,7 @@ class Event < ActiveRecord::Base
     unless self.persisted?
       self.capacity_min = 0 if self.capacity_min.nil?
       self.capacity_max = 10 if self.capacity_max.nil?
-      self.receive_begin_at = Time.zone.parse(Time.now.strftime('%Y-%m-%d %H:15:00')) + 1.day if self.receive_begin_at.nil?
+      self.receive_begin_at = Time.zone.parse(Time.current.strftime('%Y-%m-%d %H:00:00')) + 1.day if self.receive_begin_at.nil?
       self.receive_end_at = self.receive_begin_at + 1.day if self.receive_end_at.nil?
       self.begin_at = self.receive_end_at if self.begin_at.nil?
       self.end_at = self.begin_at + 2.hour if self.end_at.nil?
