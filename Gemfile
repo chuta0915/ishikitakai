@@ -19,6 +19,8 @@ gem 'kaminari'
 gem 'rails_autolink'
 gem 'pusher'
 gem 'paper_trail'
+gem 'delayed_job'
+gem 'delayed_job_active_record'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
