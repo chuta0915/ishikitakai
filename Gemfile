@@ -40,7 +40,6 @@ group :development, :test do
   gem 'debugger'
   gem 'sqlite3'
   gem 'rspec-rails'
-  gem 'webrat'
   gem 'spork', '~> 0.9.0.rc'
   gem 'guard'
   gem 'guard-spork'
