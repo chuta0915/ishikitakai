@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'spork'
+require 'capybara/rails'
+require 'launchy'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
