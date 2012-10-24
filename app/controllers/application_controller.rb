@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 
   private
   def set_locale
+    return if Rails.env.test?
     I18n.locale = extract_locale_from_accept_language_header
     I18n.locale = :en if admin_signed_in?
   end
