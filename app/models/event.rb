@@ -72,6 +72,7 @@ class Event < ActiveRecord::Base
 
   private
   def default_values
+    join_date
     unless self.persisted?
       self.capacity_min = 0 if self.capacity_min.nil?
       self.capacity_max = 10 if self.capacity_max.nil?
