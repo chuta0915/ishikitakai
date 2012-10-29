@@ -49,3 +49,9 @@ jQuery ->
   $('.new_chat').submit (event) ->
     $('.progress').show()
 
+  # a behavior
+  $('ul[data-list="chats"] a').on 'click', (event) ->
+    event.preventDefault()
+    url = $(@).attr('href')
+    window.open url
+
