@@ -40,4 +40,27 @@ FactoryGirl.define do
     event_payment_kind_id 1
     fee 0
   end
+
+  factory :new_event, class: Event do
+    group_id  ""
+    name  "event name"
+    summary  "説明"
+    content  "カイサイしまーす"
+    place_name  "ギロッポン"
+    place_url  "http://example.com/"
+    place_address  "六本木駅"
+    capacity_min  "1"
+    capacity_max  "5"
+    receive_begin_date  "2012-10-28"
+    receive_begin_time  "07:00"
+    receive_end_date  "2012-10-28"
+    receive_end_time  "08:00"
+    begin_date  "2012-10-28"
+    begin_time  "09:00"
+    end_date  "2012-10-28"
+    end_time  "10:00"
+    event_payment_kind_id  "1"
+    fee  "100"
+    scope_id  "1"
+  end
 end

@@ -34,7 +34,9 @@ class Event < ActiveRecord::Base
     "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"
   ])}
 
-  after_initialize :default_values
+  after_initialize :join_date
+  after_initialize :default_values, :unless => "self.persisted?"
+  after_initialize :split_date
   before_create :create_attendences
   before_validation :join_date
   after_find :split_date
@@ -72,16 +74,13 @@ class Event < ActiveRecord::Base
 
   private
   def default_values
-    unless self.persisted?
-      self.capacity_min = 0 if self.capacity_min.nil?
-      self.capacity_max = 10 if self.capacity_max.nil?
-      self.receive_begin_at = Time.zone.parse(Time.current.strftime('%Y-%m-%d %H:00:00')) + 1.day if self.receive_begin_at.nil?
-      self.receive_end_at = self.receive_begin_at + 1.day if self.receive_end_at.nil?
-      self.begin_at = self.receive_end_at if self.begin_at.nil?
-      self.end_at = self.begin_at + 2.hour if self.end_at.nil?
-      self.fee = 0 if self.fee.nil?
-    end
-    split_date
+    self.capacity_min = 0 if self.capacity_min.nil?
+    self.capacity_max = 10 if self.capacity_max.nil?
+    self.receive_begin_at = Time.zone.parse(Time.current.strftime('%Y-%m-%d %H:00:00')) + 1.day if self.receive_begin_at.nil?
+    self.receive_end_at = self.receive_begin_at + 1.day if self.receive_end_at.nil?
+    self.begin_at = self.receive_end_at if self.begin_at.nil?
+    self.end_at = self.begin_at + 2.hour if self.end_at.nil?
+    self.fee = 0 if self.fee.nil?
   end
 
   def create_attendences
