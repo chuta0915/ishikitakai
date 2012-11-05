@@ -67,6 +67,7 @@
 <% end %>
 
 <hr />
+<%= render 'comments/list', comments: @event.comments %>
 <%= render 'comments/form', :comment => Comment.new(commentable: @event) %>
 
 <% content_for_sidebar do %>
