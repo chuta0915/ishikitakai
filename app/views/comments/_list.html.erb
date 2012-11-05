@@ -1,0 +1,5 @@
+<ul class="unstyled">
+  <% comments.each do |comment| %>
+    <li><%= render 'comments/comment', comment: comment %></li>
+  <% end %>
+</ul>

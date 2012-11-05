@@ -1,10 +1,1 @@
-<div class="row">
-  <div class="span2">
-    <%= image_tag chat.user.image, size: '25x25', class: 'face' %>
-    <%= chat.user.name %>
-    <div><time><span class="muted"><%= chat.created_at.strftime(t('date.long')) %></span></time></div>
-  </div>
-  <div class="span10">
-    <%= render 'shared/content_md', model: chat %>
-  </div>
-</div>
+<%= render 'users/user_post', post: chat, content_class: 'span10' %>

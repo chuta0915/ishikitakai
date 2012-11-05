@@ -30,12 +30,16 @@ IshikitakaiCom::Application.routes.draw do
     resources :tasks, :only => [:index, :create, :update, :destroy]
     resources :kpts, :only => [:index, :create, :update, :destroy]
   end
+
+  resources :comments, :only => [:show, :destroy]
+  
   resources :events do
     resources :attendences, :only => [:index, :create, :update]
     member do
       get :copy
     end
     resources :wikis
+    resources :comments, :only => [:create]
   end
   
   post 'pusher/authentication' => 'pushers#authentication'

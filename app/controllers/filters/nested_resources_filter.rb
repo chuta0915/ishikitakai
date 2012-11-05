@@ -1,9 +1,7 @@
 class Filters::NestedResourcesFilter
   def filter c
     request = c.request
-    puts request.path
     if request.path =~ /\/([^\/]*)\/[0-9]+\/#{c.controller_name}/
-      puts request.path
       begin 
         resources = $1
         parent_model = resources.classify.constantize

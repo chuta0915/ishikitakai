@@ -1,0 +1,6 @@
+en:
+  comments:
+    created: "Posted a comment"
+    destroyed: "Deleted a comment"
+    form:
+      submit: "Post comment"

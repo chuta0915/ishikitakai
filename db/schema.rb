@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917091707) do
+ActiveRecord::Schema.define(:version => 20121029111411) do
 
   create_table "admins", :force => true do |t|
     t.string    "name"
@@ -49,6 +49,18 @@ ActiveRecord::Schema.define(:version => 20120917091707) do
   end
 
   add_index "chats", ["group_id"], :name => "idx_group_id_on_chats"
+
+  create_table "comments", :force => true do |t|
+    t.string   "commentable_type", :null => false
+    t.integer  "commentable_id",   :null => false
+    t.integer  "user_id",          :null => false
+    t.text     "content"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "comments", ["commentable_type", "commentable_id"], :name => "idx_commentable_on_comments"
+  add_index "comments", ["user_id"], :name => "idx_user_id_on_comments"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
