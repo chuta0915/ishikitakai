@@ -62,7 +62,12 @@
   <table class="table table-condensed">
     <% @group.memberships.order(:level_id, :id).each do|membership| %>
         <td><span class="label <%= css_level_badge(membership.level) %>"><%= membership.level.label %></span></td>
-        <td><%= link_to membership.user.name, user_path(membership.user_id) %></td>
+        <td>
+          <%= link_to user_path(membership.user_id) do %>
+            <%= image_tag membership.user.image, size: '25x25' %>
+            <%= membership.user.name %> 
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </table>

@@ -86,7 +86,12 @@
     <% @event.attendences.order(:id).each_with_index do|attendence, i| %>
       <tr class="<%= ((i+1) <= @event.capacity_max)? 'success':'muted' %>">
         <td><span class="label <%= css_level_badge(attendence.level) %>"><%= attendence.level.label %></span></td>
-        <td><%= link_to attendence.user.name, user_path(attendence.user_id) %></td>
+        <td>
+          <%= link_to user_path(attendence.user_id) do %>
+            <%= image_tag attendence.user.image, size: '25x25' %>
+            <%= attendence.user.name %>
+          <% end %> 
+        </td>
       </tr>
     <% end %>
   </table>
