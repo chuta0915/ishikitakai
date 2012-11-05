@@ -4,3 +4,5 @@ en:
     destroyed: "Deleted a comment"
     form:
       submit: "Post comment"
+    list:
+      title: "Comments"

@@ -1,3 +1,6 @@
+<div class="page-header">
+  <h3><%= t('.title') %></h3>
+</div>
 <ul class="unstyled">
   <% comments.each do |comment| %>
     <li><%= render 'comments/comment', comment: comment %></li>

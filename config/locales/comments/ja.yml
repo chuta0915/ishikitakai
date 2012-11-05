@@ -4,3 +4,5 @@ ja:
     destroyed: "コメントを削除ました"
     form:
       submit: "コメントする"
+    list:
+      title: "コメント"
