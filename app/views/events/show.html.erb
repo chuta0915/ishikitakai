@@ -66,6 +66,9 @@
   </section>
 <% end %>
 
+<hr />
+<%= render 'comments/form', :comment => Comment.new(commentable: @event) %>
+
 <% content_for_sidebar do %>
   <div class="form-action">
     <% if user_signed_in? && @event.user_is_attendence?(current_user.id) %>

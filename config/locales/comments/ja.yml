@@ -2,3 +2,5 @@ ja:
   comments:
     created: "コメントしました"
     destroyed: "コメントを削除ました"
+    form:
+      submit: "コメントする"
