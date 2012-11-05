@@ -36,6 +36,9 @@ jQuery ->
     $('ul.member').append(
       '<li><img src="' + member.info.image + '" width="25" height="25" class="face" data-class="chat_user" data-id="' + member.id.toString() + '"></li>')
 
+  clear_preview = ->
+    $('#preview').html("")
+
   # loaded
   $('textarea').focus()
 
@@ -45,9 +48,11 @@ jQuery ->
     if event.keyCode == 13
       return if event.shiftKey
       $(@).parent().submit()
+      clear_prview()
 
   $('.new_chat').submit (event) ->
     $('.progress').show()
+    clear_prview()
 
   # a behavior
   $('ul[data-list="chats"] a').on 'click', (event) ->
@@ -55,3 +60,11 @@ jQuery ->
     url = $(@).attr('href')
     window.open url
 
+  # live preview
+  converter = new Showdown.converter()
+  preview = $('#preview')
+  $('textarea').on('click keyup', ->
+    input = $(this).val()
+    html = converter.makeHtml(input)
+    preview.html(html)
+  )
