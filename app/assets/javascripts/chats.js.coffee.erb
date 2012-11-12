@@ -48,11 +48,11 @@ jQuery ->
     if event.keyCode == 13
       return if event.shiftKey
       $(@).parent().submit()
-      clear_prview()
+      clear_preview()
 
   $('.new_chat').submit (event) ->
     $('.progress').show()
-    clear_prview()
+    clear_preview()
 
   # a behavior
   $('ul[data-list="chats"] a').on 'click', (event) ->
