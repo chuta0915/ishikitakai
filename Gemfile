@@ -1,5 +1,5 @@
 source :rubygems
-ruby '1.9.3'
+ruby '1.9.3' # You’ll need to install 1.2.0 of bundler to use the ruby keyword.
 
 gem 'rails', '3.2.8'
 gem 'jquery-rails'
