@@ -24,10 +24,7 @@ class Attendence < ActiveRecord::Base
   private
   def notify_attendence
     # pendingからpending以外に変わった場合に通知する
-    level_changes = self.changes[:level_id]
-    if level_changes.present? &&
-        level_changes[0] == Level.find_by_name(:pending).id &&
-        level_changes[1] != Level.find_by_name(:pending).id
+    if level_id_changed? && level_id_was == Level.find_by_name(:pending).id
         ::Notification::AttendStatus.notify_changing [self.user], self.event
     end
   end
