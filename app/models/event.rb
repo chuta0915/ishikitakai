@@ -41,7 +41,7 @@ class Event < ActiveRecord::Base
   before_create :create_attendences
   before_validation :join_date
   after_find :split_date
-  after_save :update_attendence
+  after_update :update_attendence
 
   def user_is_owner? user_id
     self.user_can_edit? user_id
@@ -114,15 +114,10 @@ class Event < ActiveRecord::Base
   end
 
   def update_attendence
-    capacity_changes = self.changes[:capacity_max]
-    if capacity_changes.present? &&
-      capacity_changes[0].present? &&
-      capacity_changes[1].present? &&
-      (capacity_changes[1] > capacity_changes[0])
+    if capacity_max_changed? && capacity_max > capacity_max_was
       # capacity_maxが増えていれば繰り上がりの可能性がある
-
-      diff = capacity_changes[1] - capacity_changes[0]
-      self.attendences.order(:id).offset(capacity_changes[0]).limit(diff).each do |attendence|
+      diff = capacity_max - capacity_max_was
+      self.attendences.order(:id).offset(capacity_max_was).limit(diff).each do |attendence|
         attendence.accept
       end 
     end
