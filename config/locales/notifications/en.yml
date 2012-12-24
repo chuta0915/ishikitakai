@@ -8,6 +8,10 @@ en:
       change_status:
         name: "You could attend the event %{event_name}"
         content: "[%{event_name}](%{event_url})"
+    event_comment:
+      post:
+        name: "Posted new comment to the %{event_name}"
+        content: "[%{event_name}](%{event_url})"
   notifications:
     index:
       already_read: "already read"

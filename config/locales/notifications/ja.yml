@@ -8,6 +8,10 @@ ja:
       change_status:
         name: "イベント「%{event_name}」に参加可能となりました"
         content: "[%{event_name}](%{event_url})"
+    event_comment:
+      post:
+        name: "イベント「%{event_name}」に新たなコメントが投稿されました"
+        content: "[%{event_name}](%{event_url})"
   notifications:
     index:
       already_read: "既読"
