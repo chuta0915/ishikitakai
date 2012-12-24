@@ -28,7 +28,7 @@ describe KptsController do
           sign_in user
           get 'index', group_id: closed.id
         end
-        it { should be_not_found }
+        it { should render_template('groups/navigate') }
       end
     end
   end
@@ -59,7 +59,7 @@ describe KptsController do
             sign_in user
             post 'create', group_id: closed.id, kpt: new_kpt
           end
-          it { should be_not_found }
+          it { should render_template('groups/navigate') }
         end
       end
       context "with invalid parameters" do
@@ -95,7 +95,7 @@ describe KptsController do
           sign_in user
           put 'update', group_id: closed.id, id: kpt.id, kpt: { status: Kpt::PROBLEM }
         end
-        it { should be_not_found }
+        it { should render_template('groups/navigate') }
       end
     end
   end
@@ -121,7 +121,7 @@ describe KptsController do
           sign_in user
           delete 'destroy', group_id: closed.id, id: kpt.id
         end
-        it { should be_not_found }
+        it { should render_template('groups/navigate') }
       end
     end
   end

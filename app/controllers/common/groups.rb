@@ -18,6 +18,6 @@ module Common::Groups
   end
 
   def user_is_member?
-    return head :not_found unless @group.user_is_member? current_user.id
+    return render 'groups/navigate' unless @group.user_is_member? current_user.id
   end
 end
