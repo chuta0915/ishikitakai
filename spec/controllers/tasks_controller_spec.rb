@@ -45,7 +45,7 @@ describe TasksController do
             sign_in user
             get 'index', group_id: closed.id, keyword: 'coffee'
           end
-          it { should be_not_found }
+          it { should render_template('groups/navigate') }
       end
     end
   end
@@ -111,7 +111,7 @@ describe TasksController do
           sign_in user
           put 'update', group_id: closed.id, id: task.id
         end
-        it { should be_not_found }
+        it { should render_template('groups/navigate') }
       end
     end
   end
@@ -137,7 +137,7 @@ describe TasksController do
           sign_in user
           delete 'destroy', group_id: closed.id, id: task.id
         end
-        it { should be_not_found }
+        it { should render_template('groups/navigate') }
       end
     end
   end

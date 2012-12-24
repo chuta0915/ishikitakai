@@ -15,6 +15,8 @@ ja:
     edit:
       delete: "グループを閉鎖します"
       confirm_delete: "本当に閉鎖しますか？"
+    navigate:
+      content: "このコンテンツを見るためにはグループに加入する必要があります"
     show:
       leave: "グループを抜ける"
       confirm_leave: "本当に抜けますか？"

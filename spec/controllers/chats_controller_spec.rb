@@ -30,7 +30,7 @@ describe ChatsController do
           sign_in user
           get 'index', group_id: closed.id
         end
-        it { should be_not_found }
+        it { should render_template('groups/navigate') }
       end
     end
   end
@@ -58,7 +58,7 @@ describe ChatsController do
           sign_in user
           get 'show', group_id: closed.id, id: chat.id
         end
-        it { should be_not_found }
+        it { should render_template('groups/navigate') }
       end
     end
   end
@@ -85,7 +85,7 @@ describe ChatsController do
           sign_in user
           post 'create', group_id: closed.id, chat: {content: chat.content}
         end
-        it { should be_not_found }
+        it { should render_template('groups/navigate') }
       end
     end
   end
@@ -112,7 +112,7 @@ describe ChatsController do
           sign_in user
           delete 'destroy', group_id: closed.id, id: chat.id
         end
-        it { should be_not_found }
+        it { should render_template('groups/navigate') }
       end
     end
   end
