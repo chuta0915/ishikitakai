@@ -7,6 +7,7 @@ class Attendence < ActiveRecord::Base
   before_save :check_master_level, if: Proc.new{|p| !p.new_record?}
   after_save :notify_attendence
   after_destroy :notify_attendences
+  after_create :create_memberships
 
   def accept
     if self.event.group.present?
@@ -50,5 +51,12 @@ class Attendence < ActiveRecord::Base
         .exists?
     end
     true
+  end
+
+  def create_memberships
+    group = self.try(:event).try(:group)
+    return unless group
+
+    group.join self.user.id
   end
 end

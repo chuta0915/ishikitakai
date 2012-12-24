@@ -113,5 +113,13 @@ describe Event do
       end
       it { subject.level.should == Level.find_by_name('master') }
     end 
+    context "none group master joins group's event" do
+      let!(:event) { FactoryGirl.create :mokmok_event, user_id: master_user.id }
+      subject { sendagayarb.memberships.where(user_id: other_user.id).last }
+      before do
+        event.join other_user.id
+      end
+      it { subject.should be_present }
+    end
   end
 end
