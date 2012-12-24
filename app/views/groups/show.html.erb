@@ -23,7 +23,7 @@
         <%= @today_event.summary %>
         </small>
         <% if user_signed_in? && !@today_event.user_is_attendence?(current_user.id) %>
-          <%= link_to t('events.show.join'), my_attendence_path(@today_event), class: 'btn btn-primary', method: 'put' %>
+          <%= link_to t('events.show.join'), event_attendences_path(@today_event), class: 'btn btn-primary', method: 'post' %>
         <% end %>
       </h3>
     <% end %>
