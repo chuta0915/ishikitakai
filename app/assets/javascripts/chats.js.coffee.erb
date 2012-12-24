@@ -29,10 +29,11 @@ jQuery ->
     return
   
   channel.bind 'pusher:member_removed', (data) ->
-    $('ul.member').find('[data-class="chat_user"][data-id="' + data.id.toString() + '"]').remove()
+    $('ul.member').find('[data-class="chat_user"][data-id="' + data.id.toString() + '"]').closest('li').remove()
     return
 
   add_member = (member) ->
+    $('ul.member').find('[data-class="chat_user"][data-id="' + member.id.toString() + '"]').closest('li').remove()
     $('ul.member').append(
       '<li><img src="' + member.info.image + '" width="25" height="25" class="face" data-class="chat_user" data-id="' + member.id.toString() + '"></li>')
 
