@@ -144,6 +144,7 @@
                 </div>
               <% end %>
             </div>
+            <%= render 'shared/sns_buttons', url: request.url, link_name: yield(:sns_link_name) %>
             <div id="main_content"><%= yield %></div>
           </div>
           <% if content_for?(:sidebar) %>
