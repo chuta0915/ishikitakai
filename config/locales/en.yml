@@ -33,6 +33,7 @@ en:
         name: "User name"
       user_setting:
         mail_attend_status: "Deliver Email when attend status was changed"
+        mail_event_comment: "Deliver Email when posted event's comment"
       group:
         name: "community name"
         summary: "summary"
