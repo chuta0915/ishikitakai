@@ -4,7 +4,7 @@ class NotificationMailer < ActionMailer::Base
   def attend_status(user, event)
     @user = user
     @event = event
-    mail(:to => "#{user.name} <#{user.email}>", :subject => I18n.t("notification.attend_status.change_status.name"))
+    mail(:to => "#{user.name} <#{user.email}>", :subject => I18n.t("notification.attend_status.change_status.name", event_name: @event.name))
   end
 
   def event_comment(user, event)
