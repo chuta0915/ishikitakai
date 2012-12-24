@@ -14,19 +14,21 @@
 
 <%= form_for(@user_setting, url: my_setting_path, method: :put, html:{class: 'form-horizontal'}) do |f| %>
   <fieldset>
-    <div class="control-group">
-      <%= f.label :mail_attend_status, class: 'control-label' %>
-      <div class="controls">
-        <label class="setting_label">
-          <%= f.radio_button :mail_attend_status, true %>
-          <%= t('common.yes_label') %>
-        </label>
-        <label class="setting_label">
-          <%= f.radio_button :mail_attend_status, false %>
-          <%= t('common.no_label') %>
-        </label>
+    <% [:mail_attend_status, :mail_event_comment].each do|col| %>
+      <div class="control-group">
+        <%= f.label col, class: 'control-label' %>
+        <div class="controls">
+          <label class="setting_label">
+            <%= f.radio_button col, true %>
+            <%= t('common.yes_label') %>
+          </label>
+          <label class="setting_label">
+            <%= f.radio_button col, false %>
+            <%= t('common.no_label') %>
+          </label>
+        </div>
       </div>
-    </div>
+    <% end %>
     <div class="form-actions">
       <%= f.submit nil, class:['btn', 'btn-primary'] %>
     </div>

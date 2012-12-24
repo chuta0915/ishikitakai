@@ -34,6 +34,7 @@ ja:
         name: "ユーザー名"
       user_setting:
         mail_attend_status: "イベント参加可能となった時にメールを配信する"
+        mail_event_comment: "イベントに新たなコメントが投稿された時にメールを配信する"
       group:
         name: "グループ名"
         summary: "概要"
