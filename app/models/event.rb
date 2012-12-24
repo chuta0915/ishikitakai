@@ -62,6 +62,9 @@ class Event < ActiveRecord::Base
     if self.attendences.count >= self.capacity_max
       level = 'pending'
     end
+    if self.group.try(:user_is_owner?, user_id)
+      level = 'master'
+    end
     self.attendences << Attendence.new(
       user_id: user_id, 
       level_id: Level.find_by_name(level).id,
