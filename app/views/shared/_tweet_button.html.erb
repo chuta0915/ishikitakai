@@ -2,7 +2,7 @@
   class="twitter-share-button"
   data-url="<%=url%>"
   data-lang="<%=I18n.locale%>"
-  data-text="<%= t('twitter.text') %>"
+  data-text="<%= link_name ? link_name : t('twitter.text') %>"
   data-hashtags="<%= t('twitter.hashtags') %>"
   data-via="<%= t('twitter.via') %>">
 </a>

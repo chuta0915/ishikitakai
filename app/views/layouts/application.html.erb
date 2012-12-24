@@ -170,7 +170,7 @@
             <% end %>
           </p>
         <% end %>
-        <%= render 'shared/sns_buttons', url: request.url %>
+        <%= render 'shared/sns_buttons', url: request.url, link_name: yield(:sns_link_name) %>
       </footer>
 
     </div> <!-- /container -->

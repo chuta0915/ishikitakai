@@ -8,6 +8,9 @@
              image: "#{request.scheme}://#{ENV['HOST']}#{Settings.site.image}", 
              description: "#{@event.summary}") %>
 <% end %>
+<%= content_for :sns_link_name do %>
+  <%= "#{@event.group.try(:name)} #{@event.name} - #{Settings.site.name}" %>
+<% end %>
 
 <ul class="breadcrumb">
   <li><a href="/events"><%= t('nav.events') %></a> <span class="divider">/</span></li>
