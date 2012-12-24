@@ -2,7 +2,6 @@
 
 FactoryGirl.define do
   factory :user_setting do
-    user_id 1
     mail_attend_status false
     mail_event_comment false
   end
