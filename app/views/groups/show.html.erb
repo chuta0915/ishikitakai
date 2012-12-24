@@ -10,7 +10,7 @@
   <li class="active"><%= @group.name %></li>
 </ul>
 
-<%= render 'groups/menu', group: @group %>
+<%= render 'groups/menu', group: @group, tab_class: '' %>
 
 <% if @today_event.present? %>
 <div class="alert alert-info">
@@ -88,4 +88,4 @@
   <% end %>
 </ul> 
 
-<%= link_to t('.all_events'), events_path(group_id: @group.id), class: 'more_events' %>
+<%= link_to t('.all_events'), events_path(group_id: @group.id), class: 'btn pull-right' %>

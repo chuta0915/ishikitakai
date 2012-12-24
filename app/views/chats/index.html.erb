@@ -5,7 +5,7 @@
   <li><a href="/groups/<%= @group.id %>"><%= @group.name %></a> <span class="divider">/</span></li>
   <li class="active"><%= t('nav.chat') %></li>
 </ul>
-<%= render 'groups/menu', group: @group %>
+<%= render 'groups/menu', group: @group, tab_class: '' %>
 <%= paginate @chats %>
 <ul class="unstyled" data-list="chats">
 <% @chats.each do|chat| %>
@@ -20,3 +20,4 @@
 <ul class="member unstyled">
 </ul>
 <%= render 'form' %>
+<%= render 'groups/menu', group: @group, tab_class: 'tabs-below' %>

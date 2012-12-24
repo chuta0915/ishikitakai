@@ -8,7 +8,7 @@
   <li class="active"><%= @wiki.name %></li>
 </ul>
 
-<%= render 'groups/menu', group: @parent %>
+<%= render 'groups/menu', group: @parent, tab_class: '' %>
 
 <div class="page-header">
   <h1>
@@ -24,4 +24,4 @@
   <%= link_to t('.edit'), edit_wiki_path(@parent, @wiki), class: 'btn' %>
 </section>
 
-
+<%= render 'groups/menu', group: @parent, tab_class: 'tabs-below' %>

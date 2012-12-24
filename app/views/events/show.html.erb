@@ -20,7 +20,7 @@
   <li class="active"><%= @event.name %></li>
 </ul>
 
-<%= render 'groups/menu', group: @event.group %>
+<%= render 'groups/menu', group: @event.group, tab_class: '' %>
 
 <% if @event.user_can_edit?(current_user) %>
   <section class="form-actions">
@@ -104,3 +104,4 @@
     <% end %>
   <% end %>
 <% end %>
+<%= render 'groups/menu', group: @event.group, tab_class: 'tabs-below' %>
