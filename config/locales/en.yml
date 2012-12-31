@@ -34,6 +34,7 @@ en:
       user_setting:
         mail_attend_status: "Deliver Email when attend status was changed"
         mail_event_comment: "Deliver Email when posted event's comment"
+        mail_event_attendance: "Deliver Email when added event's attendance"
       group:
         name: "community name"
         summary: "summary"
