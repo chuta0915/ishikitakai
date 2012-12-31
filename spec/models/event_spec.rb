@@ -71,7 +71,9 @@ describe Event do
       end
       it { friend.notifications.should have(1).items }
       it { friend.notifications[0].type.should == 'Notification::AttendStatus' }
-      it { ActionMailer::Base.deliveries.size.should == 1 }
+      it { user.notifications.should have(1).items }
+      it { user.notifications[0].type.should == 'Notification::EventAttendance' }
+      it { ActionMailer::Base.deliveries.size.should == 2 }
     end
 
     context "when leave event" do
@@ -85,7 +87,12 @@ describe Event do
       end
       it { friend.notifications.should have(1).items }
       it { friend.notifications[0].type.should == 'Notification::AttendStatus' }
-      it { ActionMailer::Base.deliveries.size.should == 1 }
+      it { user.notifications.should have(2).items }
+      it { user.notifications[0].type.should == 'Notification::EventAttendance' }
+      it { user.notifications[1].type.should == 'Notification::EventAttendance' }
+      it { other_user.notifications.should have(1).items }
+      it { other_user.notifications[0].type.should == 'Notification::EventAttendance' }
+      it { ActionMailer::Base.deliveries.size.should == 4 }
     end
   end
 

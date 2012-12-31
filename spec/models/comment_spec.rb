@@ -13,9 +13,11 @@ describe Comment do
         event.join friend.id
         event.comments.create(content: 'comment', user_id: user.id)
       end
+      it { user.notifications.should have(1).items }
+      it { user.notifications[0].type.should == 'Notification::EventAttendance' }
       it { friend.notifications.should have(1).items }
       it { friend.notifications[0].type.should == 'Notification::EventComment' }
-      it { ActionMailer::Base.deliveries.size.should == 1 }
+      it { ActionMailer::Base.deliveries.size.should == 2 }
     end
   end
 end

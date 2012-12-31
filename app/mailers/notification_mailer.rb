@@ -12,5 +12,11 @@ class NotificationMailer < ActionMailer::Base
     @event = event
     mail(:to => "#{user.name} <#{user.email}>", :subject => I18n.t("notification.event_comment.post.name", event_name: @event.name))
   end
+
+  def event_attendance(user, event)
+    @user = user
+    @event = event
+    mail(:to => "#{user.name} <#{user.email}>", :subject => I18n.t("notification.event_attendance.add.name", event_name: @event.name))
+  end
 end
 

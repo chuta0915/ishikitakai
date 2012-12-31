@@ -12,6 +12,10 @@ ja:
       post:
         name: "イベント「%{event_name}」に新たなコメントが投稿されました"
         content: "[%{event_name}](%{event_url})"
+    event_attendance:
+      add:
+        name: "イベント「%{event_name}」に新たに参加者が増えました"
+        content: "[%{event_name}](%{event_url})"
   notifications:
     index:
       already_read: "既読"

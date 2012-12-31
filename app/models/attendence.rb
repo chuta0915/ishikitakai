@@ -8,6 +8,7 @@ class Attendence < ActiveRecord::Base
   after_save :notify_attendence
   after_destroy :notify_attendences
   after_create :create_memberships
+  after_create :notify_event_attendance
 
   def accept
     if self.event.group.present?
@@ -58,5 +59,10 @@ class Attendence < ActiveRecord::Base
     return unless group
 
     group.join self.user.id
+  end
+
+  def notify_event_attendance
+    users = self.try(:event).try(:users) - [self.user]
+    ::Notification::EventAttendance.notify_attending(users, self.try(:event))
   end
 end
