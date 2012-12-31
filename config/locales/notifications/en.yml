@@ -12,6 +12,10 @@ en:
       post:
         name: "Posted new comment to the %{event_name}"
         content: "[%{event_name}](%{event_url})"
+    event_attendance:
+      add:
+        name: "Add attendance to the %{event_name}"
+        content: "[%{event_name}](%{event_url})"
   notifications:
     index:
       already_read: "already read"
