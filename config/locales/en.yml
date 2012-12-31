@@ -35,6 +35,7 @@ en:
         mail_attend_status: "Deliver Email when attend status was changed"
         mail_event_comment: "Deliver Email when posted event's comment"
         mail_event_attendance: "Deliver Email when added event's attendance"
+        mail_group_event: "Deliver Email when added group's event"
       group:
         name: "community name"
         summary: "summary"

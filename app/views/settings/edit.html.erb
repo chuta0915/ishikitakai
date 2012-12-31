@@ -14,7 +14,8 @@
 
 <%= form_for(@user_setting, url: my_setting_path, method: :put, html:{class: 'form-horizontal'}) do |f| %>
   <fieldset>
-    <% [:mail_attend_status, :mail_event_comment, :mail_event_attendance].each do|col| %>
+    <% [:mail_attend_status, :mail_event_comment, :mail_event_attendance,
+    :mail_group_event].each do|col| %>
       <div class="control-group">
         <%= f.label col, class: 'control-label' %>
         <div class="controls">

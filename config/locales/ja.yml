@@ -36,6 +36,7 @@ ja:
         mail_attend_status: "イベント参加可能となった時にメールを配信する"
         mail_event_comment: "イベントに新たなコメントが投稿された時にメールを配信する"
         mail_event_attendance: "イベントに新たな参加者が増えた時にメールを配信する"
+        mail_group_event: "グループに新たなイベントが増えた時にメールを配信する"
       group:
         name: "グループ名"
         summary: "概要"
