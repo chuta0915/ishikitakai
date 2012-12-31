@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121231073828) do
+ActiveRecord::Schema.define(:version => 20121231081544) do
 
   create_table "admins", :force => true do |t|
     t.string   "name"
@@ -233,6 +233,7 @@ ActiveRecord::Schema.define(:version => 20121231073828) do
     t.datetime "updated_at",                              :null => false
     t.boolean  "mail_event_comment",    :default => true, :null => false
     t.boolean  "mail_event_attendance", :default => true, :null => false
+    t.boolean  "mail_group_event",      :default => true, :null => false
   end
 
   add_index "user_settings", ["user_id"], :name => "idx_user_id_on_user_settings", :unique => true

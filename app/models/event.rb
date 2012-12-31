@@ -42,6 +42,8 @@ class Event < ActiveRecord::Base
   before_validation :join_date
   after_find :split_date
   after_update :update_attendence
+  after_create :notify_group_event
+
 
   def user_is_owner? user_id
     self.user_can_edit? user_id
@@ -124,5 +126,11 @@ class Event < ActiveRecord::Base
         attendence.accept
       end 
     end
+  end
+
+  def notify_group_event
+    return unless self.group
+    users = self.try(:group).try(:users) - [self.user]
+    ::Notification::GroupEvent.notify_adding(users, self)
   end
 end

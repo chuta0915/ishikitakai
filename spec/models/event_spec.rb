@@ -94,6 +94,29 @@ describe Event do
       it { other_user.notifications[0].type.should == 'Notification::EventAttendance' }
       it { ActionMailer::Base.deliveries.size.should == 4 }
     end
+
+    context "when added group's event" do
+      let(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
+      before do
+        sendagayarb.join friend.id
+        ActionMailer::Base.deliveries = []
+        event = FactoryGirl.create :mokmok_event, user_id: user.id, group_id: sendagayarb.id
+      end
+      it { friend.notifications.should have(1).items }
+      it { friend.notifications[0].type.should == 'Notification::GroupEvent' }
+      it { ActionMailer::Base.deliveries.size.should == 1 }
+    end
+
+    context "when added none group's event" do
+      let(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
+      before do
+        sendagayarb.join friend.id
+        ActionMailer::Base.deliveries = []
+        event = FactoryGirl.create :mokmok_event, user_id: user.id, group_id: nil
+      end
+      it { friend.notifications.should have(0).items }
+      it { ActionMailer::Base.deliveries.size.should == 0 }
+    end
   end
 
   describe 'join' do
