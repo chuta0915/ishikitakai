@@ -16,6 +16,10 @@ ja:
       add:
         name: "イベント「%{event_name}」に新たに参加者が増えました"
         content: "[%{event_name}](%{event_url})"
+    group_event:
+      add:
+        name: "グループ「%{group_name}」に新たなイベントが追加されました"
+        content: "[%{event_name}](%{event_url})"
   notifications:
     index:
       already_read: "既読"

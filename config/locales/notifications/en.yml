@@ -16,6 +16,10 @@ en:
       add:
         name: "Add attendance to the %{event_name}"
         content: "[%{event_name}](%{event_url})"
+    group_event:
+      add:
+        name: "Add event to the %{group_name}"
+        content: "[%{event_name}](%{event_url})"
   notifications:
     index:
       already_read: "already read"

@@ -18,5 +18,11 @@ class NotificationMailer < ActionMailer::Base
     @event = event
     mail(:to => "#{user.name} <#{user.email}>", :subject => I18n.t("notification.event_attendance.add.name", event_name: @event.name))
   end
+
+  def group_event(user, event)
+    @user = user
+    @event = event
+    mail(:to => "#{user.name} <#{user.email}>", :subject => I18n.t("notification.group_event.add.name", group_name: @event.try(:group).try(:name)))
+  end
 end
 
