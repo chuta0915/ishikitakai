@@ -44,10 +44,10 @@ Spork.prefork do
     config.include Devise::TestHelpers, type: :helper
 
     # other macros
-    config.extend CommonMacros
-    config.extend ControllerMacros, type: :controller
-    config.extend ViewMacros, type: :view
-    config.extend RoutingResourcesMacros, type: :routing
+    config.include CommonMacros
+    config.include ControllerMacros, type: :controller
+    config.include ViewMacros, type: :view
+    config.include RoutingResourcesMacros, type: :routing
     config.include FeatureMacros, type: :feature
     # master data
     load "#{Rails.root}/db/seeds.rb"
