@@ -2,7 +2,7 @@ class Notification::GroupEvent < Notification
   after_find :convert_for_locale
 
   class << self
-    def notify_adding users, event
+    def notify users, event
       params = {
         name: "notification.group_event.add.name",
         content: "notification.group_event.add.content",
@@ -11,7 +11,7 @@ class Notification::GroupEvent < Notification
       users.each do|user|
         target_users << user
       end
-      self.notify target_users, params, event
+      super target_users, params, event
       target_users.each do|user|
         if user.valid_email.present? && user.setting.mail_group_event
           if ENV['DELAYED'] == '1'

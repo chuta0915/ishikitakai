@@ -2,7 +2,7 @@ class Notification::AttendStatus < Notification
   after_find :convert_for_locale
 
   class << self
-    def notify_changing users, event
+    def notify users, event
       params = {
         name: "notification.attend_status.change_status.name",
         content: "notification.attend_status.change_status.content",
@@ -13,7 +13,7 @@ class Notification::AttendStatus < Notification
           target_users << user
         end
       end
-      self.notify target_users, params, event
+      super target_users, params, event
       target_users.each do|user|
         if user.valid_email.present? && user.setting.mail_attend_status
           if ENV['DELAYED'] == '1'

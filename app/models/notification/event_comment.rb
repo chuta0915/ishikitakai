@@ -2,7 +2,7 @@ class Notification::EventComment < Notification
   after_find :convert_for_locale
 
   class << self
-    def notify_posting users, event
+    def notify users, event
       params = {
         name: "notification.event_comment.post.name",
         content: "notification.event_comment.post.content",
@@ -11,7 +11,7 @@ class Notification::EventComment < Notification
       users.each do|user|
         target_users << user
       end
-      self.notify target_users, params, event
+      super target_users, params, event
       target_users.each do|user|
         if user.valid_email.present? && user.setting.mail_attend_status
           if ENV['DELAYED'] == '1'

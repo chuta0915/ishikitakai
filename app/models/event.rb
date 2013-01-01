@@ -131,6 +131,6 @@ class Event < ActiveRecord::Base
   def notify_group_event
     return unless self.group
     users = self.try(:group).try(:users) - [self.user]
-    ::Notification::GroupEvent.notify_adding(users, self)
+    ::Notification::GroupEvent.notify(users, self)
   end
 end
