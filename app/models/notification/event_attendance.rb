@@ -1,32 +1,18 @@
 class Notification::EventAttendance < Notification
+  include Notification::EmailSendable
   after_find :convert_for_locale
 
   class << self
-    def notify users, event
-      params = {
+    def params
+      {
         name: "notification.event_attendance.add.name",
         content: "notification.event_attendance.add.content",
       }
-      target_users = []
-      users.each do|user|
-        target_users << user
-      end
-      super target_users, params, event
-      target_users.each do|user|
-        if user.valid_email.present? && user.setting.mail_event_attendance
-          if ENV['DELAYED'] == '1'
-            NotificationMailer.delay.event_attendace(user, event)
-          else
-            NotificationMailer.event_attendance(user, event).deliver
-          end
-        end
-      end
     end
-  end
 
-  def read_it
-    self.reload
-    super
+    def target_users(users, trigger)
+      users
+    end
   end
 
   private

@@ -1,34 +1,24 @@
 class Notification::AttendStatus < Notification
+  include Notification::EmailSendable
   after_find :convert_for_locale
 
   class << self
-    def notify users, event
-      params = {
+    def params
+      {
         name: "notification.attend_status.change_status.name",
         content: "notification.attend_status.change_status.content",
       }
-      target_users = []
-      users.each do|user|
-        unless self.where(user_id: user.id, trigger_type: 'Event', trigger_id: event.id).exists?
-          target_users << user
-        end
-      end
-      super target_users, params, event
-      target_users.each do|user|
-        if user.valid_email.present? && user.setting.mail_attend_status
-          if ENV['DELAYED'] == '1'
-            NotificationMailer.delay.attend_status(user, event)
-          else
-            NotificationMailer.attend_status(user, event).deliver
-          end
-        end
-      end
     end
-  end
 
-  def read_it
-    self.reload
-    super
+    def target_users(users, trigger)
+      targets = []
+      users.each do|user|
+        unless self.where(user_id: user.id, trigger_type: 'Event', trigger_id: trigger.id).exists?
+          targets << user
+        end
+      end
+      targets
+    end
   end
 
   private
