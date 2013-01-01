@@ -1,4 +1,5 @@
 class NotificationMailer < ActionMailer::Base
+  layout 'notification_mailer'
   default from: "info@ishikitakai.com"
 
   def attend_status(user, event)
