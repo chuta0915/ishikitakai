@@ -66,8 +66,6 @@ IshikitakaiCom::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   
-  RubyPython.configure python_exe: 'python2.6'
-
   ActionMailer::Base.smtp_settings = {
     :address        => ENV['MAIL_HOST'],
     :port           => '587',
