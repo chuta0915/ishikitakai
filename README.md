@@ -1,6 +1,6 @@
 # ishikitakai.com
 
-Community managemante system.
+Community management system.
 
 ## for rvm user
 
