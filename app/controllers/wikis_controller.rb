@@ -6,16 +6,16 @@ class WikisController < ApplicationController
   before_filter :user_is_attendance?
 
   def index
-    params[:page] ||= 1
-    params[:per] ||= 10
+    page = params[:page] || 1
+    per = params[:per] || 10
     if params[:keyword].present?
       @wikis = @parent.wikis.search(params[:keyword])
     else
       @wikis = @parent.wikis
     end
     @wikis = @wikis.order('id DESC')
-      .page(params[:page])
-      .per(params[:per])
+      .page(page)
+      .per(per)
     respond_to do |format|
       format.html
     end

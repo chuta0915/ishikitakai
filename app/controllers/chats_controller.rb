@@ -6,12 +6,12 @@ class ChatsController < ApplicationController
   layout Proc.new { |controller| controller.request.xhr? ? nil : 'application' }
 
   def index
-    params[:page] ||= 1
-    params[:per] ||= 100
+    page = params[:page] || 1
+    per = params[:per] || 100
     @chats = @group.chats
       .order('id DESC')
-      .page(params[:page])
-      .per(params[:per])
+      .page(page)
+      .per(per)
     @chats.reverse!
     @chat = Chat.new
   end

@@ -5,8 +5,8 @@ class EventsController < ApplicationController
   before_filter :user_can_edit?, only: [:edit, :update, :destroy, :copy]
 
   def index
-    params[:page] ||= 1
-    params[:per] ||= 9 
+    page = params[:page] || 1
+    per = params[:per] || 9
     if params[:keyword].present?
       @events = Event.search params[:keyword]
     elsif params[:group_id].present?
@@ -17,8 +17,8 @@ class EventsController < ApplicationController
     @events = @events
       .where(scope_id: Scope.find_by_name('public').id)
       .order('id DESC')
-      .page(params[:page])
-      .per(params[:per])
+      .page(page)
+      .per(per)
   end
 
   def show

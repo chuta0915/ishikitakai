@@ -5,8 +5,8 @@ class GroupsController < ApplicationController
   before_filter :user_can_edit?, only: [:edit, :update, :destroy]
   respond_to :html, :json
   def index
-    params[:page] ||= 1
-    params[:per] ||= 9 
+    page = params[:page] || 1
+    per = params[:per] || 9
     if params[:keyword].present?
       @groups = Group.search params[:keyword]
     else
@@ -15,8 +15,8 @@ class GroupsController < ApplicationController
     @groups = @groups
       .where(scope_id: Scope.find_by_name('public').id)
       .order('id DESC')
-      .page(params[:page])
-      .per(params[:per])
+      .page(page)
+      .per(per)
     respond_to do |format|
       format.html
       format.json { 
