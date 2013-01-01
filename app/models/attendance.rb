@@ -27,7 +27,7 @@ class Attendance < ActiveRecord::Base
   def notify_attendance
     # pendingからpending以外に変わった場合に通知する
     if level_id_changed? && level_id_was == Level.find_by_name(:pending).id
-        ::Notification::AttendStatus.notify_changing [self.user], self.event
+        ::Notification::AttendStatus.notify([self.user], self.event)
     end
   end
 
@@ -63,6 +63,6 @@ class Attendance < ActiveRecord::Base
 
   def notify_event_attendance
     users = self.try(:event).try(:users) - [self.user]
-    ::Notification::EventAttendance.notify_attending(users, self.try(:event))
+    ::Notification::EventAttendance.notify(users, self.try(:event))
   end
 end

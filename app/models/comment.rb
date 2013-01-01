@@ -14,7 +14,7 @@ class Comment < ActiveRecord::Base
   def notify_event_comment
     if self.commentable.instance_of?(Event)
       users = self.commentable.try(:users) - [self.user]
-      ::Notification::EventComment.notify_posting(users, self.commentable)
+      ::Notification::EventComment.notify(users, self.commentable)
     end
   end
 end

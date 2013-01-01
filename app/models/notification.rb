@@ -27,6 +27,7 @@ class Notification < ActiveRecord::Base
   end
 
   def read_it
+    self.reload
     self.read = true
     self.read_at = Time.current
     self.save

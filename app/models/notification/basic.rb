@@ -17,11 +17,6 @@ class Notification::Basic < Notification
     end
   end
 
-  def read_it
-    self.reload
-    super
-  end
-
   private
   def convert_for_locale
     self.name = I18n.t(self.name)
