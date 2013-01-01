@@ -4,7 +4,12 @@ ruby '1.9.3' # You’ll need to install 1.2.0 of bundler to use the ruby keyword
 gem 'rails', '3.2.9'
 gem 'jquery-rails'
 gem 'thin'
+
+gem 'libv8'
+gem 'therubyracer'
+gem 'less-rails'
 gem 'twitter-bootstrap-rails'
+
 gem 'rails_config'
 gem 'rails-i18n'
 gem 'rails_admin'
