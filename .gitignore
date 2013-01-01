@@ -22,3 +22,4 @@ config/environments/*.local.yml
 public/assets
 public/assets-test
 .jhw-cache
+.rvmrc
