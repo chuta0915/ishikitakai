@@ -1,0 +1,31 @@
+<% content_for :body_class,  "attendances " %>
+<h3><i class="icon-user"></i><%= t('events.show.attendance') %><i class="icon-user"></i></h3>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th class="span3"><%= t('activerecord.attributes.attendance.level') %></th>
+      <th class="span2"><%= t('activerecord.attributes.user.name') %></th>
+      <th class="span2"><%= t('activerecord.attributes.attendance.updated_at') %></th>
+      <th class="span5"></th>
+    </tr>
+  </thead>
+  <% @attendances.order(:level_id, :id).each do|attendance| %>
+    <tr>
+      <td>
+        <span class="label <%= css_level_badge(attendance.level) %>">
+          <%= attendance.level.label %>
+        </span>
+      </td>
+      <td><%= link_to attendance.user.name, user_path(attendance.user_id) %></td>
+      <td><%= attendance.updated_at.strftime(t('date.long')) %></td>
+      <td>
+        <div class="controls controls-row">
+          <%= form_for([attendance.event, attendance]) do |f|%>
+            <%= f.collection_select :level_id, Level.enable_list.all, :id, :label %>
+            <%= f.submit nil, class: 'btn' %>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</table>

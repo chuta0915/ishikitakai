@@ -55,8 +55,8 @@ describe Event do
 
   describe "after create" do
     subject { event }
-    it { subject.attendences.should have(1).items }
-    it { subject.attendences[0].level.id.should == master.id }
+    it { subject.attendances.should have(1).items }
+    it { subject.attendances[0].level.id.should == master.id }
   end
 
   describe "notify " do
@@ -127,7 +127,7 @@ describe Event do
     end
     context "group member joins group's event" do
       let!(:event) { FactoryGirl.create :mokmok_event, user_id: master_user.id }
-      subject { event.attendences.where(user_id: other_user.id).last }
+      subject { event.attendances.where(user_id: other_user.id).last }
       before do
         sendagayarb.join other_user.id, 'member'
         event.join other_user.id
@@ -136,7 +136,7 @@ describe Event do
     end
     context "group master joins group's event which created by other master user" do
       let!(:event) { FactoryGirl.create :mokmok_event, user_id: other_user.id }
-      subject { event.attendences.where(user_id: master_user.id).last }
+      subject { event.attendances.where(user_id: master_user.id).last }
       before do
         sendagayarb.join other_user.id, 'master'
         event.join master_user.id

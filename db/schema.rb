@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121231081544) do
+ActiveRecord::Schema.define(:version => 20130101060606) do
 
   create_table "admins", :force => true do |t|
     t.string    "name"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20121231081544) do
 
   add_index "admins", ["email"], :name => "idx_email_on_admins", :unique => true
 
-  create_table "attendences", :force => true do |t|
+  create_table "attendances", :force => true do |t|
     t.integer   "event_id",   :null => false
     t.integer   "user_id",    :null => false
     t.integer   "level_id",   :null => false
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(:version => 20121231081544) do
     t.timestamp "updated_at", :null => false
   end
 
-  add_index "attendences", ["event_id"], :name => "idx_event_id_on_attendences"
-  add_index "attendences", ["user_id", "event_id"], :name => "idx_user_id_event_id_on_attendences", :unique => true
+  add_index "attendances", ["event_id"], :name => "idx_event_id_on_attendances"
+  add_index "attendances", ["user_id", "event_id"], :name => "idx_user_id_event_id_on_attendances", :unique => true
 
   create_table "chats", :force => true do |t|
     t.integer   "group_id"

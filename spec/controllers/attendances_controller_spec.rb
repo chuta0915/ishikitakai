@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AttendencesController do
+describe AttendancesController do
   let!(:user) { FactoryGirl.create(:user) }
   let(:invalid_user) { FactoryGirl.create :new_user }
   let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
@@ -43,7 +43,7 @@ describe AttendencesController do
     context "user not signed in" do
       subject { response }
       before do
-        put 'update', event_id: mokmok_event.id, id: mokmok_event.attendences.first
+        put 'update', event_id: mokmok_event.id, id: mokmok_event.attendances.first
       end
       it { should redirect_to new_user_session_path }
     end
@@ -51,9 +51,9 @@ describe AttendencesController do
       subject { response }
       before do
         sign_in user
-        put 'update', event_id: mokmok_event.id, id: mokmok_event.attendences.first
+        put 'update', event_id: mokmok_event.id, id: mokmok_event.attendances.first
       end
-      it { should redirect_to event_attendences_path(mokmok_event) }
+      it { should redirect_to event_attendances_path(mokmok_event) }
     end
   end
 

@@ -74,33 +74,33 @@
 
 <% content_for_sidebar do %>
   <div class="form-action">
-    <% if user_signed_in? && @event.user_is_attendence?(current_user.id) %>
+    <% if user_signed_in? && @event.user_is_attendance?(current_user.id) %>
     <% else %>
-      <%= link_to t('.join'), event_attendences_path(@event), class: 'btn btn-primary btn-block', method: 'post' %>
+      <%= link_to t('.join'), event_attendances_path(@event), class: 'btn btn-primary btn-block', method: 'post' %>
     <% end %>
   </div>
   <section>
   <h3>
-    <i class="icon-user"></i><%= t('.attendence') %><i class="icon-user"></i>
+    <i class="icon-user"></i><%= t('.attendance') %><i class="icon-user"></i>
   </h3>
-  <span class="badge"><%= @event.attendences.count %></span>/<span class="badge"><%= @event.capacity_max %></span> 
+  <span class="badge"><%= @event.attendances.count %></span>/<span class="badge"><%= @event.capacity_max %></span> 
   <table class="table table-condensed">
-    <% @event.attendences.order(:id).each_with_index do|attendence, i| %>
+    <% @event.attendances.order(:id).each_with_index do|attendance, i| %>
       <tr class="<%= ((i+1) <= @event.capacity_max)? 'success':'muted' %>">
-        <td><span class="label <%= css_level_badge(attendence.level) %>"><%= attendence.level.label %></span></td>
+        <td><span class="label <%= css_level_badge(attendance.level) %>"><%= attendance.level.label %></span></td>
         <td>
-          <%= link_to user_path(attendence.user_id) do %>
-            <%= image_tag attendence.user.image, size: '25x25' %>
-            <%= attendence.user.name %>
+          <%= link_to user_path(attendance.user_id) do %>
+            <%= image_tag attendance.user.image, size: '25x25' %>
+            <%= attendance.user.name %>
           <% end %> 
         </td>
       </tr>
     <% end %>
   </table>
   </section>
-  <% if user_signed_in? && @event.user_is_attendence?(current_user.id) %>
+  <% if user_signed_in? && @event.user_is_attendance?(current_user.id) %>
     <% unless @event.user_is_owner?(current_user.id) %>
-      <%= link_to t('.leave'), my_attendence_path(@event), class: 'btn btn-danger btn-block', confirm: t('.confirm_leave'), method: 'delete' %>
+      <%= link_to t('.leave'), my_attendance_path(@event), class: 'btn btn-danger btn-block', confirm: t('.confirm_leave'), method: 'delete' %>
     <% end %>
   <% end %>
 <% end %>

@@ -21,7 +21,7 @@ ja:
       leave: "キャンセルする"
       confirm_leave: "本当にキャンセル？"
       join: "参加する"
-      attendence: "参加者"
+      attendance: "参加者"
       edit: "イベントの設定を変更する"
       copy: "このイベントをコピーして新しいイベントを登録"
       created: "「%{name}」イベントを作成しました"

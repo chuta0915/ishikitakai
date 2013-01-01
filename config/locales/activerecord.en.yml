@@ -8,7 +8,7 @@ en:
       wiki: "Wiki"
       task: "TODO"
       notification: "Notification"
-      attendence: "Attendence"
+      attendance: "Attendance"
     attributes:
       user:
         name: "User name"
@@ -57,7 +57,7 @@ en:
         created_at: "Notified Date"
         read_at: "Read Date"
         read: "Status"
-      attendence:
-        level: "Member attendence level"
+      attendance:
+        level: "Member attendance level"
         created_at: "Created at"
         updated_at: "Updatet at"
