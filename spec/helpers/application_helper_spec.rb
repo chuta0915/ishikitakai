@@ -4,6 +4,9 @@ describe ApplicationHelper do
   describe 'fb_connect_js' do
     subject { helper.fb_connect_js }
     context 'when locale is not specified' do
+      before do
+        I18n.locale = nil
+      end
       it { should === '//connect.facebook.net/en_US/all.js' }
     end
     context 'when locale is en' do
