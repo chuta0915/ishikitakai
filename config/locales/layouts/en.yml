@@ -14,6 +14,7 @@ en:
     feeds: "Feeds"
     groups: "Groups"
     group: "Group Detail"
+    group_events: "Events"
     events: "Events"
     event: "Event Detail"
     next_page: "Load Next Page"

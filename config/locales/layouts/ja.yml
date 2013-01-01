@@ -14,6 +14,7 @@ ja:
     feeds: "フィードを見る"
     groups: "グループを探す"
     group: "グループ詳細"
+    group_events: "イベント"
     events: "イベントを探す"
     event: "イベント詳細"
     next_page: "もっと読む"
