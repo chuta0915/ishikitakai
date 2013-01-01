@@ -8,11 +8,11 @@ class GroupsController < ApplicationController
     page = params[:page] || 1
     per = params[:per] || 9
     if params[:keyword].present?
-      @groups = Group.search params[:keyword]
+      groups = Group.search params[:keyword]
     else
-      @groups = Group
+      groups = Group
     end
-    @groups = @groups
+    @groups = groups
       .where(scope_id: Scope.find_by_name('public').id)
       .order('id DESC')
       .page(page)

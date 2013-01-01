@@ -9,11 +9,11 @@ class WikisController < ApplicationController
     page = params[:page] || 1
     per = params[:per] || 10
     if params[:keyword].present?
-      @wikis = @parent.wikis.search(params[:keyword])
+      wikis = @parent.wikis.search(params[:keyword])
     else
-      @wikis = @parent.wikis
+      wikis = @parent.wikis
     end
-    @wikis = @wikis.order('id DESC')
+    @wikis = wikis.order('id DESC')
       .page(page)
       .per(per)
     respond_to do |format|

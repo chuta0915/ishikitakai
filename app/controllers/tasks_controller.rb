@@ -7,12 +7,12 @@ class TasksController < ApplicationController
 
   def index
     if params[:keyword].present?
-      @tasks = @group.tasks.search(params[:keyword])
+      tasks = @group.tasks.search(params[:keyword])
     else
-      @tasks = @group.tasks
+      tasks = @group.tasks
     end
     @task = @group.tasks.build
-    @tasks = @tasks.order('done, id DESC')
+    @tasks = tasks.order('done, id DESC')
     respond_to do |format|
       format.html
     end

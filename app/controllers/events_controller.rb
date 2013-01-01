@@ -8,13 +8,13 @@ class EventsController < ApplicationController
     page = params[:page] || 1
     per = params[:per] || 9
     if params[:keyword].present?
-      @events = Event.search params[:keyword]
+      events = Event.search params[:keyword]
     elsif params[:group_id].present?
-      @events = Group.find(params[:group_id]).events
+      events = Group.find(params[:group_id]).events
     else
-      @events = Event
+      events = Event
     end
-    @events = @events
+    @events = events
       .where(scope_id: Scope.find_by_name('public').id)
       .order('id DESC')
       .page(page)
