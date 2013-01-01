@@ -1,4 +1,11 @@
 module FeatureMacros
+  def self.included(base)
+    base.extend ClassMethods
+  end
+
+  module ClassMethods
+  end
+
   def sign_in user, provider
     auth = 
     {
@@ -19,8 +26,8 @@ module FeatureMacros
         }
       }
     }
-    OmniAuth.config.test_mode = true
     auth[:provider] = provider
-    OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new(auth)
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[provider.to_sym] = OmniAuth::AuthHash.new(auth)
   end
 end
