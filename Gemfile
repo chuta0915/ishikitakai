@@ -46,6 +46,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'spork', '~> 0.9.0.rc'
+  gem 'rb-fsevent'
   gem 'guard'
   gem 'guard-spork'
   gem 'guard-rspec'
