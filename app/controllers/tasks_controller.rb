@@ -12,7 +12,7 @@ class TasksController < ApplicationController
       tasks = @group.tasks
     end
     @task = @group.tasks.build
-    todo = tasks.where(done: nil).order('id DESC')
+    todo = tasks.where(done: false).order('id DESC')
     done = tasks.where(done: true).order('id DESC')
     @tasks = todo + done 
     respond_to do |format|
