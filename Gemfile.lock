@@ -287,6 +287,7 @@ GEM
       thor (>= 0.14.6, < 2.0)
     rainbow (1.1.4)
     rake (10.0.3)
+    rb-fsevent (0.9.3)
     rdoc (3.12)
       json (~> 1.4)
     redcarpet (2.2.2)
@@ -418,6 +419,7 @@ DEPENDENCIES
   rails_admin
   rails_autolink
   rails_config
+  rb-fsevent
   rspec-rails
   sass-rails (~> 3.2.3)
   showdown-rails
