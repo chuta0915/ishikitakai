@@ -6,6 +6,7 @@ class Task < ActiveRecord::Base
 
   validates_presence_of :name
   validates_length_of :name, minimum: 0, maximum: 200
+  validates_inclusion_of :done, in: [false, true]
   
   scope :search, lambda {|keyword| where(["
     name LIKE ?
