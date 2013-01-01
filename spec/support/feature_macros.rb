@@ -1,4 +1,4 @@
-module RequestMacros
+module FeatureMacros
   def sign_in user, provider
     auth = 
     {

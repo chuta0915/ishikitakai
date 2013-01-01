@@ -48,7 +48,7 @@ Spork.prefork do
     config.extend ControllerMacros, type: :controller
     config.extend ViewMacros, type: :view
     config.extend RoutingResourcesMacros, type: :routing
-    config.include RequestMacros, type: :request
+    config.include FeatureMacros, type: :feature
     # master data
     load "#{Rails.root}/db/seeds.rb"
 

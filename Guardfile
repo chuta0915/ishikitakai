@@ -23,8 +23,8 @@ guard 'rspec', :version => 2, :cli => '--color --format nested --drb --tty', :al
   watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }
   watch('config/routes.rb')                           { "spec/routing" }
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
-  # Capybara request specs
-  watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
+  # Capybara feature specs
+  watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/features/#{m[1]}_spec.rb" }
 end
 
 guard 'rails-assets', :runner => :cli do
