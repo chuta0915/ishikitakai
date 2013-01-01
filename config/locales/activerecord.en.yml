@@ -1,0 +1,63 @@
+en:
+  activerecord:
+    models:
+      user: "User"
+      user_setting: "User Setting"
+      group: "Group"
+      event: "Event"
+      wiki: "Wiki"
+      task: "TODO"
+      notification: "Notification"
+      attendence: "Attendence"
+    attributes:
+      user:
+        name: "User name"
+      user_setting:
+        mail_attend_status: "Deliver Email when attend status was changed"
+        mail_event_comment: "Deliver Email when posted event's comment"
+        mail_event_attendance: "Deliver Email when added event's attendance"
+        mail_group_event: "Deliver Email when added group's event"
+      group:
+        name: "community name"
+        summary: "summary"
+        content: "deital comment"
+        scope: "scope"
+      event:
+        name: "event name"
+        summary: "summary"
+        content: "detail comment"
+        place_name: "place"
+        place_url: "url"
+        place_address: "address"
+        place_map_url: "map url"
+        capacity_min: "minimum people count"
+        capacity_max: "maximum peopel count"
+        begin_at: "event date"
+        receive_begin_at: "receive date"
+        scope: "scope"
+        event_payment_kind_id: "payment kind"
+        fee: "fee"
+        group_id: "Select Community"
+      wiki:
+        name: "Title"
+        content: "Content"
+        user: "Last update User"
+        updated_at: "Last update"
+      task:
+        name: "TODO"
+        created_user: "Laste update User"
+        updated_at: "Last update"
+      membership:
+        level: "Member level"
+        created_at: "Created at"
+        updated_at: "Updatet at"
+      notification:
+        name: "Name"
+        content: "Content"
+        created_at: "Notified Date"
+        read_at: "Read Date"
+        read: "Status"
+      attendence:
+        level: "Member attendence level"
+        created_at: "Created at"
+        updated_at: "Updatet at"

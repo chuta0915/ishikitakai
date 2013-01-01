@@ -1,0 +1,64 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+      user_setting: "ユーザー設定"
+      group: "グループ"
+      event: "イベント"
+      wiki: "Wiki"
+      task: "TODO"
+      membership: "メンバー"
+      notification: "通知"
+      attendence: "参加者"
+    attributes:
+      user:
+        name: "ユーザー名"
+      user_setting:
+        mail_attend_status: "イベント参加可能となった時にメールを配信する"
+        mail_event_comment: "イベントに新たなコメントが投稿された時にメールを配信する"
+        mail_event_attendance: "イベントに新たな参加者が増えた時にメールを配信する"
+        mail_group_event: "グループに新たなイベントが増えた時にメールを配信する"
+      group:
+        name: "グループ名"
+        summary: "概要"
+        content: "詳細情報"
+        scope: "公開範囲"
+      event:
+        name: "イベント名"
+        summary: "概要"
+        content: "詳細情報"
+        place_name: "場所"
+        place_url: "URL"
+        place_address: "住所"
+        place_map_url: "地図 URL"
+        capacity_min: "最少催行人数"
+        capacity_max: "定員"
+        begin_at: "開催日時"
+        receive_begin_at: "募集期間"
+        scope: "参加募集範囲"
+        event_payment_kind_id: "無料/有料"
+        fee: "参加費"
+        group_id: "どこのグループ？"
+      wiki:
+        name: "タイトル"
+        content: "内容"
+        user: "最終更新者"
+        updated_at: "最終更新"
+      task:
+        name: "TODO"
+        created_user: "更新者"
+        updated_at: "最終更新"
+      membership:
+        level: "権限"
+        created_at: "作成日時"
+        updated_at: "更新日時"
+      notification:
+        name: "タイトル"
+        content: "内容"
+        created_at: "通知日時"
+        read_at: "開封日時"
+        read: "状態"
+      attendence:
+        level: "権限"
+        created_at: "作成日時"
+        updated_at: "更新日時"
