@@ -14,6 +14,12 @@ jQuery ->
         $('.progress').hide()
         return
     )
+    $.titleAlert.stop()
+    $.titleAlert "New Message",
+      requireBlur:true
+      stopOnFocus:true
+      duration:10000
+      interval:1000
     return
   
   channel.bind 'pusher:subscription_succeeded', (members) ->
