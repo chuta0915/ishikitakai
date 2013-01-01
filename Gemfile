@@ -34,7 +34,6 @@ group :assets do
 end
 
 group :development do
-  gem 'heroku', :github => 'heroku/heroku'
   gem 'foreman'
   gem 'guard-livereload'
   gem 'quiet_assets'
