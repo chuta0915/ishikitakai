@@ -12,7 +12,7 @@ IshikitakaiCom::Application.routes.draw do
     resources :notifications, :only => [:index, :show]
     delete '' => 'users#destroy'
     resources :memberships, :only => [:destroy], :as => :my_memberships
-    resources :attendences, :only => [:destroy], :as => :my_attendences
+    resources :attendances, :only => [:destroy], :as => :my_attendances
     resource :email, :only => [:show, :edit, :update] do
       member do
         get 'confirmation/:hash' => :confirmation, :hash => /[0-9a-f]+/, :as => :confirmation
@@ -34,7 +34,7 @@ IshikitakaiCom::Application.routes.draw do
   resources :comments, :only => [:show, :destroy]
   
   resources :events do
-    resources :attendences, :only => [:index, :create, :update]
+    resources :attendances, :only => [:index, :create, :update]
     member do
       get :copy
     end

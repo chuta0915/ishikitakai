@@ -14,8 +14,8 @@ class Event < ActiveRecord::Base
     :receive_begin_date, :receive_begin_time, :receive_end_date, :receive_end_time
   attr_accessor :begin_date, :begin_time, :end_date, :end_time,
     :receive_begin_date, :receive_begin_time, :receive_end_date, :receive_end_time
-  has_many :attendences, dependent: :destroy
-  has_many :users, through: :attendences
+  has_many :attendances, dependent: :destroy
+  has_many :users, through: :attendances
   has_many :wikis, as: :parent
   belongs_to :group
   belongs_to :user
@@ -38,10 +38,10 @@ class Event < ActiveRecord::Base
   after_initialize :join_date
   after_initialize :default_values, :unless => "self.persisted?"
   after_initialize :split_date
-  before_create :create_attendences
+  before_create :create_attendances
   before_validation :join_date
   after_find :split_date
-  after_update :update_attendence
+  after_update :update_attendance
   after_create :notify_group_event
 
 
@@ -50,32 +50,32 @@ class Event < ActiveRecord::Base
   end
   
   def user_can_edit? user_id
-    attendence = self.attendences.where(user_id: user_id).first
-    attendence.present? && attendence.level.name == 'master'
+    attendance = self.attendances.where(user_id: user_id).first
+    attendance.present? && attendance.level.name == 'master'
   end
 
-  def user_is_attendence? user_id
-    attendence = self.attendences.where(user_id: user_id).first
-    attendence.present?
+  def user_is_attendance? user_id
+    attendance = self.attendances.where(user_id: user_id).first
+    attendance.present?
   end
   
   def join user_id, level = 'member'
-    return if self.user_is_attendence? user_id
-    if self.attendences.count >= self.capacity_max
+    return if self.user_is_attendance? user_id
+    if self.attendances.count >= self.capacity_max
       level = 'pending'
     end
     if self.group.try(:user_is_owner?, user_id)
       level = 'master'
     end
-    self.attendences << Attendence.new(
+    self.attendances << Attendance.new(
       user_id: user_id, 
       level_id: Level.find_by_name(level).id,
     )
   end
 
   def leave user_id
-    return unless self.user_is_attendence? user_id
-    self.attendences.where(user_id: user_id).first.destroy
+    return unless self.user_is_attendance? user_id
+    self.attendances.where(user_id: user_id).first.destroy
   end
 
   private
@@ -89,9 +89,9 @@ class Event < ActiveRecord::Base
     self.fee = 0 if self.fee.nil?
   end
 
-  def create_attendences
+  def create_attendances
     if self.user_id.present?
-      self.attendences << Attendence.new(
+      self.attendances << Attendance.new(
         user_id: self.user_id, 
         level_id: Level.find_by_name(:master).id,
       )
@@ -118,12 +118,12 @@ class Event < ActiveRecord::Base
     self.receive_end_time = self.receive_end_at.to_s(:time)
   end
 
-  def update_attendence
+  def update_attendance
     if capacity_max_changed? && capacity_max > capacity_max_was
       # capacity_maxが増えていれば繰り上がりの可能性がある
       diff = capacity_max - capacity_max_was
-      self.attendences.order(:id).offset(capacity_max_was).limit(diff).each do |attendence|
-        attendence.accept
+      self.attendances.order(:id).offset(capacity_max_was).limit(diff).each do |attendance|
+        attendance.accept
       end 
     end
   end

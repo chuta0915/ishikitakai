@@ -21,7 +21,7 @@ en:
       leave: "Cancel"
       confirm_leave: "Are you really want to cancel?"
       join: "Attend"
-      attendence: "Attendences"
+      attendance: "Attendances"
       edit: "Edit this event"
       copy: "New Event copy from this Event"
       created: "Created %{name} event"

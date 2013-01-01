@@ -3,7 +3,7 @@ class WikisController < ApplicationController
   before_filter Filters::NestedResourcesFilter.new
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :user_is_member?
-  before_filter :user_is_attendence?
+  before_filter :user_is_attendance?
 
   def index
     params[:page] ||= 1
@@ -65,8 +65,8 @@ class WikisController < ApplicationController
     return render 'groups/navigate' unless @parent.user_is_member? current_user.try(:id)
   end
 
-  def user_is_attendence?
+  def user_is_attendance?
     return unless  @parent.is_a? Event
-    return head :not_found unless @parent.user_is_attendence? current_user.try(:id)
+    return head :not_found unless @parent.user_is_attendance? current_user.try(:id)
   end
 end

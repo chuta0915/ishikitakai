@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Attendence do
+describe Attendance do
   ancestors_should_include ActiveRecord::Base
 end
