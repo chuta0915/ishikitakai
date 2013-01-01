@@ -3,5 +3,5 @@ site:
   description: '意識高いコミュニティ・イベント管理システム'
   image: '/images/ishikitakai_logo.png'
   copyright: '<a href="http://twitter.com/ppworks">ppworks</a>'
-map:
+maps:
   prefix: '//maps.google.com/maps/api/staticmap?zoom=14&size=400x400&sensor=false&markers='

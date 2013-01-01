@@ -64,7 +64,7 @@
     <%= @event.place_address %>
   </div>
   <%= link_to "https://maps.google.co.jp/maps?q=#{@event.place_address}", target: '_blank' do %>
-    <% image_tag "#{Settings.map.prefix + @event.place_address}", class: 'img-polaroid' %>
+    <% image_tag "#{Settings.maps.prefix + @event.place_address}", class: 'img-polaroid' %>
   <% end %>
 <% end %>
 </section>
