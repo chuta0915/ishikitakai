@@ -18,8 +18,8 @@ jQuery ->
     $.titleAlert "New Message",
       requireBlur:true
       stopOnFocus:true
-      duration:10000
-      interval:1000
+      duration:0
+      interval:700
     return
   
   channel.bind 'pusher:subscription_succeeded', (members) ->
