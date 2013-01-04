@@ -68,3 +68,9 @@ heroku addons:add pusher:sandbox
 heroku addons:add sendgrid:starter
 heroku addons:add papertrail:choklad
 ```
+
+### production
+
+```
+heroku addons:add ssl
+```
