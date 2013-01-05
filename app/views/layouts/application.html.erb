@@ -18,8 +18,8 @@
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag '/favicon.ico', rel: 'shortcut icon' %>
-    <%= render 'shared/pusher' %>
     <%= javascript_include_tag "application" %>
+    <%= render 'shared/pusher' %>
     <%= yield :head %>
     <%= content_for?(:ogp) ? yield(:ogp) : render('shared/ogp', type: 'website', url: request.url, image: "#{request.scheme}://#{ENV['HOST']}#{Settings.site.image}", description: Settings.site.description) %>
   </head>
