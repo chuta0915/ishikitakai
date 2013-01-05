@@ -60,6 +60,11 @@ Spork.prefork do
       ActionDispatch::Reloader.prepare!
       ActiveRecord::Base.instantiate_observers
     end
+
+    config.before do
+      Fog.mock!
+      Fog::Mock.reset
+    end
   end
 end
 
