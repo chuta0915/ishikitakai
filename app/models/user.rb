@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  include Common::Storable
+  storable_file :image
+
   devise :rememberable, :trackable, :omniauthable
   attr_accessible :remember_me, :name, :image, :default_provider_id, :email
   has_many :providers_users, dependent: :destroy
@@ -11,10 +14,12 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email
   before_create :create_setting
+  after_save :update_image
 
   extend Providers::Facebook
   extend Providers::Twitter
   extend Providers::Github
+
   
   class << self
     def find_by_path provider_name, user_key
@@ -89,5 +94,9 @@ class User < ActiveRecord::Base
 
   def create_setting
     self.setting = UserSetting.new
+  end
+
+  def update_image
+    self.update_column(:image, self.stored_url)
   end
 end

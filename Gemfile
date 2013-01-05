@@ -26,6 +26,7 @@ gem 'paper_trail'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'showdown-rails'
+gem 'fog'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

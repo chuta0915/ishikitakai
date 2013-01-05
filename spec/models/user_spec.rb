@@ -38,4 +38,18 @@ describe User do
   describe 'github login' do
     it { User.find_github(auth, nil).should be_present }
   end
+
+  describe 'storable' do
+    subject { new_user }
+    context 'not saved' do
+      it { subject.image.should =~ /twitter/ }
+    end
+    context 'saved' do
+      before do
+        new_user.save
+        new_user.reload
+      end
+      it { subject.image.should =~ /s3\.amazonaws\.com\/users\/image\/#{new_user.id}/ }
+    end
+  end
 end
