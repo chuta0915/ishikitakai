@@ -73,4 +73,6 @@ heroku addons:add papertrail:choklad
 
 ```
 heroku addons:add ssl
+heroku certs:add server.crt server.key
+heroku domains:add www.ishikitakai.com
 ```
