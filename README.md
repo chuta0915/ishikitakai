@@ -68,3 +68,11 @@ heroku addons:add pusher:sandbox
 heroku addons:add sendgrid:starter
 heroku addons:add papertrail:choklad
 ```
+
+### production
+
+```
+heroku addons:add ssl
+heroku certs:add server.crt server.key
+heroku domains:add www.ishikitakai.com
+```
