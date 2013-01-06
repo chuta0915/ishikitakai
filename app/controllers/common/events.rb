@@ -10,10 +10,10 @@ module Common::Events
   end
 
   def user_is_owner?
-    return head :not_found unless @event.user_is_owner? current_user.id
+    return head :not_found unless @event.user_is_owner? current_user
   end
 
   def user_can_edit?
-    return head :not_found unless @event.user_can_edit? current_user.id
+    return head :not_found unless @event.user_can_edit? current_user
   end
 end

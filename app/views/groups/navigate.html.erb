@@ -15,7 +15,7 @@
 <div class="alert alert-block">
   <%= t('groups.navigate.content') %>
   <div class="form-action">
-    <% if user_signed_in? && @group.user_is_member?(current_user.id) %>
+    <% if user_signed_in? && @group.user_is_member?(current_user) %>
     <% else %>
       <%= link_to t('groups.show.join'), group_memberships_path(@group), class: 'btn btn-primary', method: 'post' %>
     <% end %>

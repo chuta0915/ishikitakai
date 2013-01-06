@@ -6,8 +6,8 @@ class Comment < ActiveRecord::Base
   validates_presence_of :content
   after_create :notify_event_comment
 
-  def user_is_owner? user_id
-    self.user_id == user_id
+  def user_is_owner? user
+    self.user_id == user.try(:id)
   end
 
   private

@@ -45,8 +45,8 @@ class User < ActiveRecord::Base
     Provider.select('id, name').find self.default_provider_id
   end
   
-  def has_provider? provider_id
-    self.providers_users.select(:provider_id).map{|providers_user|providers_user.provider_id}.include? provider_id
+  def has_provider? provider
+    self.providers_users.select(:provider_id).map{|providers_user|providers_user.provider_id}.include? provider.id
   end
   
   def has_all_provider?

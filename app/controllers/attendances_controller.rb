@@ -9,7 +9,7 @@ class AttendancesController < ApplicationController
   end
 
   def create
-    @event.join current_user.id
+    @event.join current_user
     redirect_to event_path(params[:event_id])
   end
 
@@ -21,7 +21,7 @@ class AttendancesController < ApplicationController
   end
 
   def destroy
-    @event.leave current_user.id unless @event.user_is_owner?(current_user.id)
+    @event.leave current_user.id unless @event.user_is_owner?(current_user)
     redirect_to event_path(params[:id])
   end
 end

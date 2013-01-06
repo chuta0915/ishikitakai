@@ -10,7 +10,7 @@ describe Comment do
     context 'when posted comment to event' do
       before do
         ActionMailer::Base.deliveries = []
-        event.join friend.id
+        event.join friend
         event.comments.create(content: 'comment', user_id: user.id)
       end
       it { user.notifications.should have(2).items }
