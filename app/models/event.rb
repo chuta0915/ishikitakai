@@ -14,9 +14,10 @@ class Event < ActiveRecord::Base
     :receive_begin_date, :receive_begin_time, :receive_end_date, :receive_end_time
   attr_accessor :begin_date, :begin_time, :end_date, :end_time,
     :receive_begin_date, :receive_begin_time, :receive_end_date, :receive_end_time
-  has_many :attendances, dependent: :destroy
+  has_many :attendances, dependent: :delete_all
   has_many :users, through: :attendances
   has_many :wikis, as: :parent
+  has_many :notifications, as: :trigger, dependent: :delete_all
   belongs_to :group
   belongs_to :user
   belongs_to :scope
