@@ -1,3 +1,5 @@
+require 'open-uri'
+require 'digest/md5'
 class User < ActiveRecord::Base
   include Common::Storable
   storable_file :image
@@ -14,7 +16,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email
   before_create :create_setting
-  after_save :update_image
+  after_create :save_to_s3 # Common::Storable
 
   extend Providers::Facebook
   extend Providers::Twitter
@@ -87,6 +89,23 @@ class User < ActiveRecord::Base
     end
   end
 
+  def update_name_and_image(name, image)
+    self.name = name
+    self.image = image
+    if self.image_content_changed?
+      self.save_to_s3
+    else
+      self.image = self.image_was
+    end
+    self.save!
+  end
+
+  def image_content_changed?
+    return true unless self.image_was
+    return true unless Digest::MD5.hexdigest(open(self.image).read) == Digest::MD5.hexdigest(open(self.image_was).read)
+    return false
+  end
+
   private
   def confirm_key
     Digest::SHA1.hexdigest("#{self.id}#{Time.current.to_i}")
@@ -94,9 +113,5 @@ class User < ActiveRecord::Base
 
   def create_setting
     self.setting = UserSetting.new
-  end
-
-  def update_image
-    self.update_column(:image, self.stored_url)
   end
 end

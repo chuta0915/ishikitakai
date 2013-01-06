@@ -26,13 +26,10 @@ module Providers::Facebook
     else
       user = User.find providers_user[:user_id]
       if current_user.nil?
-        user.default_provider_id = Provider.facebook.id
-        user.save!
+        user.update_column(:default_provider_id, Provider.facebook.id)
       end
       if user.default_provider_id == Provider.facebook.id
-        user.name = name
-        user.image = image
-        user.save!
+        user.update_name_and_image(name, image)
       end
       providers_user.name = name
       providers_user.image = image

@@ -30,13 +30,10 @@ module Providers::Twitter
     else
       user = User.find providers_user[:user_id]
       if current_user.nil?
-        user.default_provider_id = Provider.twitter.id
-        user.save!
+        user.update_column(:default_provider_id, Provider.twitter.id)
       end
       if user.default_provider_id == Provider.twitter.id
-        user.name = name
-        user.image = image
-        user.save!
+        user.update_name_and_image(name, image)
       end
       
       providers_user.name = name
