@@ -9,10 +9,10 @@ describe 'sign_in' do
   context 'sign in with twitter account' do
     before do
       sign_in new_user, :twitter
-      visit "/users/auth/twitter"
+      visit user_omniauth_authorize_path(provider: 'twitter')
     end
     it 'should have signed message' do
-      page.should have_content 'twitterアカウントでログインしました。'
+      page.should have_content 'Successfully authenticated from twitter account.'
     end
   end
 end
