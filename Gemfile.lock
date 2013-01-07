@@ -71,6 +71,7 @@ GEM
     commonjs (0.2.6)
     cookiejar (0.3.0)
     daemons (1.1.9)
+    database_cleaner (0.9.1)
     debugger (1.2.3)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.1.1)
@@ -399,6 +400,7 @@ DEPENDENCIES
   capybara
   capybara-webkit
   coffee-rails (~> 3.2.1)
+  database_cleaner
   debugger
   delayed_job
   delayed_job_active_record
