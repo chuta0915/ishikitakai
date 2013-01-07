@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'spork'
+require 'capybara/rspec'
+require 'capybara/rails'
 require 'launchy'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
@@ -69,6 +71,8 @@ Spork.prefork do
       User.any_instance.stub(:save_to_s3).and_return(nil)
     end
   end
+  Capybara.default_driver = :webkit
+  Capybara.javascript_driver = :webkit
 end
 
 Spork.each_run do

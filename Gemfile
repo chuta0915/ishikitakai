@@ -60,6 +60,7 @@ group :development, :test do
   gem 'guard-jasmine-headless-webkit'
   gem 'capybara'
   gem 'launchy'
+  gem 'capybara-webkit'
 end
 
 group :production do
