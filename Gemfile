@@ -58,7 +58,7 @@ group :development, :test do
   gem 'jasmine-headless-webkit', :github => 'johnbintz/jasmine-headless-webkit'
   gem 'guard-rails-assets'
   gem 'guard-jasmine-headless-webkit'
-  gem 'capybara'
+  gem 'capybara', :github => 'jnicklas/capybara'
   gem 'launchy'
   gem 'capybara-webkit'
   gem 'database_cleaner'
