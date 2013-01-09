@@ -1,8 +1,9 @@
 IshikitakaiCom::Application.routes.draw do
   if Rails.env.production?
-    match "/" => redirect("https://www.ishikitakai.com/"), :constraints => { :protocol => "http://" }
-    match "*path" => redirect {|params| "https://www.ishikitakai.com/#{CGI::unescape(params[:path])}" }, :constraints => { :protocol => "http://" }
-    match "*path" => redirect {|params| "https://www.ishikitakai.com/#{CGI::unescape(params[:path])}" }, :constraints => { :subdomain => "" }
+    match "/" => redirect("https://ishikitakai.com/"), :constraints => { :protocol => "http://" }
+    match "/" => redirect("https://ishikitakai.com/"), :constraints => { :protocol => "https://", :subdomain => "www" }
+    match "*path" => redirect {|params| "https://ishikitakai.com/#{CGI::unescape(params[:path])}" }, :constraints => { :protocol => "http://" }
+    match "*path" => redirect {|params| "https://ishikitakai.com/#{CGI::unescape(params[:path])}" }, :constraints => { :subdomain => "www" }
   end
 
   mount RailsAdmin::Engine => '/management', :as => 'rails_admin'
