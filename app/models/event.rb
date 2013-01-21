@@ -28,13 +28,17 @@ class Event < ActiveRecord::Base
   validates_length_of :summary, minimum: 0, maximum: 100
   validates_length_of :content, minimum: 0, maximum: 2000
 
-  scope :search, lambda {|keyword| where(["
-    name LIKE ? OR 
-    content LIKE ? OR
-    summary LIKE ?
-    ", 
-    "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"
-  ])}
+  scope :search, lambda {|keyword|
+    where(["
+      events.name LIKE ? OR 
+      events.content LIKE ? OR
+      events.summary LIKE ?
+      ", 
+      "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"
+    ])
+    .joins(:group)
+    .where('groups.scope_id = ?', Scope.find_by_name('public').id)
+  }
 
   after_initialize :join_date
   after_initialize :default_values, :unless => "self.persisted?"

@@ -10,6 +10,26 @@ describe Event do
   let(:master) { Level.find 1 }
   let(:valid_paramter) { FactoryGirl.attributes_for :new_event }
 
+  describe 'search scope' do
+    let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
+    let!(:ishikitakai) { FactoryGirl.create :ishikitakai, user_id: user.id }
+    let!(:event) { FactoryGirl.create :mokmok_event, user: user, group_id: sendagayarb.id }
+    let!(:private_event) { FactoryGirl.create :private_event, user: user, group_id: ishikitakai.id }
+    subject { Event.search(keyword).first }
+    context 'when passed "sendagaya"' do
+      let(:keyword) { 'sendagaya' }
+      its(:id) { should == event.id }
+    end
+    context 'when passed "tokyo"' do
+      let(:keyword) { 'tokyo' }
+      it { should be_blank }
+    end
+    context 'when passed "private"' do
+      let(:keyword) { 'private' }
+      it { should be_blank }
+    end
+  end
+
   describe "when new" do
     before do
       @event = Event.new(valid_paramter)
