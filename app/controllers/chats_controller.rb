@@ -24,7 +24,7 @@ class ChatsController < ApplicationController
     @chat = @group.chats.build params[:chat]
     @chat.user_id = current_user.id
     if @chat.save
-      Pusher["presence-group_chats_#{@group.id}"].trigger('chat', id: @chat.id) unless Rails.env.test?
+      Pusher["presence-group_chats_#{@group.id}"].trigger_async('chat', id: @chat.id) unless Rails.env.test?
     end
 
     respond_to do |format|
