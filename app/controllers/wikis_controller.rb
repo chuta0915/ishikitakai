@@ -62,11 +62,11 @@ class WikisController < ApplicationController
   def user_is_member?
     return unless  @parent.is_a? Group
     @group = @parent
-    return render 'groups/navigate' unless @parent.user_is_member? current_user.try(:id)
+    return render 'groups/navigate' unless @parent.user_is_member? current_user
   end
 
   def user_is_attendance?
     return unless  @parent.is_a? Event
-    return head :not_found unless @parent.user_is_attendance? current_user.try(:id)
+    return head :not_found unless @parent.user_is_attendance? current_user
   end
 end

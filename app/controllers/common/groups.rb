@@ -10,14 +10,14 @@ module Common::Groups
   end
   
   def user_is_owner?
-    return head :not_found unless @group.user_is_owner? current_user.id
+    return head :not_found unless @group.user_is_owner? current_user
   end
 
   def user_can_edit?
-    return head :not_found unless @group.user_can_edit? current_user.id
+    return head :not_found unless @group.user_can_edit? current_user
   end
 
   def user_is_member?
-    return render 'groups/navigate' unless @group.user_is_member? current_user.id
+    return render 'groups/navigate' unless @group.user_is_member? current_user
   end
 end

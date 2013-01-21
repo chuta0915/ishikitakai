@@ -65,7 +65,7 @@ describe Event do
         ActionMailer::Base.deliveries = []
         event.capacity_max = 1
         event.save
-        event.join friend.id
+        event.join friend
         event.capacity_max = 2
         event.save
       end
@@ -81,9 +81,9 @@ describe Event do
         ActionMailer::Base.deliveries = []
         event.capacity_max = 2
         event.save
-        event.join other_user.id
-        event.join friend.id
-        event.leave other_user.id
+        event.join other_user
+        event.join friend
+        event.leave other_user
       end
       it { friend.notifications.should have(1).items }
       it { friend.notifications[0].type.should == 'Notification::AttendStatus' }
@@ -98,7 +98,7 @@ describe Event do
     context "when added group's event" do
       let(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
       before do
-        sendagayarb.join friend.id
+        sendagayarb.join friend
         ActionMailer::Base.deliveries = []
         event = FactoryGirl.create :mokmok_event, user_id: user.id, group_id: sendagayarb.id
       end
@@ -110,7 +110,7 @@ describe Event do
     context "when added none group's event" do
       let(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
       before do
-        sendagayarb.join friend.id
+        sendagayarb.join friend
         ActionMailer::Base.deliveries = []
         event = FactoryGirl.create :mokmok_event, user_id: user.id, group_id: nil
       end
@@ -129,8 +129,8 @@ describe Event do
       let!(:event) { FactoryGirl.create :mokmok_event, user_id: master_user.id }
       subject { event.attendances.where(user_id: other_user.id).last }
       before do
-        sendagayarb.join other_user.id, 'member'
-        event.join other_user.id
+        sendagayarb.join other_user, 'member'
+        event.join other_user
       end
       it { subject.level.should == Level.find_by_name('member') }
     end
@@ -138,8 +138,8 @@ describe Event do
       let!(:event) { FactoryGirl.create :mokmok_event, user_id: other_user.id }
       subject { event.attendances.where(user_id: master_user.id).last }
       before do
-        sendagayarb.join other_user.id, 'master'
-        event.join master_user.id
+        sendagayarb.join other_user, 'master'
+        event.join master_user
       end
       it { subject.level.should == Level.find_by_name('master') }
     end 
@@ -147,7 +147,7 @@ describe Event do
       let!(:event) { FactoryGirl.create :mokmok_event, user_id: master_user.id }
       subject { sendagayarb.memberships.where(user_id: other_user.id).last }
       before do
-        event.join other_user.id
+        event.join other_user
       end
       it { subject.should be_present }
     end

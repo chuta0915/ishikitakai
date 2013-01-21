@@ -22,7 +22,7 @@
         <small>
         <%= @today_event.summary %>
         </small>
-        <% if user_signed_in? && !@today_event.user_is_attendance?(current_user.id) %>
+        <% if user_signed_in? && !@today_event.user_is_attendance?(current_user) %>
           <%= link_to t('events.show.join'), event_attendances_path(@today_event), class: 'btn btn-primary', method: 'post' %>
         <% end %>
       </h3>
@@ -52,7 +52,7 @@
 
 <% content_for_sidebar do %>
   <div class="form-action">
-    <% if user_signed_in? && @group.user_is_member?(current_user.id) %>
+    <% if user_signed_in? && @group.user_is_member?(current_user) %>
     <% else %>
       <%= link_to t('.join'), group_memberships_path(@group), class: 'btn btn-primary btn-block', method: 'post' %>
     <% end %>
@@ -72,8 +72,8 @@
     <% end %>
   </table>
   </section>
-  <% if user_signed_in? && @group.user_is_member?(current_user.id) %>
-    <% unless @group.user_is_owner?(current_user.id) %>
+  <% if user_signed_in? && @group.user_is_member?(current_user) %>
+    <% unless @group.user_is_owner?(current_user) %>
       <%= link_to t('.leave'), my_membership_path(@group), class: 'btn btn-danger btn-block', confirm: t('.confirm_leave'), method: 'delete' %>
     <% end %>
   <% end %>

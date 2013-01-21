@@ -30,6 +30,6 @@ class CommentsController < ApplicationController
   end
 
   def user_is_owner?
-    return head :not_found unless @comment.user_is_owner? current_user.id
+    return head :not_found unless @comment.user_is_owner? current_user
   end
 end

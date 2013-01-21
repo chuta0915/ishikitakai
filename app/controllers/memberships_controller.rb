@@ -10,9 +10,9 @@ class MembershipsController < ApplicationController
 
   def create
     if @group.scope.name == 'private'
-      @group.join current_user.id, 'pending'
+      @group.join current_user, 'pending'
     else
-      @group.join current_user.id
+      @group.join current_user
     end
     redirect_to group_path(params[:group_id])
   end
@@ -25,7 +25,7 @@ class MembershipsController < ApplicationController
   end
 
   def destroy
-    @group.leave current_user.id unless @group.user_is_owner?(current_user.id)
+    @group.leave current_user unless @group.user_is_owner?(current_user)
     redirect_to group_path(params[:id])
   end
 end

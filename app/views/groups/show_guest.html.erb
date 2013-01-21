@@ -19,7 +19,7 @@
 </div>
 
 <% content_for_sidebar do %>
-    <% if @group.user_is_pending? current_user.try(:id) %>
+    <% if @group.user_is_pending? current_user %>
       <div class="form-action">
         <%= link_to t('.pending'), '#', class: 'btn btn-block', disabled: 'disabled' %>
       </div>

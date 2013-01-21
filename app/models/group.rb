@@ -29,10 +29,10 @@ class Group < ActiveRecord::Base
   before_create :create_memberships
 
   class << self
-    def collection_select user_id
+    def collection_select user
       groups = self
         .joins(:memberships)
-        .where('memberships.user_id = ? ', user_id)
+        .where('memberships.user_id = ? ', user.try(:id))
         .order('memberships.updated_at DESC')
         .all
       groups.unshift Group.new(name: I18n.t('group.records.none'), content: 'none', summary: 'none') 
@@ -40,43 +40,43 @@ class Group < ActiveRecord::Base
     end
   end
 
-  def user_is_owner? user_id
-    self.user_can_edit? user_id
+  def user_is_owner? user
+    self.user_can_edit? user
   end
   
-  def user_can_edit? user_id
-    membership = self.memberships.where(user_id: user_id).first
+  def user_can_edit? user
+    membership = self.memberships.where(user_id: user.try(:id)).first
     membership.present? && membership.level.name == 'master'
   end
 
-  def user_is_member? user_id
-    membership = self.memberships.where(user_id: user_id).first
+  def user_is_member? user
+    membership = self.memberships.where(user_id: user.try(:id)).first
     if membership.present?
       return membership.level.name != 'pending'
     end
   end
 
-  def user_is_in? user_id
-    membership = self.memberships.where(user_id: user_id).first
+  def user_is_in? user
+    membership = self.memberships.where(user_id: user.try(:id)).first
     membership.present?
   end
 
-  def user_is_pending? user_id
-    membership = self.memberships.where(user_id: user_id).first
+  def user_is_pending? user
+    membership = self.memberships.where(user_id: user.try(:id)).first
     membership.present? && membership.level.name == 'pending'
   end
 
-  def join user_id, level = 'member'
-    return if self.user_is_in? user_id
+  def join user, level = 'member'
+    return if self.user_is_in? user
     self.memberships << Membership.new(
-      user_id: user_id, 
+      user_id: user.try(:id), 
       level_id: Level.find_by_name(level).id
     )
   end
 
-  def leave user_id
-    return unless self.user_is_member? user_id
-    self.memberships.where(user_id: user_id).first.destroy
+  def leave user
+    return unless self.user_is_member? user
+    self.memberships.where(user_id: user.try(:id)).first.destroy
   end
 
   private

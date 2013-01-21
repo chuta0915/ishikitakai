@@ -58,7 +58,7 @@ class Attendance < ActiveRecord::Base
     group = self.try(:event).try(:group)
     return unless group
 
-    group.join self.user.id
+    group.join self.user
   end
 
   def notify_event_attendance
