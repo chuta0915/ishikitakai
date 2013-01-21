@@ -1,6 +1,7 @@
 ja:
   tasks:
     index:
+      title: "TODO"
       created: "TODO %{name} を作成しました。"
       updated: "TODO %{name} を完了しました。"
       destroyed: "TODO %{name} を削除しました。"

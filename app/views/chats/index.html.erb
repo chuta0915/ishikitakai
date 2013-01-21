@@ -1,3 +1,6 @@
+<%= content_for :title do %>
+  <%= "#{t('.title')} - #{@group.name}" %>
+<% end %>
 <% content_for :body_class, "chats " %>
 <% content_for :body_data_id, @group.id.to_s %>
 <ul class="breadcrumb">

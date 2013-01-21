@@ -1,3 +1,6 @@
+<%= content_for :title do %>
+  <%= "#{t('.title')} - #{@parent.name}" %>
+<% end %>
 <ul class="breadcrumb">
   <li><%= link_to t("nav.#{@parent.class.to_s.tableize}"), send("#{@parent.class.to_s.tableize}_path") %></a> <span class="divider">/</span></li>
   <% if @parent.respond_to?(:group) && @parent.group.present? %>

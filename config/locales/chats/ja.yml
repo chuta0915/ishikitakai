@@ -4,3 +4,5 @@ ja:
       submit: "発言"
       placeholder:
         content: "発言内容を入力してEnterキーで発言(改行を入力したい場合は、Shiftキーを押しながらEnterキー)"
+    index:
+      title: "チャット"

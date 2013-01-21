@@ -4,3 +4,5 @@ en:
       submit: "Say"
       placeholder:
         content: "If you push Enter-key, message sent. If you push Enter-key with Shift-key, return code is inputed."    
+    index:
+      title: "Chat"

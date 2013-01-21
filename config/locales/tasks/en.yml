@@ -1,6 +1,7 @@
 en:
   tasks:
     index:
+      title: "TODO"
       created: "Created %{name} TODO"
       updated: "Updated %{name} TODO status"
       destroyed: "Destroyed %{name} TODO"

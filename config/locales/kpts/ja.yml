@@ -1,6 +1,7 @@
 ja:
   kpts:
     index:
+      title: "KPT"
       created: "KPT %{name} を作成しました。"
       updated: "KPT %{name} を完了しました。"
       destroyed: "KPT %{name} を削除しました。"

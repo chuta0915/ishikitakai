@@ -1,6 +1,7 @@
 en:
   kpts:
     index:
+      title: "KPT"
       created: "Created %{name} KPT"
       updated: "Updated %{name} KPT status"
       destroyed: "Destroyed %{name} KPT"

@@ -1,7 +1,7 @@
 ja:
   wikis:
     index:
-      title: "登録されているwiki"
+      title: "Wiki"
       new: "wikiを登録する"
       show_html: "詳しく見る &raquo;"
     edit:
