@@ -11,6 +11,13 @@ class ApplicationController < ActionController::Base
     return if Rails.env.test?
     I18n.locale = extract_locale_from_accept_language_header
     I18n.locale = :en if admin_signed_in?
+    update_locale
+  end
+
+  def update_locale
+    return unless user_signed_in?
+    return if current_user.locale == I18n.locale.to_s
+    current_user.update_column(:locale, I18n.locale.to_s)
   end
 
   def set_notification
