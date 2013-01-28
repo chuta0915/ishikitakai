@@ -21,7 +21,7 @@ class AttendancesController < ApplicationController
   end
 
   def destroy
-    @event.leave current_user.id unless @event.user_is_owner?(current_user)
+    @event.leave current_user unless @event.user_is_owner?(current_user)
     redirect_to event_path(params[:id])
   end
 end
