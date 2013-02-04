@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130128111557) do
+ActiveRecord::Schema.define(:version => 20130204104009) do
 
   create_table "admins", :force => true do |t|
     t.string    "name"
@@ -255,6 +255,7 @@ ActiveRecord::Schema.define(:version => 20130128111557) do
     t.timestamp "confirm_limit_at"
     t.string    "hash_to_confirm_email"
     t.string    "locale"
+    t.text      "content"
   end
 
   add_index "users", ["email"], :name => "idx_email_on_users", :unique => true
