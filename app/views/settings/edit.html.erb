@@ -10,6 +10,11 @@
       <%= t('nav.mail_setting') %>
     <% end %>
   </li>
+  <li>
+    <%= link_to my_edit_path do %>
+      <%= t('nav.edit_user') %>
+    <% end %>
+  </li>
 </ul>
 
 <%= form_for(@user_setting, url: my_setting_path, method: :put, html:{class: 'form-horizontal'}) do |f| %>
