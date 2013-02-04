@@ -18,6 +18,8 @@ IshikitakaiCom::Application.routes.draw do
   scope :path => :my do
     resources :notifications, :only => [:index, :show]
     delete '' => 'users#destroy'
+    get 'edit' => 'users#edit'
+    put '' => 'users#update'
     resources :memberships, :only => [:destroy], :as => :my_memberships
     resources :attendances, :only => [:destroy], :as => :my_attendances
     resource :email, :only => [:show, :edit, :update] do
@@ -28,7 +30,6 @@ IshikitakaiCom::Application.routes.draw do
     resource :setting, :only => [:show, :edit, :update], :as => :my_setting
     root :to => 'users#show', :as => :my_root
   end
-  resource :users, :only => [:edit, :update]
   resources :users, :only => [:show]
   resources :groups do
     resources :memberships, :only => [:index, :create, :update]
