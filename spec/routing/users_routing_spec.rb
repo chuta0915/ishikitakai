@@ -2,6 +2,7 @@ require "spec_helper"
 
 describe UsersController do
   resources_should_routes 'users', [:show]
+  resource_should_routes 'users', [:edit, :update]
 
   describe "routing /my/users" do
     it "routes to #destroy" do

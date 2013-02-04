@@ -28,6 +28,7 @@ IshikitakaiCom::Application.routes.draw do
     resource :setting, :only => [:show, :edit, :update], :as => :my_setting
     root :to => 'users#show', :as => :my_root
   end
+  resource :users, :only => [:edit, :update]
   resources :users, :only => [:show]
   resources :groups do
     resources :memberships, :only => [:index, :create, :update]
