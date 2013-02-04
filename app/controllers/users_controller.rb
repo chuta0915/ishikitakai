@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attribute(:content, params[:user][:content])
-      redirect_to users_path
+      redirect_to my_edit_path
     else
       render :edit
     end

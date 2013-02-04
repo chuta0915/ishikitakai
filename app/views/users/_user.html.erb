@@ -1,23 +1,31 @@
-<%= image_tag user.image, class:'face', size:'50x50' %>
-<h2><%= user.name %></h2>
-<ul class="unstyled providers">
-  <% user.providers.each do |provider| %>
-    <li>
-      <%= link_to '', rel: 'tooltip', :'data-title' => provider.name, :'data-placement' => 'bottom' do %>
-        <%= image_tag "#{provider.name}.png" %>
+<div class="row">
+  <div class="span3">
+    <%= image_tag user.image, class:'face', size:'50x50' %>
+    <h2><%= user.name %></h2>
+    <ul class="unstyled providers">
+      <% user.providers.each do |provider| %>
+        <li>
+          <%= link_to '', rel: 'tooltip', :'data-title' => provider.name, :'data-placement' => 'bottom' do %>
+            <%= image_tag "#{provider.name}.png" %>
+          <% end %>
+        </li>
       <% end %>
-    </li>
-  <% end %>
-</ul>
+    </ul>
 
-
-<ul class="unstyled groups">
-  <% user.memberships.each do|membership| %>
-    <li>
-      <%= link_to group_path(membership.group), rel: 'tooltip', :'data-title' => membership.group.summary, :'data-placement' => 'bottom' do %>
-        <span class="label <%= membership.level.name %>"><%= membership.level.label %></span>
-        <span class="label label-info"><%= membership.group.name %></span>
+    <ul class="unstyled groups">
+      <% user.memberships.each do|membership| %>
+        <li>
+          <%= link_to group_path(membership.group), rel: 'tooltip', :'data-title' => membership.group.summary, :'data-placement' => 'bottom' do %>
+            <span class="label <%= membership.level.name %>"><%= membership.level.label %></span>
+            <span class="label label-info"><%= membership.group.name %></span>
+          <% end %>
+        </li>
       <% end %>
-    </li>
-  <% end %>
-</ul>
+    </ul>
+  </div>
+  <div class="content span9">
+    <section>
+      <%= render 'shared/content_md', model: user %>
+    </section>
+  </div> 
+</div>

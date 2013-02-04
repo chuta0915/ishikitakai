@@ -2,6 +2,7 @@ require 'open-uri'
 require 'digest/md5'
 class User < ActiveRecord::Base
   include Common::Storable
+  include Common::Markdown
   storable_file :image
 
   devise :rememberable, :trackable, :omniauthable

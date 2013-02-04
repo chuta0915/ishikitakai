@@ -69,7 +69,7 @@ describe UsersController do
         sign_in user
         get :update, user: {content: 'test'}
       end
-      it { response.should redirect_to users_path }
+      it { response.should redirect_to my_edit_path }
     end
   end
 end
