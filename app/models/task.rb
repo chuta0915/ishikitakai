@@ -14,7 +14,7 @@ class Task < ActiveRecord::Base
     "%#{keyword}%"
   ])}
 
-  def user_id= user_id
+  def user_id=(user_id)
     self.created_user_id = user_id
   end
 

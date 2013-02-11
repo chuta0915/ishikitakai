@@ -4,7 +4,7 @@ module Common::UserCreation
   end
 
   module ClassMethods
-    def create_by_user attr, user
+    def create_by_user(attr, user)
       model = self.new attr
       model.user_id = user.try(:id)
       return model unless model.valid?

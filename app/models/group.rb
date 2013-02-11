@@ -29,7 +29,7 @@ class Group < ActiveRecord::Base
   before_create :create_memberships
 
   class << self
-    def collection_select user
+    def collection_select(user)
       groups = self
         .joins(:memberships)
         .where('memberships.user_id = ? ', user.try(:id))
@@ -40,33 +40,33 @@ class Group < ActiveRecord::Base
     end
   end
 
-  def user_is_owner? user
+  def user_is_owner?(user)
     self.user_can_edit? user
   end
   
-  def user_can_edit? user
+  def user_can_edit?(user)
     membership = self.memberships.where(user_id: user.try(:id)).first
     membership.present? && membership.level.name == 'master'
   end
 
-  def user_is_member? user
+  def user_is_member?(user)
     membership = self.memberships.where(user_id: user.try(:id)).first
     if membership.present?
       return membership.level.name != 'pending'
     end
   end
 
-  def user_is_in? user
+  def user_is_in?(user)
     membership = self.memberships.where(user_id: user.try(:id)).first
     membership.present?
   end
 
-  def user_is_pending? user
+  def user_is_pending?(user)
     membership = self.memberships.where(user_id: user.try(:id)).first
     membership.present? && membership.level.name == 'pending'
   end
 
-  def join user, level = 'member'
+  def join(user, level = 'member')
     return if self.user_is_in? user
     self.memberships << Membership.new(
       user_id: user.try(:id), 
@@ -74,7 +74,7 @@ class Group < ActiveRecord::Base
     )
   end
 
-  def leave user
+  def leave(user)
     return unless self.user_is_member? user
     self.memberships.where(user_id: user.try(:id)).first.destroy
   end

@@ -1,5 +1,5 @@
 class Filters::NestedResourcesFilter
-  def filter c
+  def filter(c)
     request = c.request
     if request.path =~ /\/([^\/]*)\/[0-9]+\/#{c.controller_name}/
       begin 

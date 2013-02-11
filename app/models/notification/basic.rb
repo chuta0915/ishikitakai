@@ -2,7 +2,7 @@ class Notification::Basic < Notification
   after_find :convert_for_locale
 
   class << self
-    def notify_by_key users, key
+    def notify_by_key(users, key)
       params = {
         name: "notification.basic.#{key}.name",
         content: "notification.basic.#{key}.content",
