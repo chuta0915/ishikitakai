@@ -52,4 +52,23 @@ describe NotificationsController do
       it { should be_success }
     end
   end
+
+  describe "PUT 'update'" do
+    context "user not signed in" do
+      subject { response }
+      before do
+        put :update
+      end
+      it { should redirect_to new_user_session_path }
+    end
+    context "user signed in" do
+      subject { response }
+      before do
+        sign_in user
+        Notification.should_receive(:read_all)
+        put :update
+      end
+      it { should redirect_to notifications_path }
+    end
+  end
 end
