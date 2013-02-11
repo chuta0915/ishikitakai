@@ -8,5 +8,8 @@ describe NotificationsController do
     it "routes to #show" do
       get("/my/notifications/12345").should route_to("notifications#show", id: '12345')
     end
+    it "routes to #update" do
+      put("/my/notifications").should route_to("notifications#update")
+    end
   end
 end

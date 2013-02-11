@@ -24,6 +24,10 @@ class Notification < ActiveRecord::Base
         end
       end
     end
+
+    def read_all(user)
+      self.where(user_id: user.try(:id)).update_all(read_at: Time.current, read: true)
+    end
   end
 
   def read_it

@@ -35,4 +35,16 @@ describe Notification do
     it { subject.read.should be_false }
     it { subject.read_at.should be_nil }
   end
+
+  describe ".read_all" do
+    subject { user.notifications }
+    before do
+      9.times.each do
+        FactoryGirl.create :notification_basic, user: user
+      end
+      Notification.read_all(user)
+    end
+    it { subject.all.should have(10).items }
+    it { subject.not_yet_read.all.should have(0).items }
+  end
 end

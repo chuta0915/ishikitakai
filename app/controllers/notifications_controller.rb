@@ -9,4 +9,9 @@ class NotificationsController < ApplicationController
     @notification = current_user.notifications.find params[:id]
     @notification.read_it
   end
+
+  def update
+    Notification.read_all(current_user)
+    redirect_to notifications_path
+  end
 end
