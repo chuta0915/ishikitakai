@@ -1,6 +1,7 @@
 <div class="page-header">
   <h1><%= t('nav.notification') %></h1>
 </div>
+<%= link_to t('.read_all'), notifications_path, class: 'btn btn-warning', method: :put %>
 <% if @notifications.present? %> 
   <table class="table table-striped table-hover">
     <thead>

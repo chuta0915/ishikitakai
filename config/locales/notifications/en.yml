@@ -25,3 +25,4 @@ en:
       already_read: "already read"
       not_yet_read: "not yet read"
       no_items: "No notification exists."
+      read_all: "Make all read"
