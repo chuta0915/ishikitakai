@@ -17,6 +17,7 @@ IshikitakaiCom::Application.routes.draw do
   # /my scope for current_user
   scope :path => :my do
     resources :notifications, :only => [:index, :show]
+    resource :notifications, :only => [:update]
     delete '' => 'users#destroy'
     get 'edit' => 'users#edit', :as => :my_edit
     put '' => 'users#update', :as => :my
