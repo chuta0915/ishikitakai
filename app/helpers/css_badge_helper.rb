@@ -1,5 +1,5 @@
 module CssBadgeHelper
-  def css_scope_badge scope
+  def css_scope_badge(scope)
     classes = {
       public: 'label-success',
       friends: 'label-important',
@@ -10,7 +10,7 @@ module CssBadgeHelper
     classes[scope.name.to_sym]
   end
   
-  def css_event_payment_kind_badge payment_kind
+  def css_event_payment_kind_badge(payment_kind)
     classes = {
       free: 'label-success',
       advance: 'label-important',
@@ -19,7 +19,7 @@ module CssBadgeHelper
     classes[payment_kind.name.to_sym]
   end
 
-  def css_level_badge level
+  def css_level_badge(level)
     classes = {
       master: 'label-important',
       support: 'label-info',

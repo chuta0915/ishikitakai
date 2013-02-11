@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 
   
   class << self
-    def find_by_path provider_name, user_key
+    def find_by_path(provider_name, user_key)
       providers_user = ProvidersUser.where(provider_id: Provider.send(provider_name).id, user_key: user_key).first
       self.find providers_user.user_id
     end
@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
     Provider.select('id, name').find self.default_provider_id
   end
   
-  def has_provider? provider
+  def has_provider?(provider)
     self.providers_users.select(:provider_id).map{|providers_user|providers_user.provider_id}.include? provider.id
   end
   
@@ -63,11 +63,11 @@ class User < ActiveRecord::Base
     return json
   end
 
-  def me? user
+  def me?(user)
     return self.id == user.id
   end
 
-  def update_email email
+  def update_email(email)
     self.unconfirmed_email = email
     self.confirm_limit_at = Time.current + 3.hour
     self.hash_to_confirm_email = confirm_key
@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def confirm_email hash
+  def confirm_email(hash)
     if hash == self.hash_to_confirm_email && Time.current <= self.confirm_limit_at
       self.email = self.unconfirmed_email
       self.unconfirmed_email = nil

@@ -50,21 +50,21 @@ class Event < ActiveRecord::Base
   after_create :notify_group_event
 
 
-  def user_is_owner? user
+  def user_is_owner?(user)
     self.user_can_edit? user
   end
   
-  def user_can_edit? user
+  def user_can_edit?(user)
     attendance = self.attendances.where(user_id: user.try(:id)).first
     attendance.present? && attendance.level.name == 'master'
   end
 
-  def user_is_attendance? user
+  def user_is_attendance?(user)
     attendance = self.attendances.where(user_id: user.try(:id)).first
     attendance.present?
   end
   
-  def join user, level = 'member'
+  def join(user, level = 'member')
     return if self.user_is_attendance? user
     if self.attendances.count >= self.capacity_max
       level = 'pending'
@@ -78,7 +78,7 @@ class Event < ActiveRecord::Base
     )
   end
 
-  def leave user
+  def leave(user)
     return unless self.user_is_attendance? user
     self.attendances.where(user_id: user.id).first.destroy
   end

@@ -1,5 +1,5 @@
 module EventDateHelper
-  def event_date_formatted begin_at, end_at
+  def event_date_formatted(begin_at, end_at)
     begin_date = begin_at.strftime(t('date.short'))
     begin_time = begin_at.strftime(t('time.short'))
     end_date = end_at.strftime(t('date.short'))

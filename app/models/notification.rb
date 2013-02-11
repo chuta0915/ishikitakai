@@ -11,7 +11,7 @@ class Notification < ActiveRecord::Base
   }
 
   class << self
-    def notify users, params = {}, trigger = nil
+    def notify(users, params = {}, trigger = nil)
       users.each do|user|
         self.create do |n|
           n.user_id = user.id

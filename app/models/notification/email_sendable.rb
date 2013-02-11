@@ -4,7 +4,7 @@ module Notification::EmailSendable
   end
 
   module ClassMethods
-    def notify users, trigger
+    def notify(users, trigger)
       targets = self.target_users(users, trigger) 
       super(targets, self.params, trigger)
       targets.each do|user|

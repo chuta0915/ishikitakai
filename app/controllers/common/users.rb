@@ -1,5 +1,5 @@
 module Common::Users
-  def self.included base
+  def self.included(base)
     return unless base < ActionController::Base
   end
 
