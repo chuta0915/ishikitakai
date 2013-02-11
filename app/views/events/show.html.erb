@@ -1,5 +1,5 @@
 <%= content_for :title do %>
-  <%= "#{@event.name} - #{@event.group.name}" %>
+  <%= "#{@event.name} - #{@event.group.try(:name)}" %>
 <% end %>
 <%= content_for :ogp do %>
   <%= render('shared/ogp', 
