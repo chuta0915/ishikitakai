@@ -132,7 +132,7 @@ module RoutingResourcesMacros
       end
     end
 
-    def nasted_resources_should_routes parent, resources, methods = [:index, :new, :show, :edit, :create, :update, :destroy]
+    def nested_resources_should_routes parent, resources, methods = [:index, :new, :show, :edit, :create, :update, :destroy]
       parent_id = '12345'
       id = '23456'
       describe "routing /#{parent}/:#{parent.singularize}_id/#{resources} CRUD" do
@@ -202,7 +202,7 @@ module RoutingResourcesMacros
       end
     end
 
-    def nasted_resource_should_routes parent, resources, methods = [:new, :show, :edit, :create, :update, :destroy]
+    def nested_resource_should_routes parent, resources, methods = [:new, :show, :edit, :create, :update, :destroy]
       parent_id = '12345'
       describe "routing /#{parent}/:#{parent.singularize}_id/#{resources} CRUD" do
         if methods.include? :new

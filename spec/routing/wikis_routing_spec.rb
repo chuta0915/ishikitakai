@@ -1,4 +1,4 @@
 describe WikisController do
-  nasted_resources_should_routes 'groups', 'wikis'
-  nasted_resources_should_routes 'events', 'wikis'
+  nested_resources_should_routes 'groups', 'wikis'
+  nested_resources_should_routes 'events', 'wikis'
 end

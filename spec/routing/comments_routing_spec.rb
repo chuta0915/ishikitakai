@@ -1,3 +1,3 @@
 describe CommentsController do
-  nasted_resources_should_routes 'events', 'comments', [:create]
+  nested_resources_should_routes 'events', 'comments', [:create]
 end
