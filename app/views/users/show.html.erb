@@ -1,7 +1,10 @@
 <% if current_user.present? && current_user.me?(@user) %>
-<div class="alert alert-info">
+<div class="alert alert-info clearfix">
   <h4><%= t('.my.url') %></h4>
   <%= link_to user_url(@user), user_url(@user) %>
+  <div>
+    <%= link_to t('nav.edit_user'), my_edit_path, class: 'btn btn-primary pull-right' %>
+  </div>
 </div>
 <% end %>
 <%=render 'users/user', user: @user %>

@@ -16,6 +16,10 @@
   </li>
 </ul>
 
+<div class="alert alert-info">
+  <h4><%= t('users.show.my.url') %></h4>
+  <%= link_to user_url(@user), user_url(@user), target: :blank %>
+</div>
 <%= form_tag(my_path, method: :put) do |f| %>
   <%= text_area(:user, :content, class: 'span12') %>
   <div>
