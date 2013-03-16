@@ -62,7 +62,7 @@ describe TasksController do
           subject { response }
           before do
             @created_task = create(:task)
-            Group.stub(:create).and_return(@created_task) 
+            Group.stub(:create).and_return(@created_task)
             sign_in user
             post 'create', group_id: sendagayarb.id, task: new_task
           end

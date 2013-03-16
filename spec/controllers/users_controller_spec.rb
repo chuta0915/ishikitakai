@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe UsersController do
   let!(:user) { create(:user) }
-  
+
   describe "GET show" do
     context 'user not singed in' do
       before do
@@ -20,7 +20,7 @@ describe UsersController do
       it { response.should be_success }
     end
   end
-  
+
   describe "DELETE destroy" do
     context 'user not singed in' do
       before do

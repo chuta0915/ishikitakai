@@ -64,7 +64,7 @@ describe GroupsController do
       it { should be_success }
     end
   end
-  
+
   describe "POST 'create'" do
     context "user not signed in" do
       subject { response }
@@ -76,7 +76,7 @@ describe GroupsController do
         subject { response }
         before do
           @created_group = create(:ishikitakai, user_id:user.id)
-          Group.stub(:create_by_user).and_return(@created_group) 
+          Group.stub(:create_by_user).and_return(@created_group)
           sign_in user
           post 'create', { group: ishikitakai }
         end

@@ -27,7 +27,7 @@ describe ApplicationHelper do
     subject { helper.locale_key }
     context 'when user signed in' do
       before do
-       sign_in user 
+       sign_in user
       end
       it { should === 'add' }
     end

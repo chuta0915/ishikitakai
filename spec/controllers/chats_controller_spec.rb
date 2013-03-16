@@ -6,7 +6,7 @@ describe ChatsController do
   let!(:sendagayarb) { create :sendagayarb, user_id: user.id }
   let!(:closed) { create :sendagayarb, user_id: other_user.id }
   let(:chat) { create :chat, user_id: user.id, group_id: sendagayarb.id }
-  
+
   describe "GET 'index'" do
     context "user not signed in" do
       subject { response }
@@ -89,7 +89,7 @@ describe ChatsController do
       end
     end
   end
-  
+
   describe "DELETE 'destroy'" do
     context "user not signed in" do
       before do

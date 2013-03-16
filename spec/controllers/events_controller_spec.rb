@@ -46,7 +46,7 @@ describe EventsController do
       it { should be_success }
     end
   end
-  
+
   describe "POST 'create'" do
     context "user not signed in" do
       subject { response }
@@ -58,7 +58,7 @@ describe EventsController do
         subject { response }
         before do
           @created_event = create(:reading_event, user_id:user.id)
-          Event.stub(:create_by_user).and_return(@created_event) 
+          Event.stub(:create_by_user).and_return(@created_event)
           sign_in user
           post 'create', { event: reading_event }
         end

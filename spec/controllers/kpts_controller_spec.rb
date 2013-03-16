@@ -45,7 +45,7 @@ describe KptsController do
           subject { response }
           before do
             @created_kpt = create(:kpt, group_id: sendagayarb.id)
-            Group.stub(:create).and_return(@created_kpt) 
+            Group.stub(:create).and_return(@created_kpt)
             sign_in user
             post 'create', group_id: sendagayarb.id, kpt: new_kpt
           end
@@ -55,7 +55,7 @@ describe KptsController do
           subject { response }
           before do
             @created_kpt = create(:kpt, group_id: closed.id)
-            Group.stub(:create).and_return(@created_kpt) 
+            Group.stub(:create).and_return(@created_kpt)
             sign_in user
             post 'create', group_id: closed.id, kpt: new_kpt
           end

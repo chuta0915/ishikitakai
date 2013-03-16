@@ -25,7 +25,7 @@ describe User do
       }
     }
   }
-  
+
   describe 'User instance' do
     it { user.should be_instance_of User }
   end

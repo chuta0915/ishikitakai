@@ -10,7 +10,7 @@ describe WikisController do
   let!(:closed_event) { create :mokmok_event, user_id: other_user.id, group_id: closed.id }
   let(:wiki) { create(:wiki, user: user, parent: mokmok_event) }
   let(:new_wiki) { FactoryGirl.attributes_for(:wiki) }
-  
+
   describe "GET index" do
     context "public group" do
       subject { response }
@@ -75,7 +75,7 @@ describe WikisController do
       it { response.should redirect_to new_user_session_path }
     end
   end
-  
+
   describe "GET edit" do
     subject { response }
     context "user signed in" do

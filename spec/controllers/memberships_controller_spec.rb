@@ -21,7 +21,7 @@ describe MembershipsController do
       it { should be_success }
     end
   end
-   
+
   describe "POST 'create'" do
     context "user not signed in" do
       subject { response }

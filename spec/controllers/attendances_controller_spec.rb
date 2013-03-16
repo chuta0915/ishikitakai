@@ -19,7 +19,7 @@ describe AttendancesController do
         sign_in user
         get 'index', event_id: mokmok_event.id
       end
-      it { should be_success } 
+      it { should be_success }
     end
   end
 
