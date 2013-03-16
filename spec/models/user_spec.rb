@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe User do
   ancestors_should_include ActiveRecord::Base
-  let(:user) { FactoryGirl.create(:user) }
-  let(:new_user) { FactoryGirl.build(:new_user) }
-  let(:friend) { FactoryGirl.create(:friend) }
+  let(:user) { create(:user) }
+  let(:new_user) { build(:new_user) }
+  let(:friend) { create(:friend) }
   let(:auth) {
     {
       'uid' => '123456',

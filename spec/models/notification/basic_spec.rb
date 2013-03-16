@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Notification::Basic do
-  let(:user) { FactoryGirl.create :user }
+  let(:user) { create :user }
 
   describe "notify_by_key" do
     subject { user.notifications.last }

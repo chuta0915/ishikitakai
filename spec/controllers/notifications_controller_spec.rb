@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe NotificationsController do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:notification) { FactoryGirl.create(:notification_basic, user: user) }
+  let(:user) { create(:user) }
+  let(:notification) { create(:notification_basic, user: user) }
   describe "GET 'index'" do
     context "user not signed in" do
       subject { response }

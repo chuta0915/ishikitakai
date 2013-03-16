@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe UsersController do
-  let!(:user) { FactoryGirl.create(:user) }
+  let!(:user) { create(:user) }
   
   describe "GET show" do
     context 'user not singed in' do

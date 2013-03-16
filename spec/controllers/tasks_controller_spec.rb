@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe TasksController do
   include TaskHelper
-  let!(:user) { FactoryGirl.create(:user) }
-  let!(:other_user) { FactoryGirl.create :other_user }
-  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
-  let!(:closed) { FactoryGirl.create :sendagayarb, user_id: other_user.id }
-  let!(:task) { FactoryGirl.create :task, group_id: sendagayarb.id }
+  let!(:user) { create(:user) }
+  let!(:other_user) { create :other_user }
+  let!(:sendagayarb) { create :sendagayarb, user_id: user.id }
+  let!(:closed) { create :sendagayarb, user_id: other_user.id }
+  let!(:task) { create :task, group_id: sendagayarb.id }
   let!(:new_task) { FactoryGirl.attributes_for :task }
 
   describe "GET 'index'" do
@@ -61,7 +61,7 @@ describe TasksController do
         context "with valid parameters" do
           subject { response }
           before do
-            @created_task = FactoryGirl.create(:task)
+            @created_task = create(:task)
             Group.stub(:create).and_return(@created_task) 
             sign_in user
             post 'create', group_id: sendagayarb.id, task: new_task

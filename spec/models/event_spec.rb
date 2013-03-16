@@ -3,18 +3,18 @@ require 'spec_helper'
 
 describe Event do
   ancestors_should_include ActiveRecord::Base
-  let(:user) { FactoryGirl.create :user }
-  let(:friend) { FactoryGirl.create :friend }
-  let(:other_user) { FactoryGirl.create :other_user }
-  let(:event) { FactoryGirl.create :mokmok_event, user: user }
+  let(:user) { create :user }
+  let(:friend) { create :friend }
+  let(:other_user) { create :other_user }
+  let(:event) { create :mokmok_event, user: user }
   let(:master) { Level.find 1 }
   let(:valid_paramter) { FactoryGirl.attributes_for :new_event }
 
   describe 'search scope' do
-    let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
-    let!(:ishikitakai) { FactoryGirl.create :ishikitakai, user_id: user.id }
-    let!(:event) { FactoryGirl.create :mokmok_event, user: user, group_id: sendagayarb.id }
-    let!(:private_event) { FactoryGirl.create :private_event, user: user, group_id: ishikitakai.id }
+    let!(:sendagayarb) { create :sendagayarb, user_id: user.id }
+    let!(:ishikitakai) { create :ishikitakai, user_id: user.id }
+    let!(:event) { create :mokmok_event, user: user, group_id: sendagayarb.id }
+    let!(:private_event) { create :private_event, user: user, group_id: ishikitakai.id }
     subject { Event.search(keyword).first }
     context 'when passed "sendagaya"' do
       let(:keyword) { 'sendagaya' }
@@ -116,11 +116,11 @@ describe Event do
     end
 
     context "when added group's event" do
-      let(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
+      let(:sendagayarb) { create :sendagayarb, user_id: user.id }
       before do
         sendagayarb.join friend
         ActionMailer::Base.deliveries = []
-        event = FactoryGirl.create :mokmok_event, user_id: user.id, group_id: sendagayarb.id
+        event = create :mokmok_event, user_id: user.id, group_id: sendagayarb.id
       end
       it { friend.notifications.should have(1).items }
       it { friend.notifications[0].type.should == 'Notification::GroupEvent' }
@@ -128,11 +128,11 @@ describe Event do
     end
 
     context "when added none group's event" do
-      let(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
+      let(:sendagayarb) { create :sendagayarb, user_id: user.id }
       before do
         sendagayarb.join friend
         ActionMailer::Base.deliveries = []
-        event = FactoryGirl.create :mokmok_event, user_id: user.id, group_id: nil
+        event = create :mokmok_event, user_id: user.id, group_id: nil
       end
       it { friend.notifications.should have(0).items }
       it { ActionMailer::Base.deliveries.size.should == 0 }
@@ -140,13 +140,13 @@ describe Event do
   end
 
   describe 'join' do
-    let(:master_user) { FactoryGirl.create(:user) }
-    let(:other_user) { FactoryGirl.create(:other_user) }
-    let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: master_user.id }
+    let(:master_user) { create(:user) }
+    let(:other_user) { create(:other_user) }
+    let!(:sendagayarb) { create :sendagayarb, user_id: master_user.id }
     before do
     end
     context "group member joins group's event" do
-      let!(:event) { FactoryGirl.create :mokmok_event, user_id: master_user.id }
+      let!(:event) { create :mokmok_event, user_id: master_user.id }
       subject { event.attendances.where(user_id: other_user.id).last }
       before do
         sendagayarb.join other_user, 'member'
@@ -155,7 +155,7 @@ describe Event do
       it { subject.level.should == Level.find_by_name('member') }
     end
     context "group master joins group's event which created by other master user" do
-      let!(:event) { FactoryGirl.create :mokmok_event, user_id: other_user.id }
+      let!(:event) { create :mokmok_event, user_id: other_user.id }
       subject { event.attendances.where(user_id: master_user.id).last }
       before do
         sendagayarb.join other_user, 'master'
@@ -164,7 +164,7 @@ describe Event do
       it { subject.level.should == Level.find_by_name('master') }
     end 
     context "none group master joins group's event" do
-      let!(:event) { FactoryGirl.create :mokmok_event, user_id: master_user.id }
+      let!(:event) { create :mokmok_event, user_id: master_user.id }
       subject { sendagayarb.memberships.where(user_id: other_user.id).last }
       before do
         event.join other_user
