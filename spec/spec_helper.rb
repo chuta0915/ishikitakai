@@ -42,6 +42,9 @@ Spork.prefork do
     config.include Devise::TestHelpers, type: :view
     config.include Devise::TestHelpers, type: :helper
 
+    # factory_girl
+    config.include FactoryGirl::Syntax::Methods
+
     # other macros
     config.include CommonMacros
     config.include ControllerMacros, type: :controller
