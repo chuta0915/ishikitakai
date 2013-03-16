@@ -63,6 +63,7 @@ Spork.prefork do
     config.before do
       Fog.mock!
       Fog::Mock.reset
+      User.any_instance.stub(:save_to_s3).and_return(nil)
     end
   end
 end
