@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '1.9.3' # You’ll need to install 1.2.0 of bundler to use the ruby keyword.
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.13'
 gem 'jquery-rails'
 gem 'thin'
 
