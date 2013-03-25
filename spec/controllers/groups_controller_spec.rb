@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe GroupsController do
-  let!(:user) { FactoryGirl.create(:user) }
-  let(:invalid_user) { FactoryGirl.create :new_user }
-  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
-  let!(:closed) { FactoryGirl.create :ishikitakai, user_id: user.id }
+  let!(:user) { create(:user) }
+  let(:invalid_user) { create :new_user }
+  let!(:sendagayarb) { create :sendagayarb, user_id: user.id }
+  let!(:closed) { create :ishikitakai, user_id: user.id }
   let(:ishikitakai) { FactoryGirl.attributes_for :ishikitakai }
 
   describe "GET 'index'" do
@@ -64,7 +64,7 @@ describe GroupsController do
       it { should be_success }
     end
   end
-  
+
   describe "POST 'create'" do
     context "user not signed in" do
       subject { response }
@@ -75,8 +75,8 @@ describe GroupsController do
       context "with valid parameters" do
         subject { response }
         before do
-          @created_group = FactoryGirl.create(:ishikitakai, user_id:user.id)
-          Group.stub(:create_by_user).and_return(@created_group) 
+          @created_group = create(:ishikitakai, user_id:user.id)
+          Group.stub(:create_by_user).and_return(@created_group)
           sign_in user
           post 'create', { group: ishikitakai }
         end

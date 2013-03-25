@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe CommentsController do
-  let!(:user) { FactoryGirl.create(:user) }
-  let(:invalid_user) { FactoryGirl.create :new_user }
-  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
-  let!(:mokmok_event) { FactoryGirl.create :mokmok_event, user_id: user.id, group_id: sendagayarb.id }
-  let!(:comment) { FactoryGirl.create :comment, user: user, commentable: mokmok_event }
+  let!(:user) { create(:user) }
+  let(:invalid_user) { create :new_user }
+  let!(:sendagayarb) { create :sendagayarb, user_id: user.id }
+  let!(:mokmok_event) { create :mokmok_event, user_id: user.id, group_id: sendagayarb.id }
+  let!(:comment) { create :comment, user: user, commentable: mokmok_event }
   let(:new_comment) { FactoryGirl.attributes_for:comment, user_id: user.id, commentable_type: 'Event', commentable_id: mokmok_event.id }
 
   describe "GET 'show'" do

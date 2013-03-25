@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe KptsController do
   include KptHelper
-  let!(:user) { FactoryGirl.create(:user) }
-  let!(:other_user) { FactoryGirl.create :other_user }
-  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
-  let!(:closed) { FactoryGirl.create :sendagayarb, user_id: other_user.id }
-  let!(:kpt) { FactoryGirl.create :kpt, group_id: sendagayarb.id }
+  let!(:user) { create(:user) }
+  let!(:other_user) { create :other_user }
+  let!(:sendagayarb) { create :sendagayarb, user_id: user.id }
+  let!(:closed) { create :sendagayarb, user_id: other_user.id }
+  let!(:kpt) { create :kpt, group_id: sendagayarb.id }
   let!(:new_kpt) { FactoryGirl.attributes_for :kpt }
 
   describe "GET 'index'" do
@@ -44,8 +44,8 @@ describe KptsController do
         context "public group" do
           subject { response }
           before do
-            @created_kpt = FactoryGirl.create(:kpt, group_id: sendagayarb.id)
-            Group.stub(:create).and_return(@created_kpt) 
+            @created_kpt = create(:kpt, group_id: sendagayarb.id)
+            Group.stub(:create).and_return(@created_kpt)
             sign_in user
             post 'create', group_id: sendagayarb.id, kpt: new_kpt
           end
@@ -54,8 +54,8 @@ describe KptsController do
         context "non public group" do
           subject { response }
           before do
-            @created_kpt = FactoryGirl.create(:kpt, group_id: closed.id)
-            Group.stub(:create).and_return(@created_kpt) 
+            @created_kpt = create(:kpt, group_id: closed.id)
+            Group.stub(:create).and_return(@created_kpt)
             sign_in user
             post 'create', group_id: closed.id, kpt: new_kpt
           end

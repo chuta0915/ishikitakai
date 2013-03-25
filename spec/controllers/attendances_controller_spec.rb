@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe AttendancesController do
-  let!(:user) { FactoryGirl.create(:user) }
-  let(:invalid_user) { FactoryGirl.create :new_user }
-  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
-  let!(:mokmok_event) { FactoryGirl.create :mokmok_event, user_id: user.id, group_id: sendagayarb.id }
+  let!(:user) { create(:user) }
+  let(:invalid_user) { create :new_user }
+  let!(:sendagayarb) { create :sendagayarb, user_id: user.id }
+  let!(:mokmok_event) { create :mokmok_event, user_id: user.id, group_id: sendagayarb.id }
   let(:reading_event) { FactoryGirl.attributes_for :reading_event }
 
   describe "GET 'index'" do
@@ -19,7 +19,7 @@ describe AttendancesController do
         sign_in user
         get 'index', event_id: mokmok_event.id
       end
-      it { should be_success } 
+      it { should be_success }
     end
   end
 

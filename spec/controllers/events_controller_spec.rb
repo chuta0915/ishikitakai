@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe EventsController do
-  let!(:user) { FactoryGirl.create(:user) }
-  let(:invalid_user) { FactoryGirl.create :new_user }
-  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
-  let!(:mokmok_event) { FactoryGirl.create :mokmok_event, user_id: user.id, group_id: sendagayarb.id }
+  let!(:user) { create(:user) }
+  let(:invalid_user) { create :new_user }
+  let!(:sendagayarb) { create :sendagayarb, user_id: user.id }
+  let!(:mokmok_event) { create :mokmok_event, user_id: user.id, group_id: sendagayarb.id }
   let(:reading_event) { FactoryGirl.attributes_for :reading_event }
 
   describe "GET 'index'" do
@@ -46,7 +46,7 @@ describe EventsController do
       it { should be_success }
     end
   end
-  
+
   describe "POST 'create'" do
     context "user not signed in" do
       subject { response }
@@ -57,8 +57,8 @@ describe EventsController do
       context "with valid parameters" do
         subject { response }
         before do
-          @created_event = FactoryGirl.create(:reading_event, user_id:user.id)
-          Event.stub(:create_by_user).and_return(@created_event) 
+          @created_event = create(:reading_event, user_id:user.id)
+          Event.stub(:create_by_user).and_return(@created_event)
           sign_in user
           post 'create', { event: reading_event }
         end

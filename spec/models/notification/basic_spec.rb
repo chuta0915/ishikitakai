@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe Notification::Basic do
-  let(:user) { FactoryGirl.create :user }
+  let(:user) { create :user }
 
   describe "notify_by_key" do
     subject { user.notifications.last }
     before do
       I18n.locale = :en
-      Notification::Basic.notify_by_key [user], 'confirm_email' 
+      Notification::Basic.notify_by_key [user], 'confirm_email'
     end
     it { subject.trigger_type.should == nil }
     it { subject.trigger_id.should == nil }

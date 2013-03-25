@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SettingsController do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { create(:user) }
   let(:user_setting) { FactoryGirl.attributes_for :user_setting }
   describe "GET 'show'" do
     context "user not signed in" do
@@ -20,7 +20,7 @@ describe SettingsController do
       it { should redirect_to edit_my_setting_path }
     end
   end
-  
+
   describe "GET 'edit'" do
     context "user not signed in" do
       subject { response }

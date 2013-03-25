@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe Group do
   ancestors_should_include [ActiveRecord::Base]
-  let(:user) { FactoryGirl.create(:user) }
-  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
-  let!(:other_user) { FactoryGirl.create :new_user }
-  let(:post) { FactoryGirl.create :post }
+  let(:user) { create(:user) }
+  let!(:sendagayarb) { create :sendagayarb, user_id: user.id }
+  let!(:other_user) { create :new_user }
+  let(:post) { create :post }
 
   describe 'group properties' do
     subject { sendagayarb }

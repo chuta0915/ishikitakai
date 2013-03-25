@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Task do
-  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: FactoryGirl.create(:user).id }
-  let!(:task) { FactoryGirl.create(:task, group_id: sendagayarb.id) }
+  let!(:sendagayarb) { create :sendagayarb, user_id: create(:user).id }
+  let!(:task) { create(:task, group_id: sendagayarb.id) }
   describe 'change status done' do
     context 'created' do
       it { task.done.should be_false }

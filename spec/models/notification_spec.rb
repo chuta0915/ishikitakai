@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Notification do
-  let(:user) { FactoryGirl.create :user }
-  let!(:notification) { FactoryGirl.create :notification_basic, user: user }
+  let(:user) { create :user }
+  let!(:notification) { create :notification_basic, user: user }
 
   describe "read it" do
     let (:current) { Time.current }
@@ -40,7 +40,7 @@ describe Notification do
     subject { user.notifications }
     before do
       9.times.each do
-        FactoryGirl.create :notification_basic, user: user
+        create :notification_basic, user: user
       end
       Notification.read_all(user)
     end

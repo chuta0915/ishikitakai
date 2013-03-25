@@ -2,7 +2,7 @@
 require "spec_helper"
 
 describe 'sign_in' do
-  let(:new_user) { FactoryGirl.build(:new_user) }
+  let(:new_user) { build(:new_user) }
   before do
     I18n.locale = :ja
   end

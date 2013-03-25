@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe ChatsController do
-  let!(:user) { FactoryGirl.create(:user) }
-  let!(:other_user) { FactoryGirl.create :other_user }
-  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
-  let!(:closed) { FactoryGirl.create :sendagayarb, user_id: other_user.id }
-  let(:chat) { FactoryGirl.create :chat, user_id: user.id, group_id: sendagayarb.id }
-  
+  let!(:user) { create(:user) }
+  let!(:other_user) { create :other_user }
+  let!(:sendagayarb) { create :sendagayarb, user_id: user.id }
+  let!(:closed) { create :sendagayarb, user_id: other_user.id }
+  let(:chat) { create :chat, user_id: user.id, group_id: sendagayarb.id }
+
   describe "GET 'index'" do
     context "user not signed in" do
       subject { response }
@@ -89,7 +89,7 @@ describe ChatsController do
       end
     end
   end
-  
+
   describe "DELETE 'destroy'" do
     context "user not signed in" do
       before do

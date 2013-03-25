@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe MembershipsController do
-  let!(:user) { FactoryGirl.create(:user) }
-  let(:invalid_user) { FactoryGirl.create :new_user }
-  let!(:sendagayarb) { FactoryGirl.create :sendagayarb, user_id: user.id }
+  let!(:user) { create(:user) }
+  let(:invalid_user) { create :new_user }
+  let!(:sendagayarb) { create :sendagayarb, user_id: user.id }
   let(:ishikitakai) { FactoryGirl.attributes_for :ishikitakai }
 
   describe "GET 'index'" do
@@ -21,7 +21,7 @@ describe MembershipsController do
       it { should be_success }
     end
   end
-   
+
   describe "POST 'create'" do
     context "user not signed in" do
       subject { response }

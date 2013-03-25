@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe EmailsController do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { create(:user) }
   describe "GET 'show'" do
     context "user not signed in" do
       subject { response }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 describe ApplicationHelper do
-  let!(:user) { FactoryGirl.create(:user) }
+  let!(:user) { create(:user) }
   describe 'fb_connect_js' do
     subject { helper.fb_connect_js }
     context 'when locale is not specified' do
@@ -27,7 +27,7 @@ describe ApplicationHelper do
     subject { helper.locale_key }
     context 'when user signed in' do
       before do
-       sign_in user 
+       sign_in user
       end
       it { should === 'add' }
     end
