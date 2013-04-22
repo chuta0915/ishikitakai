@@ -1,7 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :user do
+  factory :user, class: 'User' do
     name 'ppworks'
     image 'http://a1.twimg.com/profile_images/1805350696/twitter_icon_20101007_06_normal.png'
     email '90558020@ppworks.jp'
@@ -16,13 +16,13 @@ FactoryGirl.define do
     ]}
   end
   
-  factory :new_user, class: User do
+  factory :new_user, class: 'User' do
     name 'ppworks2'
     image 'http://a1.twimg.com/profile_images/1805350696/twitter_icon_20101007_06_normal.png'
     email 'xxx@ppwokrs.jp'
   end
 
-  factory :friend, class: User do
+  factory :friend, class: 'User' do
     name 'naoto5959'
     image 'http://a1.twimg.com/profile_images/1805350696/twitter_icon_20101007_06_normal.png'
     email '90558022@ppworks.jp'
@@ -37,7 +37,7 @@ FactoryGirl.define do
     ]}
   end
 
-  factory :other_user, class: User do
+  factory :other_user, class: 'User' do
     name 'xxxxYYYY'
     image 'http://a1.twimg.com/profile_images/1805350696/twitter_icon_20101007_06_normal.png'
     email '123456789@ppworks.jp'

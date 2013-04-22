@@ -1,6 +1,6 @@
 # encoding: utf-8
 FactoryGirl.define do
-  factory :mokmok_event, class: Event do
+  factory :mokmok_event, class: 'Event' do
     user_id 1
     group_id 1
     scope_id 1
@@ -20,7 +20,7 @@ FactoryGirl.define do
     event_payment_kind_id 1
     fee 0
   end
-  factory :reading_event, class: Event do
+  factory :reading_event, class: 'Event' do
     user_id 1
     group_id 1
     scope_id 1
@@ -41,7 +41,7 @@ FactoryGirl.define do
     fee 0
   end
 
-  factory :private_event, class: Event do
+  factory :private_event, class: 'Event' do
     user_id 1
     group_id 1
     scope_id 1
@@ -62,7 +62,7 @@ FactoryGirl.define do
     fee 0
   end
 
-  factory :new_event, class: Event do
+  factory :new_event, class: 'Event' do
     group_id  ""
     name  "event name"
     summary  "説明"
