@@ -1,12 +1,43 @@
 module FeatureMacros
-  def self.included(base)
-    base.extend ClassMethods
+  extend ActiveSupport::Concern
+
+  included do
+    let(:auth_hash) {
+      {
+        'provider' => 'twitter',
+        'uid' => '12345',
+        'info' => {
+          'nickname' => 'ppworks',
+          'name' => 'PP works',
+          'image' => 'http://a0.twimg.com/profile_images/2900491556/9d2bf873770958647f18b8e61af31f1a_normal.png'
+        },
+        'credentials' => {
+          'token' => '123445678-AbeafjabutWjfav932m38e3TTabbbbbk',
+          'secret' => 'UzOc15tGx8AMYLOX5dcZ2UQTEwe6LiVysdoyhiKlaw'
+        }
+      }
+    }
   end
 
-  module ClassMethods
+  def sign_in(user)
+    Warden.test_mode!
+    user.confirm! if user.respond_to?(:confirm!)
+    scope = user.class.to_s.downcase.to_sym
+    User.stub(:authenticate_facebook_by_signed_request).and_return(user)
+    login_as(user, scope: scope, run_callbacks: false)
   end
 
-  def sign_in user, provider
+  def sign_out(user = nil)
+    if user
+      scope = user.class.to_s.downcase.to_sym
+      logout(scope)
+    else
+      logout
+    end
+  end
+
+  def oauth_sign_in user, provider
+    back_path = page.current_path
     auth = 
     {
       'uid' => '123456',
@@ -29,5 +60,7 @@ module FeatureMacros
     auth[:provider] = provider
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[provider.to_sym] = OmniAuth::AuthHash.new(auth)
+    visit user_omniauth_authorize_path(provider: provider.to_s)
+    visit back_path if back_path
   end
 end

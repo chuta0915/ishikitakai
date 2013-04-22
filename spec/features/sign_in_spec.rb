@@ -8,8 +8,7 @@ describe 'sign_in' do
   end
   context 'sign in with twitter account' do
     before do
-      sign_in new_user, :twitter
-      visit "/users/auth/twitter"
+      oauth_sign_in new_user, :twitter
     end
     it 'should have signed message' do
       page.should have_content 'twitterアカウントでログインしました。'
