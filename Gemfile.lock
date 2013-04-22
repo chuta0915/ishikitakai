@@ -59,9 +59,6 @@ GEM
     bootstrap-sass (2.2.2.0)
       sass (~> 3.2)
     builder (3.0.4)
-    capybara-webkit (0.14.0)
-      capybara (~> 2.0, >= 2.0.2)
-      json
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
     coderay (1.0.8)
@@ -120,6 +117,8 @@ GEM
       i18n (~> 0.5)
     faraday (0.8.4)
       multipart-post (~> 1.1)
+    faye-websocket (0.4.7)
+      eventmachine (>= 0.12.0)
     ffi (1.0.11)
     fog (1.8.0)
       builder
@@ -245,6 +244,10 @@ GEM
       activerecord (~> 3.0)
       railties (~> 3.0)
     pg (0.14.1)
+    poltergeist (1.1.1)
+      capybara (~> 2.0.1)
+      faye-websocket (~> 0.4, >= 0.4.4)
+      http_parser.rb (~> 0.5.3)
     polyglot (0.3.3)
     posix-spawn (0.3.6)
     pry (0.9.10)
@@ -403,7 +406,6 @@ PLATFORMS
 
 DEPENDENCIES
   capybara!
-  capybara-webkit
   coffee-rails (~> 3.2.1)
   database_cleaner
   debugger
@@ -435,6 +437,7 @@ DEPENDENCIES
   omniauth-twitter
   paper_trail
   pg
+  poltergeist
   pusher
   quiet_assets
   rails (= 3.2.13)

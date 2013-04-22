@@ -60,7 +60,7 @@ group :development, :test do
   gem 'guard-jasmine-headless-webkit'
   gem 'capybara', :github => 'jnicklas/capybara'
   gem 'launchy'
-  gem 'capybara-webkit'
+  gem 'poltergeist'
   gem 'database_cleaner'
 end
 
