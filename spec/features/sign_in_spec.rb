@@ -12,7 +12,7 @@ describe 'sign_in' do
       visit user_omniauth_authorize_path(provider: 'twitter')
     end
     it 'should have signed message' do
-      page.should have_content 'Successfully authenticated from twitter account.'
+      page.should have_content 'twitterアカウントでログインしました。'
     end
   end
 end

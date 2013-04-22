@@ -10,10 +10,13 @@ describe 'Users' do
     before do
       visit events_path
     end
-    
-    it { page.status_code.should == 200 }
-    it { page.should have_content('Free') }
-    it { page.should have_selector('input[name="keyword"]') }
-    it { page.should have_selector("a[href='#{event_path(event)}']") }
+
+    it '検索フォームが表示される' do
+      page.should have_selector('input[name="keyword"]')
+    end
+
+    it '登録されているイベントが表示される' do
+      page.should have_content(event.name)
+    end
   end
 end
