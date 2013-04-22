@@ -1,15 +1,28 @@
 require 'rubygems'
 require 'spork'
-require 'capybara/rspec'
-require 'capybara/rails'
-require 'launchy'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
 Spork.prefork do
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV["RAILS_ENV"] ||= 'test'
+
+  if Spork.using_spork?
+    # Use of https://github.com/sporkrb/spork/wiki/Spork.trap_method-Jujitsu
+    Spork.trap_method(Rails::Application, :reload_routes!)
+    Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
+   
+   
+    # Prevent main application to eager_load in the prefork block (do not load files in autoload_paths)
+    Spork.trap_method(Rails::Application, :eager_load!)
+  end
+ 
+  # Below this line it is too late...
   require File.expand_path("../../config/environment", __FILE__)
+
+  # Load all railties files
+  Rails.application.railties.all { |r| r.eager_load! }
+
   require 'rspec/rails'
   require 'rspec/autorun'
 
@@ -52,17 +65,11 @@ Spork.prefork do
     config.include ViewMacros, type: :view
     config.include RoutingResourcesMacros, type: :routing
     config.include FeatureMacros, type: :feature
-    # master data
-    load "#{Rails.root}/db/seeds.rb"
 
-    if Spork.using_spork?
-      Rails.application.reload_routes!
-      ActiveSupport::Dependencies.clear
-      ActiveSupport::DescendantsTracker.clear
-      ActionDispatch::Reloader.cleanup!
-      ActionDispatch::Reloader.prepare!
-      ActiveRecord::Base.instantiate_observers
-    end
+    # For capybara
+    require 'capybara/rspec'
+    require 'capybara/poltergeist'
+    Capybara.javascript_driver = :poltergeist
 
     config.before do
       Fog.mock!
@@ -71,32 +78,34 @@ Spork.prefork do
     end
 
     config.before(:suite) do
-      DatabaseCleaner.strategy = :truncation, {:except => %w[event_payment_kinds levels providers scopes]}
+      DatabaseCleaner.strategy = :transaction
     end
-      
+
     config.before(:each) do
-      DatabaseCleaner.start
+      if example.metadata[:js]
+        DatabaseCleaner.strategy = :truncation
+      else
+        DatabaseCleaner.strategy = :transaction
+        DatabaseCleaner.start
+      end
     end
-    
+
     config.after(:each) do
       DatabaseCleaner.clean
+      if example.metadata[:js]
+        load "#{Rails.root}/db/seeds.rb"
+      end
     end
+
+    # master data
+    load "#{Rails.root}/db/seeds.rb"
   end
-  Capybara.default_driver = :webkit
-  Capybara.javascript_driver = :webkit
 end
 
 Spork.each_run do
-  # This code will be run each time you run your specs.
-  FactoryGirl.factories.clear
-  Dir[Rails.root.join("spec/factories/**/*.rb")].each{|f| load f}
-  if Spork.using_spork?
-    Rails.application.reload_routes!
-    ActiveSupport::Dependencies.clear
-    ActiveSupport::DescendantsTracker.clear
-    ActionDispatch::Reloader.cleanup!
-    ActionDispatch::Reloader.prepare!
-    ActiveRecord::Base.instantiate_observers
+  # reload all the models
+  Dir["#{Rails.root}/app/models/**/*.rb"].each do |model|
+    load model
   end
-end
-
+  FactoryGirl.reload
+end if Spork.using_spork?
