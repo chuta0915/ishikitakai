@@ -172,4 +172,34 @@ describe Event do
       it { subject.should be_present }
     end
   end
+
+  describe 'validation' do
+    subject { event }
+    before do
+      event.place_url = place_url
+    end
+    context '#place_url is invalid' do
+      context 'domain only' do
+        let(:place_url) { 'example.com' }
+        it { should_not be_valid }
+      end
+
+      context 'javascript' do
+        let(:place_url) { 'javascript:alert("test")' }
+        it { should_not be_valid }
+      end
+    end
+
+    context '#place_url is valid' do
+      context 'nil' do
+        let(:place_url) { nil }
+        it { should be_valid }
+      end
+
+      context 'http' do
+        let(:place_url) { 'http://example.com' }
+        it { should be_valid }
+      end
+    end
+  end
 end
