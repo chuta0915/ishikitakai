@@ -5,13 +5,13 @@ gem 'rails', '3.2.13'
 gem 'jquery-rails'
 gem 'thin'
 
-gem 'libv8'
 gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 
 gem 'rails_config'
 gem 'rails-i18n'
+gem 'safe_yaml', '0.8.6'
 gem 'rails_admin'
 gem 'devise'
 gem 'omniauth'
@@ -28,6 +28,7 @@ gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'showdown-rails'
 gem 'fog'
+gem 'figaro'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -37,31 +38,53 @@ end
 
 group :development do
   gem 'foreman'
-  gem 'guard-livereload'
-  gem 'quiet_assets'
-  gem 'tapp'
 end
 
-group :development, :test do
-  gem 'debugger'
+group :test, :development do
   gem 'sqlite3'
+  # Rspec
   gem 'rspec-rails'
-  gem 'spork', '~> 0.9.0.rc'
-  gem 'rb-fsevent'
-  gem 'guard'
-  gem 'guard-spork'
-  gem 'guard-rspec'
-  gem 'taps'
+  gem 'factory_girl'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'delorean'
+  gem 'shoulda-matchers'
+
+  # Capybara
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'launchy'
+
+  # Debug tool
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'tapp'
+  gem 'awesome_print'
+
+  # Testing tools
+  gem 'database_cleaner'
+  gem "brakeman"
+  gem "webmock", require: false
+
+  # Guard
+  gem 'spork'
+  gem 'spork-rails'
+  gem 'guard-spork'
+  gem 'guard-rspec'
+  gem 'guard-rails-assets'
+  gem 'rb-fsevent'
+
+  # Capistrano
+  gem 'capistrano'
+  gem 'capistrano-ext'
+  gem 'capistrano_colors'
+  gem 'rvm-capistrano'
+
+  # Jasmine
   gem 'jasmine-rails'
   gem 'jasmine-headless-webkit', :github => 'johnbintz/jasmine-headless-webkit'
   gem 'guard-rails-assets'
   gem 'guard-jasmine-headless-webkit'
-  gem 'capybara', :github => 'jnicklas/capybara'
-  gem 'launchy'
-  gem 'poltergeist'
-  gem 'database_cleaner'
 end
 
 group :production do
