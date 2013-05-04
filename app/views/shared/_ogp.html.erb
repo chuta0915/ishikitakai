@@ -3,6 +3,6 @@
 <meta property="og:url" content="<%=url%>"/>
 <meta property="og:site_name" content="<%= content_for?(:title) ? yield(:title) : Settings.site.name %>"/>
 <meta property="og:image" content="<%=image%>" />
-<meta property="fb:admins" content="<%=ENV['FB_ADMINS']%>" />
-<meta property="fb:app_id" content="<%=ENV['FB_APP_ID']%>" />
+<meta property="fb:admins" content="<%=Figaro.env.fb_admins%>" />
+<meta property="fb:app_id" content="<%=Figaro.env.fb_app_id%>" />
 <meta property="og:description" content="<%=description%>" />

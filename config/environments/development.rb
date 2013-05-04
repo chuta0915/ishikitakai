@@ -36,9 +36,9 @@ IshikitakaiCom::Application.configure do
   config.assets.debug = true
 
   # pusher api setting
-  Pusher.app_id = ENV["PUSHER_APP_ID"]
-  Pusher.key    = ENV["PUSHER_APP_KEY"]
-  Pusher.secret = ENV["PUSHER_APP_SECRET"]
+  Pusher.app_id = Figaro.env.pusher_app_id
+  Pusher.key    = Figaro.env.pusher_app_key
+  Pusher.secret = Figaro.env.pusher_app_secret
 
   ActionMailer::Base.delivery_method = :sendmail
   ActionMailer::Base.perform_deliveries = true

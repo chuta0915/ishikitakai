@@ -1,0 +1,26 @@
+BASIC_AUTH_PW: ''
+BASIC_AUTH_USER: ''
+FB_ADMINS: ''
+FB_APP_ID: '' 
+FB_APP_SECRET: ''
+FB_SCOPE: email
+GH_APP_ID: '' 
+GH_APP_SECRET: '' 
+TW_APP_ID: '' 
+TW_APP_SECRET: '' 
+PUSHER_APP_ID: ''
+PUSHER_APP_KEY: ''
+PUSHER_APP_SECRET: '' 
+HOST: 'localhost:3000'
+CREATABLE_GROUP_USER_IDS: '' 
+CREATABLE_EVENT_USER_IDS: ''
+DELAYED: 0
+AWS_S3_KEY_ID: '' 
+AWS_S3_SECRET_KEY: '' 
+AWS_S3_BUCKET: '' 
+AWS_REGION: ap-northeast-1
+GA:  ''
+production:
+  PATH: bin:vendor/bundle/ruby/1.9.1/bin:/usr/local/bin:/usr/bin:/bin
+  RACK_ENV: production
+  RAILS_ENV: production
