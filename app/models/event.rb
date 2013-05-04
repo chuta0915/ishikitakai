@@ -27,6 +27,7 @@ class Event < ActiveRecord::Base
   validates_length_of :name, minimum: 0, maximum: 30
   validates_length_of :summary, minimum: 0, maximum: 100
   validates_length_of :content, minimum: 0, maximum: 2000
+  validates :place_url, url_format: true
 
   scope :search, lambda {|keyword|
     where(["
