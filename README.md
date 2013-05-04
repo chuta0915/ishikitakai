@@ -7,11 +7,11 @@ Community management system.
 Check ruby version.
 
 ```
-cat .rvmrc.sample
+cat .rvmrc.example
 ```
 
 ```
-cp .rvmrc.sample .rvmrc
+cp .rvmrc.example .rvmrc
 ```
 
 Customize .rvmrc for your environment.
