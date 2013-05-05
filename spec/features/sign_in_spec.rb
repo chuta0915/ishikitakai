@@ -14,6 +14,21 @@ describe 'sign_in' do
       it 'should have signed message' do
         page.should have_content "#{provider.to_s}アカウントでログインしました。"
       end
+      it '通知メニューが表示される' do
+        within('body>div.navbar') do
+          page.should have_content(I18n.t('nav.notification'))
+        end
+      end
+      it 'ログインしたユーザーの名前が表示される' do
+        within('body>div.navbar') do
+          page.should have_content(new_user.name)
+        end
+      end
+      it 'ログインしたユーザーの画像が表示される' do
+        within('body>div.navbar') do
+          page.should have_selector("img[src='#{new_user.image}']")
+        end
+      end
     end
   end
 end
