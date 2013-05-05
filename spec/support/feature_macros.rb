@@ -41,7 +41,7 @@ module FeatureMacros
     end
   end
 
-  def oauth_sign_in user, provider
+  def oauth_sign_in user, provider, force_reload = true
     auth = 
     {
       'uid' => '123456',
@@ -65,6 +65,6 @@ module FeatureMacros
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[provider.to_sym] = OmniAuth::AuthHash.new(auth)
     visit user_omniauth_authorize_path(provider: provider.to_s)
-    reload
+    reload if force_reload
   end
 end
