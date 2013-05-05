@@ -202,4 +202,26 @@ describe Event do
       end
     end
   end
+
+  describe '.creatable?' do
+    before do
+      ENV['CREATABLE_EVENT_USER_IDS'] = user_ids.join(',')
+    end
+    subject { Event.creatable?(user) }
+
+    context 'when creatable users is blank' do
+      let(:user_ids) { [] }
+      it { should be_true }
+    end
+
+    context 'when creatable user' do
+      let(:user_ids) { [user.id.to_s] }
+      it { should be_true }
+    end
+
+    context 'when not creatable user' do
+      let(:user_ids) { [0] }
+      it { should be_false }
+    end
+  end
 end

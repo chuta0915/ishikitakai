@@ -50,6 +50,14 @@ class Event < ActiveRecord::Base
   after_update :update_attendance
   after_create :notify_group_event
 
+  class << self
+    def creatable?(user)
+      user_ids = Figaro.env.creatable_event_user_ids.split(',')
+      return true if user_ids.blank?
+      return true if user_ids.include?(user.try(:id).try(:to_s))
+      return false
+    end
+  end
 
   def user_is_owner?(user)
     self.user_can_edit? user
