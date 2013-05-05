@@ -31,12 +31,31 @@ describe 'Events' do
     end
 
     describe 'イベント詳細へ移動' do
-      context 'イベントタイトルをクリック' do
-        before do
-          find_link(public_event.name).click()
+      context 'グループのイベント' do
+        context 'イベントタイトルをクリック' do
+          before do
+            find_link(public_group_event.name).click()
+          end
+          it 'イベント詳細へ移動する' do
+            page.current_path.should eq event_path(public_group_event)
+          end
+          it 'グループメニューが表示される' do
+            page.should have_selector('.group_menu')
+          end
         end
-        it 'イベント詳細へ移動する' do
-          page.current_path.should eq event_path(public_event)
+      end
+
+      context '単発イベント' do
+        context 'イベントタイトルをクリック' do
+          before do
+            find_link(public_event.name).click()
+          end
+          it 'イベント詳細へ移動する' do
+            page.current_path.should eq event_path(public_event)
+          end
+          it 'グループメニューが表示されない' do
+            page.should_not have_selector('.group_menu')
+          end
         end
       end
     end

@@ -2,7 +2,6 @@
 FactoryGirl.define do
   factory :mokmok_event, class: 'Event' do
     user_id 1
-    group_id 1
     scope_id 1
     name "Sendagaya.rb mokmok Day"
     content "# sendagaya.rb\n* test\n* hoge\n* fugo\n\nゆるふわ"
@@ -22,7 +21,6 @@ FactoryGirl.define do
   end
   factory :reading_event, class: 'Event' do
     user_id 1
-    group_id 1
     scope_id 1
     name "Sendagaya.rb reading Day"
     content "# sendagaya.rb\n* test\n* hoge\n* fugo\n\nゆるふわ"
@@ -43,7 +41,6 @@ FactoryGirl.define do
 
   factory :private_event, class: 'Event' do
     user_id 1
-    group_id 1
     scope_id 4
     name "private event"
     content "private event!"
@@ -64,7 +61,6 @@ FactoryGirl.define do
 
   factory :drinkup_event, class: 'Event' do
     user_id 1
-    group_id 1
     scope_id 1
     name "drinkup event"
     content "drinkup event!"
@@ -84,7 +80,6 @@ FactoryGirl.define do
   end
 
   factory :new_event, class: 'Event' do
-    group_id  ""
     name  "event name"
     summary  "説明"
     content  "カイサイしまーす"

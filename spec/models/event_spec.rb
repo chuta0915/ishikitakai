@@ -159,7 +159,7 @@ describe Event do
       it { subject.level.should == Level.find_by_name('member') }
     end
     context "group master joins group's event which created by other master user" do
-      let!(:event) { create :mokmok_event, user_id: other_user.id }
+      let!(:event) { create :mokmok_event, user_id: other_user.id, group_id: sendagayarb.id }
       subject { event.attendances.where(user_id: master_user.id).last }
       before do
         sendagayarb.join other_user, 'master'
@@ -168,7 +168,7 @@ describe Event do
       it { subject.level.should == Level.find_by_name('master') }
     end
     context "none group master joins group's event" do
-      let!(:event) { create :mokmok_event, user_id: master_user.id }
+      let!(:event) { create :mokmok_event, user_id: master_user.id, group_id: sendagayarb.id }
       subject { sendagayarb.memberships.where(user_id: other_user.id).last }
       before do
         event.join other_user
