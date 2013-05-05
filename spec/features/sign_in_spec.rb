@@ -7,11 +7,11 @@ describe 'sign_in' do
     I18n.locale = :ja
   end
   [:facebook, :twitter, :github].each do |provider|
-    context "sign in with #{provider.to_s} account" do
+    context "#{provider.to_s} アカウントでログインする場合 " do
       before do
         oauth_sign_in new_user, provider, false
       end
-      it 'should have signed message' do
+      it 'ログインメッセージが表示される' do
         page.should have_content "#{provider.to_s}アカウントでログインしました。"
       end
       it '通知メニューが表示される' do
