@@ -29,6 +29,17 @@ describe 'Events' do
     it '登録されている非公開イベントは表示されない' do
       page.should_not have_content(private_event.name)
     end
+
+    describe 'イベント詳細へ移動' do
+      context 'イベントタイトルをクリック' do
+        before do
+          find_link(event.name).click()
+        end
+        it 'イベント詳細へ移動する' do
+          page.current_path.should eq event_path(event)
+        end
+      end
+    end
     
     describe 'イベント作成ボタン' do
       before do
