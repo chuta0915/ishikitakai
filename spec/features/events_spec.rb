@@ -7,7 +7,7 @@ describe 'Events' do
     I18n.locale = :ja
   end
 
-  describe 'visit events list' do
+  describe 'イベント一覧' do
     let!(:public_group) { create(:sendagayarb, user_id: user.id) }
     let!(:private_group) { create(:ishikitakai, user_id: user.id) }
     let!(:event) { create(:mokmok_event) }
