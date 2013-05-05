@@ -1,7 +1,7 @@
 # coding:utf-8
 require 'spec_helper'
 
-describe 'Users' do
+describe 'Events' do
   let(:user) { create(:user) }
   before do
     I18n.locale = :ja
