@@ -10,7 +10,7 @@ describe 'Events' do
   describe 'イベント一覧' do
     let!(:public_group) { create(:sendagayarb, user_id: user.id) }
     let!(:private_group) { create(:ishikitakai, user_id: user.id) }
-    let!(:event) { create(:mokmok_event) }
+    let!(:public_event) { create(:mokmok_event) }
     let!(:private_event) { create(:private_event) }
     let!(:public_group_event) { create(:reading_event, group: public_group) }
     let!(:private_group_event) { create(:drinkup_event, group: private_group) }
@@ -23,7 +23,7 @@ describe 'Events' do
     end
 
     it '登録されているイベントが表示される' do
-      page.should have_content(event.name)
+      page.should have_content(public_event.name)
     end
 
     it '登録されている非公開イベントは表示されない' do
@@ -33,10 +33,10 @@ describe 'Events' do
     describe 'イベント詳細へ移動' do
       context 'イベントタイトルをクリック' do
         before do
-          find_link(event.name).click()
+          find_link(public_event.name).click()
         end
         it 'イベント詳細へ移動する' do
-          page.current_path.should eq event_path(event)
+          page.current_path.should eq event_path(public_event)
         end
       end
     end
@@ -70,9 +70,9 @@ describe 'Events' do
       end
       context '検索結果が存在する場合' do
         context '公開イベントの場合' do
-          let(:keyword) { event.name }
+          let(:keyword) { public_event.name }
           it '検索結果が表示されること' do
-            page.should have_content(event.name)
+            page.should have_content(public_event.name)
           end
         end
 
