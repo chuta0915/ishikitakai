@@ -24,7 +24,11 @@ describe Event do
       let(:keyword) { 'tokyo' }
       it { should be_blank }
     end
+  end
+
+  describe 'in_public' do
     context 'when passed "private"' do
+      subject { Event.search(keyword).in_public.first }
       let(:keyword) { 'private' }
       it { should be_blank }
     end

@@ -15,7 +15,7 @@ class EventsController < ApplicationController
       events = Event
     end
     @events = events
-      .where(scope_id: Scope.find_by_name('public').id)
+      .in_public
       .order('id DESC')
       .page(page)
       .per(per)

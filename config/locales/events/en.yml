@@ -12,6 +12,7 @@ en:
       title: "Events"
       new: "Add new event."
       show_html: "Detail &raquo;"
+      not_found: "Events not found."
     edit:
       delete: "Delete event"
       confirm_delete: "Are you really want to delete?"

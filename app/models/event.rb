@@ -37,8 +37,12 @@ class Event < ActiveRecord::Base
       ", 
       "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"
     ])
-    .joins(:group)
-    .where('groups.scope_id = ?', Scope.find_by_name('public').id)
+  }
+
+  scope :in_public, lambda {
+    where(scope_id: Scope.find_by_name('public').id)
+    .joins('LEFT JOIN groups ON events.group_id = groups.id')
+    .where('groups.scope_id = ? OR groups.id IS NULL', Scope.find_by_name('public').id)
   }
 
   after_initialize :join_date

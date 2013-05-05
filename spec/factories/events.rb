@@ -44,10 +44,31 @@ FactoryGirl.define do
   factory :private_event, class: 'Event' do
     user_id 1
     group_id 1
-    scope_id 1
+    scope_id 4
     name "private event"
     content "private event!"
     summary "himitsu"
+    place_url "http://www.connectstar.co.jp"
+    place_name "connectstar"
+    place_address "〒151-0051 東京都渋谷区千駄ヶ谷1-13-11 チャリ千駄ヶ谷202"
+    place_map_url "http://maps.google.co.jp/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%8B%E8%B0%B7%E5%8C%BA%E5%8D%83%E9%A7%84%E3%83%B6%E8%B0%B71-13-11&hl=ja&ie=UTF8&sll=35.682049,139.707332&sspn=0.027259,0.032659&brcurrent=3,0x60188cbe2fdaeaf9:0x8eb374503b87af3f,0&hnear=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%8B%E8%B0%B7%E5%8C%BA%E5%8D%83%E9%A7%84%E3%83%B6%E8%B0%B7%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%91%EF%BC%93%E2%88%92%EF%BC%91%EF%BC%91&t=m&z=17"
+    capacity_min 1
+    capacity_max 8
+    begin_at "2012-05-28 19:30:00"
+    end_at "2012-05-28 21:30:00"
+    receive_begin_at "2012-06-04 12:00:00"
+    receive_end_at "2012-06-04 18:00:00"
+    event_payment_kind_id 1
+    fee 0
+  end
+
+  factory :drinkup_event, class: 'Event' do
+    user_id 1
+    group_id 1
+    scope_id 1
+    name "drinkup event"
+    content "drinkup event!"
+    summary "飲むぞ！"
     place_url "http://www.connectstar.co.jp"
     place_name "connectstar"
     place_address "〒151-0051 東京都渋谷区千駄ヶ谷1-13-11 チャリ千駄ヶ谷202"

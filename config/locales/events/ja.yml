@@ -12,6 +12,7 @@ ja:
       title: "登録されているイベント"
       new: "イベントを登録する"
       show_html: "詳しく見る &raquo;"
+      not_found: "イベントが見つかりませんでした"
     edit:
       delete: "イベントを削除します"
       confirm_delete: "本当に削除しますか？"
