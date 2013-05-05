@@ -1,7 +1,7 @@
 <% content_for :title,  "#{t('.title')} " %>
 <% content_for :body_class,  "events" %>
 <%= render 'search_form' %>
-<% if Figaro.env.creatable_event_user_ids.nil? %>
+<% if Event.creatable?(current_user) %>
   <%= link_to t('.new'), new_event_path, class: "btn btn-warning btn-large new_event" %>
 <% end %>
 
