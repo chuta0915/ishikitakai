@@ -41,13 +41,14 @@ describe User do
 
   describe 'storable' do
     subject { new_user }
+    let(:region) { 'test' }
     before do
       User.any_instance.unstub(:save_to_s3)
       storage = Fog::Storage.new(
         provider: 'AWS',
         aws_access_key_id:'test',
         aws_secret_access_key:'test',
-        region: 'test'
+        region: region,
       )
       Fog::Storage.stub(:new).and_return(storage)
       Fog::Storage::AWS::Directories.any_instance.stub(:get).and_return(nil)
@@ -57,13 +58,12 @@ describe User do
     end
     context 'saved' do
       before do
-        /s3\.amazonaws\.com\/users\/image\/1/
         new_user.save
         new_user.reload
       end
       it "has correct image url" do
         # TODO somehow it returns url with double slashes "https://s3.amazonaws.com//users/image/1/1?1363446084"
-        subject.image.should =~ %r{s3\.amazonaws\.com}
+        subject.image.should =~ %r{s3-#{region}\.amazonaws\.com}
         subject.image.should =~ %r{users/image/#{new_user.id}}
       end
     end

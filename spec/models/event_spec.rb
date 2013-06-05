@@ -24,7 +24,11 @@ describe Event do
       let(:keyword) { 'tokyo' }
       it { should be_blank }
     end
+  end
+
+  describe 'in_public' do
     context 'when passed "private"' do
+      subject { Event.search(keyword).in_public.first }
       let(:keyword) { 'private' }
       it { should be_blank }
     end
@@ -155,7 +159,7 @@ describe Event do
       it { subject.level.should == Level.find_by_name('member') }
     end
     context "group master joins group's event which created by other master user" do
-      let!(:event) { create :mokmok_event, user_id: other_user.id }
+      let!(:event) { create :mokmok_event, user_id: other_user.id, group_id: sendagayarb.id }
       subject { event.attendances.where(user_id: master_user.id).last }
       before do
         sendagayarb.join other_user, 'master'
@@ -164,7 +168,7 @@ describe Event do
       it { subject.level.should == Level.find_by_name('master') }
     end
     context "none group master joins group's event" do
-      let!(:event) { create :mokmok_event, user_id: master_user.id }
+      let!(:event) { create :mokmok_event, user_id: master_user.id, group_id: sendagayarb.id }
       subject { sendagayarb.memberships.where(user_id: other_user.id).last }
       before do
         event.join other_user
@@ -200,6 +204,28 @@ describe Event do
         let(:place_url) { 'http://example.com' }
         it { should be_valid }
       end
+    end
+  end
+
+  describe '.creatable?' do
+    before do
+      ENV['CREATABLE_EVENT_USER_IDS'] = user_ids.join(',')
+    end
+    subject { Event.creatable?(user) }
+
+    context 'when creatable users is blank' do
+      let(:user_ids) { [] }
+      it { should be_true }
+    end
+
+    context 'when creatable user' do
+      let(:user_ids) { [user.id.to_s] }
+      it { should be_true }
+    end
+
+    context 'when not creatable user' do
+      let(:user_ids) { [0] }
+      it { should be_false }
     end
   end
 end

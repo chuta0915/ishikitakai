@@ -1,8 +1,8 @@
-<% if ENV['GA'].present? %>
+<% if Figaro.env.ga.present? %>
   <!-- GA begin -->
   <script type="text/javascript">
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', '<%=ENV['GA']%>']);
+    _gaq.push(['_setAccount', '<%=Figaro.env.ga%>']);
     _gaq.push(['_trackPageview']);
     (function() {
       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

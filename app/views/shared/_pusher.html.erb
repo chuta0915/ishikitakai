@@ -1,4 +1,4 @@
 <script type="text/javascript">
-  var rack_env = "<%=ENV['RACK_ENV']%>"
+  var rack_env = "<%=Rails.env%>"
   var pusher = new Pusher("<%=Pusher.key%>");
 </script>

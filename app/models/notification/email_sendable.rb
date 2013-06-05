@@ -11,7 +11,7 @@ module Notification::EmailSendable
         method_name = self.to_s.split('::')[1].underscore
         user_setting_column_name = "mail_#{method_name}"
         if user.valid_email.present? && user.setting.send(user_setting_column_name)
-          if ENV['DELAYED'] == '1'
+          if Figaro.env.delayed == '1'
             NotificationMailer.delay.send(method_name, user, trigger)
           else
             NotificationMailer.send(method_name, user, trigger).deliver

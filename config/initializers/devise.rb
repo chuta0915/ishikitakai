@@ -206,10 +206,10 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
-  config.omniauth :facebook, ENV['FB_APP_ID'], ENV['FB_APP_SECRET'],
-   {:scope => ENV['FB_SCOPE'], :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
-  config.omniauth :twitter, ENV['TW_APP_ID'], ENV['TW_APP_SECRET'] 
-  config.omniauth :github, ENV['GH_APP_ID'], ENV['GH_APP_SECRET'] 
+  config.omniauth :facebook, Figaro.env.fb_app_id, Figaro.env.fb_app_secret,
+   {:scope => Figaro.env.fb_scope, :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
+  config.omniauth :twitter, Figaro.env.tw_app_id, Figaro.env.tw_app_secret
+  config.omniauth :github, Figaro.env.gh_app_id, Figaro.env.gh_app_secret
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

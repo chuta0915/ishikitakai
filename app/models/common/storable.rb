@@ -17,12 +17,12 @@ module Common::Storable
   def save_to_s3
     storage = Fog::Storage.new(
       provider: 'AWS',
-      aws_access_key_id:ENV['AWS_S3_KEY_ID'],
-      aws_secret_access_key:ENV['AWS_S3_SECRET_KEY'],
-      region: ENV['AWS_REGION']
+      aws_access_key_id:Figaro.env.aws_s3_key_id,
+      aws_secret_access_key:Figaro.env.aws_s3_secret_key,
+      region: Figaro.env.aws_region
     )
-    bucket = storage.directories.get(ENV['AWS_S3_BUCKET']) 
-    bucket = storage.directories.create(key: ENV['AWS_S3_BUCKET']) unless bucket
+    bucket = storage.directories.get(Figaro.env.aws_s3_bucket) 
+    bucket = storage.directories.create(key: Figaro.env.aws_s3_bucket) unless bucket
 
     save_file = self.send(self.storable_file_column)
     dir = self.class.to_s.tableize

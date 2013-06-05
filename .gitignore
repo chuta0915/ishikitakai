@@ -14,7 +14,6 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
-.env
 .DS_Store
 config/settings.local.yml
 config/settings/*.local.yml
@@ -23,3 +22,6 @@ public/assets
 public/assets-test
 .jhw-cache
 .rvmrc
+
+# Ignore application configuration
+/config/application.yml

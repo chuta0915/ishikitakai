@@ -26,9 +26,9 @@ class ApplicationController < ActionController::Base
   end
 
   def basic_auth
-    return if ENV['BASIC_AUTH_USER'].nil?
+    return if Figaro.env.basic_auth_user.blank?
     authenticate_or_request_with_http_basic do |user, pass|
-      user == ENV['BASIC_AUTH_USER'] && pass == ENV['BASIC_AUTH_PW']
+      user == Figaro.env.basic_auth_user && pass == Figaro.env.basic_auth_pw
     end 
   end
 
@@ -53,17 +53,17 @@ class ApplicationController < ActionController::Base
 
   def restrict_save
     return if Rails.env.test?
-    if ENV['CREATABLE_GROUP_USER_IDS'].present? &&
+    if Figaro.env.creatable_group_user_ids.present? &&
       request.path =~ /^\/groups$/ &&
       request.method != 'GET'
-      unless ENV['CREATABLE_GROUP_USER_IDS'].split(',').include? current_user.id.to_s
+      unless Figaro.env.creatable_group_user_ids.split(',').include? current_user.id.to_s
         return head :unauthorized
       end
     end
-    if ENV['CREATABLE_EVENT_USER_IDS'].present? &&
+    if Figaro.env.creatable_event_user_ids.present? &&
       request.path =~ /^\/events$/ &&
       request.method != 'GET'
-      unless ENV['CREATABLE_EVENT_USER_IDS'].split(',').include? current_user.id.to_s
+      unless Figaro.env.creatable_event_user_ids.split(',').include? current_user.id.to_s
         return head :unauthorized
       end
     end

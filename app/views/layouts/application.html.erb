@@ -21,7 +21,7 @@
     <%= javascript_include_tag "application" %>
     <%= render 'shared/pusher' %>
     <%= yield :head %>
-    <%= content_for?(:ogp) ? yield(:ogp) : render('shared/ogp', type: 'website', url: request.url, image: "#{request.scheme}://#{ENV['HOST']}#{Settings.site.image}", description: Settings.site.description) %>
+    <%= content_for?(:ogp) ? yield(:ogp) : render('shared/ogp', type: 'website', url: request.url, image: "#{request.scheme}://#{Figaro.env.host}#{Settings.site.image}", description: Settings.site.description) %>
   </head>
   <body class="<%= yield :body_class %>" data-id="<%= yield :body_data_id %>">
 
@@ -175,6 +175,6 @@
       </footer>
 
     </div> <!-- /container -->
-    <%= render 'shared/fb_load_js', app_id: ENV['FB_APP_ID'] %>
+    <%= render 'shared/fb_load_js', app_id: Figaro.env.fb_app_id %>
   </body>
 </html>

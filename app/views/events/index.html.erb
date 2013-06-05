@@ -1,14 +1,22 @@
 <% content_for :title,  "#{t('.title')} " %>
 <% content_for :body_class,  "events" %>
 <%= render 'search_form' %>
-<% if ENV['CREATABLE_EVENT_USER_IDS'].nil? %>
+<% if Event.creatable?(current_user) %>
   <%= link_to t('.new'), new_event_path, class: "btn btn-warning btn-large new_event" %>
 <% end %>
 
-<%= paginate @events %>
-<ul class="thumbnails row">
-  <% @events.each do|event| %>
-    <li class="span4"><%= render 'event', event: event, show_group: true %></li>
-  <% end %>
-</ul> 
-<%= paginate @events %>
+<% if @events %>
+  <%= paginate @events %>
+  <ul class="thumbnails row">
+    <% @events.each do|event| %>
+      <li class="span4"><%= render 'event', event: event, show_group: true %></li>
+    <% end %>
+  </ul> 
+  <%= paginate @events %>
+<% end %>
+
+<% if @events.blank? && params[:keyword] %>
+  <div class="well">
+    <%= t('.not_found') %>
+  </div>
+<% end %>

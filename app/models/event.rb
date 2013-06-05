@@ -37,8 +37,12 @@ class Event < ActiveRecord::Base
       ", 
       "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"
     ])
-    .joins(:group)
-    .where('groups.scope_id = ?', Scope.find_by_name('public').id)
+  }
+
+  scope :in_public, lambda {
+    where(scope_id: Scope.find_by_name('public').id)
+    .joins('LEFT JOIN groups ON events.group_id = groups.id')
+    .where('groups.scope_id = ? OR groups.id IS NULL', Scope.find_by_name('public').id)
   }
 
   after_initialize :join_date
@@ -50,6 +54,14 @@ class Event < ActiveRecord::Base
   after_update :update_attendance
   after_create :notify_group_event
 
+  class << self
+    def creatable?(user)
+      user_ids = Figaro.env.creatable_event_user_ids.split(',')
+      return true if user_ids.blank?
+      return true if user_ids.include?(user.try(:id).try(:to_s))
+      return false
+    end
+  end
 
   def user_is_owner?(user)
     self.user_can_edit? user

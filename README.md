@@ -7,11 +7,11 @@ Community management system.
 Check ruby version.
 
 ```
-cat .rvmrc.sample
+cat .rvmrc.example
 ```
 
 ```
-cp .rvmrc.sample .rvmrc
+cp .rvmrc.example .rvmrc
 ```
 
 Customize .rvmrc for your environment.
@@ -43,13 +43,6 @@ y[es], n[o], v[iew], c[ancel]>
 Enter 'y'
 
 ## development
-
-Customize .env for your environment.
-
-```
-cp .env.sample .env
-vim .env
-```
 
 ```
 foreman start -f Procfile.development

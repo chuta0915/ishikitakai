@@ -1,3 +1,4 @@
+include Warden::Test::Helpers
 module FeatureMacros
   extend ActiveSupport::Concern
 
@@ -19,12 +20,16 @@ module FeatureMacros
     }
   end
 
+  def reload
+    visit page.current_path if page.current_path
+  end
+
   def sign_in(user)
     Warden.test_mode!
     user.confirm! if user.respond_to?(:confirm!)
     scope = user.class.to_s.downcase.to_sym
-    User.stub(:authenticate_facebook_by_signed_request).and_return(user)
     login_as(user, scope: scope, run_callbacks: false)
+    reload
   end
 
   def sign_out(user = nil)
@@ -36,8 +41,7 @@ module FeatureMacros
     end
   end
 
-  def oauth_sign_in user, provider
-    back_path = page.current_path
+  def oauth_sign_in user, provider, force_reload = true
     auth = 
     {
       'uid' => '123456',
@@ -61,6 +65,6 @@ module FeatureMacros
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[provider.to_sym] = OmniAuth::AuthHash.new(auth)
     visit user_omniauth_authorize_path(provider: provider.to_s)
-    visit back_path if back_path
+    reload if force_reload
   end
 end
